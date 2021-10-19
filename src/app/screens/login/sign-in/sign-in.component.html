@@ -1,0 +1,49 @@
+<div class="image">
+  <div class="container">
+    <div class="d-flex justify-content-center">
+      <mat-card class="col-xs-6 col-md-4 mat-elevation-z4">
+        <mat-card-content>
+          <div class="text-center">
+            <h4>Entrar</h4>
+          </div>
+
+          <form [formGroup]="signinForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+              <mat-form-field class="col" appearance="outline">
+                <mat-label>E-mail</mat-label>
+                <input matInput type="email" formControlName="email" placeholder="Digite seu E-mail" ngModel />
+                <mat-icon matSuffix>email</mat-icon>
+                <mat-error></mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="row">
+              <mat-form-field class="col" appearance="outline">
+                <mat-label>Senha</mat-label>
+                <input matInput type="password" formControlName="senha" placeholder="Digite sua senha" ngModel />
+                <mat-icon matSuffix>vpn_key</mat-icon>
+                <mat-error>Dados Inválidos</mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="row m-1">
+              <button mat-raised-button class="col text-center" color="accent"
+                [disabled]="!signinForm.valid">Entrar</button>
+            </div>
+          </form>
+
+          <div class="row m-1">
+            <button mat-raised-button color="warn" class="col" routerLink="/sign-up">Cadastrar</button>
+          </div>
+          <div class="row m-1">
+
+            <a mat-button routerLink="/forgot-password">Esqueceu sua senha?</a>
+          </div>
+          <!-- <div class="row mt-3" *ngIf="errorMessage">
+            <p class="text-error text-center">Dados Inválidos</p>
+          </div> -->
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>
