@@ -1,12 +1,13 @@
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
 import { PopupComponent } from './../../../shared/popup/popup.component';
 import { Albergue } from './../../../models/albergue.model';
 import { CepService } from './../../../services/cep.service';
 import { InstituicaoService } from './../../../services/instituicao.service';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-sign-up-place',
@@ -30,6 +31,7 @@ export class SignUpPlaceComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog,
+    private _router: Router,
     private _cepService: CepService,
     private _instituicaoService: InstituicaoService
   ) { }
@@ -97,7 +99,8 @@ export class SignUpPlaceComponent implements OnInit {
           let mensagem = { principal: "Cadastro realizado com sucesso!", secundaria: "Sua instituição será avaliada e aprovada em breve."}
           this.dialog.open(PopupComponent, {data:  mensagem }).afterClosed().subscribe(
             result => {
-              //Rota
+              this._router.navigateByUrl('/sign-up-place');
+
             }
           )
         }
@@ -110,7 +113,7 @@ export class SignUpPlaceComponent implements OnInit {
           let mensagem = { principal: "Solicitação realizada com sucesso!", secundaria: "Sua solicitação será avaliada e aprovada em breve."}
           this.dialog.open(PopupComponent, {data:  mensagem }).afterClosed().subscribe(
             result => {
-              //Rota
+              this._router.navigateByUrl('/menu');
             }
           )
         }

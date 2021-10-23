@@ -25,6 +25,7 @@ import { PopupComponent } from './shared/popup/popup.component';
 import { SignInComponent } from './screens/login/sign-in/sign-in.component';
 import { SignUpComponent } from './screens/login/sign-up/sign-up.component';
 import { SignUpPlaceComponent } from './screens/login/sign-up-place/sign-up-place.component';
+import { MenuComponent } from './shared/menu/menu.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { SignUpPlaceComponent } from './screens/login/sign-up-place/sign-up-plac
     SignInComponent,
     SignUpComponent,
     SignUpPlaceComponent,
-    PopupComponent
+    PopupComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,

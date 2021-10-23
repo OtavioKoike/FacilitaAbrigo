@@ -40,7 +40,7 @@ export class SignInComponent implements OnInit {
         refresh_token = response.refresh_token;
 
         this._authService.doLoginUser(usuario, token, refresh_token);
-        // this.router.navigateByUrl('/home');
+        this._router.navigateByUrl('/menu');
       },
       error => {
         this.signinForm.get('senha').setErrors({valid:false});

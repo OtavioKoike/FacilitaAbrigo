@@ -7,7 +7,6 @@ import { Observable } from "rxjs";
 export class TokenInterceptor implements HttpInterceptor {
   private readonly JWT_TOKEN = 'JWT_TOKEN';
 
-
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const token = localStorage.getItem(this.JWT_TOKEN)
     const reqUrl = request.url.split('/');

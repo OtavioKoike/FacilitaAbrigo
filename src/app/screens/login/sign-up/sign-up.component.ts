@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
 import { PopupComponent } from './../../../shared/popup/popup.component';
 import { Usuario } from './../../../models/usuario.model';
 import { AuthService } from '../../../services/auth.service';
-import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-sign-up',
