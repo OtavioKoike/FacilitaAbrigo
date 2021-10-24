@@ -1,0 +1,57 @@
+/* ------------------------------ */
+/* Propriedades Toolbar */
+.menu-spacer {
+  flex: 1 1 auto;
+}
+
+mat-toolbar {
+  background-color: #141414;
+  font-family: 'Times New Roman', Times, serif;
+  align-items: center;
+}
+
+.logo {
+  text-align: center;
+}
+
+.menu {
+  color: #aaa;
+}
+
+/* ------------------------------ */
+/* Propriedades Links */
+.icon, mat-toolbar mat-toolbar-row div a {
+  text-decoration: none;
+  color: #aaa;
+  margin-right: 10px;
+}
+
+/* Evento */
+mat-toolbar mat-toolbar-row div a:hover {
+  color: #fff;
+}
+
+/* a {
+  font-size: 12px;
+} */
+
+.active-list-item {
+  background-color: rgba(112, 107, 107, 0.5);
+}
+
+/* ------------------------------ */
+/* Propriedades Menu Mobile */
+.nav {
+  width: 50%;
+}
+
+div mat-sidenav-container mat-sidenav mat-nav-list a {
+  font-weight: bold;
+  color: #aaa;
+}
+
+mat-sidenav {
+  background-color: #141414;
+}
+
+/* ------------------------------ */

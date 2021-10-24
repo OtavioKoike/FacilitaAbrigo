@@ -1,3 +1,4 @@
+import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _authService: AuthService) { }
 
   ngOnInit(): void {
+  }
+
+  route(place: string){
+    localStorage.setItem('pagePlace', JSON.stringify(place));
+  }
+
+  SignOut(){
+    this._authService.doLogoutUser();
   }
 
 }

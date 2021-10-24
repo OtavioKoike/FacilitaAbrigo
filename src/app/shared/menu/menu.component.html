@@ -1,1 +1,51 @@
-<p>menu works!</p>
+<div style="height: 90vh;">
+  <mat-toolbar class="mat-elevation-z3">
+    <mat-toolbar-row>
+      <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
+        <mat-icon class="menu">menu</mat-icon>
+      </button>
+      <!-- Exibe apenas Ipad e Desktop -->
+      <span fxShow="true" fxHide.lt-md><a routerLink="home"><img src="../../../assets/img/logo.png" width="30%"></a></span>
+      <!-- Exibe apenas Mobile -->
+      <span fxShow="true" fxHide.gt-sm class="logo"><a routerLink="home"><img src="../../../assets/img/logo.png" width="50%"></a></span>
+      <span class="menu-spacer"></span>
+      <!-- Exibe apenas Ipad e Desktop -->
+      <div fxShow="true" fxHide.lt-md class="lista">
+        <a routerLink="/menu/home" mat-button routerLinkActive="active-list-item">Início</a>
+        <a routerLink="/menu/restaurantes" (click)="route('Restaurantes')" mat-button routerLinkActive="active-list-item">Restaurantes</a>
+        <a routerLink="/menu/bares" (click)="route('Bares')" mat-button routerLinkActive="active-list-item">Bares</a>
+        <a routerLink="/menu/cafeterias" (click)="route('Cafeterias')" mat-button routerLinkActive="active-list-item">Cafeterias</a>
+        <a routerLink="/menu/viagens" (click)="route('Viagens')" mat-button routerLinkActive="active-list-item">Viagens</a>
+        <a routerLink="/menu/eventos" (click)="route('Eventos')" mat-button routerLinkActive="active-list-item">Eventos</a>
+        <a routerLink="/menu/outros" (click)="route('Outros')" mat-button routerLinkActive="active-list-item">Outros</a>
+        <a routerLink="/menu/calendario" mat-button routerLinkActive="active-list-item">Calendario</a>
+      </div>
+      <a class="icon" href="#" mat-button (click)="SignOut()"><mat-icon>account_circle</mat-icon></a>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <!-- Exibe apenas Mobile -->
+  <mat-sidenav-container fxFlexFill>
+    <mat-sidenav #sidenav class="nav">
+      <mat-nav-list>
+        <a (click)="sidenav.toggle()" routerLink="/menu/home" mat-list-item routerLinkActive="active-list-item"><mat-icon>home</mat-icon>Início</a>
+        <mat-divider></mat-divider>
+        <a (click)="sidenav.toggle()" routerLink="/menu/restaurantes" (click)="route('Restaurantes')" mat-list-item routerLinkActive="active-list-item"><mat-icon>restaurant</mat-icon>Restaurantes</a>
+        <mat-divider></mat-divider>
+        <a (click)="sidenav.toggle()" routerLink="/menu/bares" (click)="route('Bares')" mat-list-item routerLinkActive="active-list-item"><mat-icon>sports_bar</mat-icon>Bares</a>
+        <mat-divider></mat-divider>
+        <a (click)="sidenav.toggle()" routerLink="/menu/cafeterias" (click)="route('Cafeterias')" mat-list-item routerLinkActive="active-list-item"><mat-icon>local_cafe</mat-icon>Cafeterias</a>
+        <mat-divider></mat-divider>
+        <a (click)="sidenav.toggle()" routerLink="/menu/viagens" (click)="route('Viagens')" mat-list-item routerLinkActive="active-list-item"><mat-icon>map</mat-icon>Viagens</a>
+        <mat-divider></mat-divider>
+        <a (click)="sidenav.toggle()" routerLink="/menu/eventos" (click)="route('Eventos')" mat-list-item routerLinkActive="active-list-item"><mat-icon>celebration</mat-icon>Eventos</a>
+        <mat-divider></mat-divider>
+        <a (click)="sidenav.toggle()" routerLink="/menu/outros" (click)="route('Outros')" mat-list-item routerLinkActive="active-list-item"><mat-icon>sports_esports</mat-icon>Outros</a>
+        <mat-divider></mat-divider>
+        <a (click)="sidenav.toggle()" routerLink="/menu/calendario" mat-list-item routerLinkActive="active-list-item"><mat-icon>event</mat-icon>Calendario</a>
+        <mat-divider></mat-divider>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content fxFlexFill><app-root></app-root></mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

@@ -44,7 +44,7 @@ export class AuthService {
     this.storeUser(user);
   }
 
-  private doLogoutUser() {
+  doLogoutUser() {
     this.loggedUser = null;
     this.removeTokens();
     this.removeUser();
