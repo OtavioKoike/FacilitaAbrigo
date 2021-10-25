@@ -1,3 +1,5 @@
+import { Albergue } from './albergue.model';
+import { Instituicao } from './instituicao.model';
 export interface Usuario {
   id: number;
   nome: string;
@@ -5,8 +7,10 @@ export interface Usuario {
   cpf: string;
   sexo: string;
   data_de_nascimento: any;
-  role: string;
-  abrigoId: number;
-  instituicaoId: number;
+  role: number;
+  abrigo_id: number;
+  instituicao_id: number;
   senha: string;
+  abrigo: Albergue;
+  instituicao: Instituicao;
 }

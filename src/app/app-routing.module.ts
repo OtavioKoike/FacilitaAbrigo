@@ -8,6 +8,7 @@ import { SignInComponent } from './screens/login/sign-in/sign-in.component';
 import { SignUpComponent } from './screens/login/sign-up/sign-up.component';
 import { SignUpPlaceComponent } from './screens/login/sign-up-place/sign-up-place.component';
 import { MenuComponent } from './shared/menu/menu.component';
+import { AdministradorComponent } from './screens/administrador/administrador.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'sign-in', pathMatch: 'full' },
@@ -17,7 +18,8 @@ const routes: Routes = [
 
   {path: 'menu', component: MenuComponent, canActivate: [AuthGuard],
     children: [
-      // { path: '', redirectTo:'home', pathMatch:'full'},
+      { path: '', redirectTo:'administrador', pathMatch:'full'},
+      {path: 'administrador', component: AdministradorComponent}
 
     ]
   }

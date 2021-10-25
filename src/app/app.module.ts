@@ -31,6 +31,7 @@ import { SignInComponent } from './screens/login/sign-in/sign-in.component';
 import { SignUpComponent } from './screens/login/sign-up/sign-up.component';
 import { SignUpPlaceComponent } from './screens/login/sign-up-place/sign-up-place.component';
 import { MenuComponent } from './shared/menu/menu.component';
+import { AdministradorComponent } from './screens/administrador/administrador.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { MenuComponent } from './shared/menu/menu.component';
     SignUpComponent,
     SignUpPlaceComponent,
     PopupComponent,
-    MenuComponent
+    MenuComponent,
+    AdministradorComponent
   ],
   imports: [
     BrowserModule,

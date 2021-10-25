@@ -73,7 +73,7 @@ export class AuthService {
   // }
 
   getUser() {
-    return localStorage.getItem(this.USUARIO);
+    return JSON.parse(localStorage.getItem(this.USUARIO));
   }
 
   getJwtToken() {

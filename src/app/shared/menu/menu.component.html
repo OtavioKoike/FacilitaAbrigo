@@ -12,13 +12,12 @@
       <!-- Exibe apenas Ipad e Desktop -->
       <div fxShow="true" fxHide.lt-md class="lista">
         <a routerLink="/menu/home" mat-button routerLinkActive="active-list-item">Início</a>
-        <a routerLink="/menu/restaurantes" (click)="route('Restaurantes')" mat-button routerLinkActive="active-list-item">Restaurantes</a>
-        <a routerLink="/menu/bares" (click)="route('Bares')" mat-button routerLinkActive="active-list-item">Bares</a>
-        <a routerLink="/menu/cafeterias" (click)="route('Cafeterias')" mat-button routerLinkActive="active-list-item">Cafeterias</a>
-        <a routerLink="/menu/viagens" (click)="route('Viagens')" mat-button routerLinkActive="active-list-item">Viagens</a>
-        <a routerLink="/menu/eventos" (click)="route('Eventos')" mat-button routerLinkActive="active-list-item">Eventos</a>
-        <a routerLink="/menu/outros" (click)="route('Outros')" mat-button routerLinkActive="active-list-item">Outros</a>
-        <a routerLink="/menu/calendario" mat-button routerLinkActive="active-list-item">Calendario</a>
+        <a *ngIf="user.role === 2 || user.role === 3" routerLink="/menu/restaurantes" mat-button routerLinkActive="active-list-item">Estadias Atuais</a>
+        <a *ngIf="user.role === 2 || user.role === 3" routerLink="/menu/bares" mat-button routerLinkActive="active-list-item">Abrigados</a>
+        <a *ngIf="user.role === 2 && user.abrigo_id; else instituicao" routerLink="/menu/cafeterias" mat-button routerLinkActive="active-list-item">Seu Abrigo</a>
+        <ng-template #instituicao><a *ngIf="user.role === 2 && user.instituicao_id" routerLink="/menu/cafeterias" mat-button routerLinkActive="active-list-item">Sua Instituição</a></ng-template>
+        <a *ngIf="user.role === 0 && !user.abrigo_id && !user.instituicao_id" routerLink="/menu/viagens" mat-button routerLinkActive="active-list-item">Cadastrar/Solicitar</a>
+        <a *ngIf="user.role === 1" routerLink="/menu/administrador" mat-button routerLinkActive="active-list-item">Administrador</a>
       </div>
       <a class="icon" href="#" mat-button (click)="SignOut()"><mat-icon>account_circle</mat-icon></a>
     </mat-toolbar-row>
@@ -30,19 +29,17 @@
       <mat-nav-list>
         <a (click)="sidenav.toggle()" routerLink="/menu/home" mat-list-item routerLinkActive="active-list-item"><mat-icon>home</mat-icon>Início</a>
         <mat-divider></mat-divider>
-        <a (click)="sidenav.toggle()" routerLink="/menu/restaurantes" (click)="route('Restaurantes')" mat-list-item routerLinkActive="active-list-item"><mat-icon>restaurant</mat-icon>Restaurantes</a>
+        <a *ngIf="user.role === 2 || user.role === 3" (click)="sidenav.toggle()" routerLink="/menu/restaurantes" mat-list-item routerLinkActive="active-list-item"><mat-icon>restaurant</mat-icon>Estadias Atuais</a>
         <mat-divider></mat-divider>
-        <a (click)="sidenav.toggle()" routerLink="/menu/bares" (click)="route('Bares')" mat-list-item routerLinkActive="active-list-item"><mat-icon>sports_bar</mat-icon>Bares</a>
+        <a *ngIf="user.role === 2 || user.role === 3" (click)="sidenav.toggle()" routerLink="/menu/bares" mat-list-item routerLinkActive="active-list-item"><mat-icon>sports_bar</mat-icon>Abrigados</a>
         <mat-divider></mat-divider>
-        <a (click)="sidenav.toggle()" routerLink="/menu/cafeterias" (click)="route('Cafeterias')" mat-list-item routerLinkActive="active-list-item"><mat-icon>local_cafe</mat-icon>Cafeterias</a>
+        <a *ngIf="user.role === 2 && user.abrigo_id; else instituicaoMobile" (click)="sidenav.toggle()" routerLink="/menu/cafeterias" mat-list-item routerLinkActive="active-list-item"><mat-icon>local_cafe</mat-icon>Seu Abrigo</a>
         <mat-divider></mat-divider>
-        <a (click)="sidenav.toggle()" routerLink="/menu/viagens" (click)="route('Viagens')" mat-list-item routerLinkActive="active-list-item"><mat-icon>map</mat-icon>Viagens</a>
+        <ng-template #instituicaoMobile><a *ngIf="user.role === 2 && user.instituicao_id" (click)="sidenav.toggle()" routerLink="/menu/viagens" mat-list-item routerLinkActive="active-list-item"><mat-icon>map</mat-icon>Sua Instituição</a>
+        <mat-divider></mat-divider></ng-template>
+        <a *ngIf="user.role === 0 && !user.abrigo_id && !user.instituicao_id" (click)="sidenav.toggle()" routerLink="/menu/eventos" mat-list-item routerLinkActive="active-list-item"><mat-icon>celebration</mat-icon>Cadastrar/Solicitar</a>
         <mat-divider></mat-divider>
-        <a (click)="sidenav.toggle()" routerLink="/menu/eventos" (click)="route('Eventos')" mat-list-item routerLinkActive="active-list-item"><mat-icon>celebration</mat-icon>Eventos</a>
-        <mat-divider></mat-divider>
-        <a (click)="sidenav.toggle()" routerLink="/menu/outros" (click)="route('Outros')" mat-list-item routerLinkActive="active-list-item"><mat-icon>sports_esports</mat-icon>Outros</a>
-        <mat-divider></mat-divider>
-        <a (click)="sidenav.toggle()" routerLink="/menu/calendario" mat-list-item routerLinkActive="active-list-item"><mat-icon>event</mat-icon>Calendario</a>
+        <a *ngIf="user.role === 1" (click)="sidenav.toggle()" routerLink="/menu/administrador" mat-list-item routerLinkActive="active-list-item"><mat-icon>sports_esports</mat-icon>Administrador</a>
         <mat-divider></mat-divider>
       </mat-nav-list>
     </mat-sidenav>

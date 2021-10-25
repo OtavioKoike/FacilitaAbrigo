@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from './../../../services/auth.service';
+import { InstituicaoService } from './../../../services/instituicao.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -17,6 +18,7 @@ export class SignInComponent implements OnInit {
 
   constructor(
     private _authService: AuthService,
+    private _instituicaoService: InstituicaoService,
     private _router: Router
   ) { }
 
@@ -40,6 +42,8 @@ export class SignInComponent implements OnInit {
         refresh_token = response.refresh_token;
 
         this._authService.doLoginUser(usuario, token, refresh_token);
+        usuario.abrigo_id !== null ? this._instituicaoService.storeInstituicao("albergue", usuario.abrigo) : this._instituicaoService.storeInstituicao("saude", usuario.instituicao)
+
         this._router.navigateByUrl('/menu');
       },
       error => {
