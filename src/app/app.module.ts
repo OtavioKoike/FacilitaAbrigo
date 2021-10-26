@@ -22,7 +22,9 @@ import {MatInputModule} from '@angular/material/input';
 import {MatListModule} from '@angular/material/list';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatSortModule} from '@angular/material/sort';
 import {MatTableModule} from '@angular/material/table';
+import {MatTabsModule} from '@angular/material/tabs';
 import {MatToolbarModule} from '@angular/material/toolbar';
 // Componentes
 import { AppComponent } from './app.component';
@@ -32,6 +34,7 @@ import { SignUpComponent } from './screens/login/sign-up/sign-up.component';
 import { SignUpPlaceComponent } from './screens/login/sign-up-place/sign-up-place.component';
 import { MenuComponent } from './shared/menu/menu.component';
 import { AdministradorComponent } from './screens/administrador/administrador.component';
+import { AprovacoesComponent } from './screens/administrador/aprovacoes/aprovacoes.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +44,8 @@ import { AdministradorComponent } from './screens/administrador/administrador.co
     SignUpPlaceComponent,
     PopupComponent,
     MenuComponent,
-    AdministradorComponent
+    AdministradorComponent,
+    AprovacoesComponent
   ],
   imports: [
     BrowserModule,
@@ -62,7 +66,9 @@ import { AdministradorComponent } from './screens/administrador/administrador.co
     MatListModule,
     MatRadioModule,
     MatSidenavModule,
+    MatSortModule,
     MatTableModule,
+    MatTabsModule,
     MatToolbarModule
   ],
   providers: [

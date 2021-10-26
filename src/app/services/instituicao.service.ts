@@ -15,8 +15,8 @@ export class InstituicaoService {
   private readonly INSTITUICAO = 'INSTITUICAO';
 
   constructor(
-    private http: HttpClient,
-    private router: Router
+    private _http: HttpClient,
+    private _router: Router
   ) { }
 
   // ----------------------------------------------------
@@ -53,6 +53,14 @@ export class InstituicaoService {
     }
   }
 
+  aprovarInstituicao(tipo: string, id: number){
+    if(tipo === "albergue"){
+      return this.aprovarAlbergue(id)
+    } else {
+      return this.aprovarSaude(id);
+    }
+  }
+
   storeInstituicao(tipo: string, instituicao: any){
     if(tipo === "albergue"){
       return this.storeAlbergue(instituicao);
@@ -64,19 +72,23 @@ export class InstituicaoService {
   // ----------------------------------------------------
   // Albergue
   createAlbergue(albergue: Albergue){
-    return this.http.post(`${API}/api/abrigo`, albergue);
+    return this._http.post(`${API}/api/abrigo`, albergue);
   }
 
   findAlbergues(){
-    return this.http.get(`${API}/api/abrigo`);
+    return this._http.get(`${API}/api/abrigo`);
   }
 
   solicitarAlbergue(id: number){
-    return this.http.patch(`${API}/api/abrigo/solicitar`, {abrigo_id: id})
+    return this._http.patch(`${API}/api/abrigo/solicitar`, {abrigo_id: id})
   }
 
   getAlbergue() {
     return JSON.parse(localStorage.getItem(this.ALBERGUE));
+  }
+
+  aprovarAlbergue(id: number){
+    return this._http.patch(`${API}/api/abrigo/aprovar`, {abrigo_id: id})
   }
 
   storeAlbergue(albergue: Albergue) {
@@ -90,19 +102,23 @@ export class InstituicaoService {
   // ----------------------------------------------------
   // Saude
   createSaude(instituicao: Instituicao) {
-    return this.http.post(`${API}/api/instituicoes`, instituicao);
+    return this._http.post(`${API}/api/instituicoes`, instituicao);
   }
 
   findSaudes() {
-    return this.http.get(`${API}/api/instituicoes`);
+    return this._http.get(`${API}/api/instituicoes`);
   }
 
   solicitarSaude(id: number){
-    return this.http.patch(`${API}/api/instituicoes/solicitar`, {instituicao_id: id})
+    return this._http.patch(`${API}/api/instituicoes/solicitar`, {instituicao_id: id})
   }
 
   getSaude() {
     return JSON.parse(localStorage.getItem(this.INSTITUICAO));
+  }
+
+  aprovarSaude(id: number){
+    return this._http.patch(`${API}/api/instituicoes/aprovar`, {id: id})
   }
 
   storeSaude(instituicao: Instituicao) {

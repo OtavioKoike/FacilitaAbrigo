@@ -76,7 +76,7 @@ export class SignUpPlaceComponent implements OnInit {
       this.listInstituicoes$ = this._instituicaoService.findInstituicao(this.tipo);
       this.listInstituicoes$.subscribe(request => {
         response = request;
-        this.listInstituicoes = response.instancias.filter(instituicao => {return instituicao.aprovado; })
+        this.listInstituicoes = response.filter(instituicao => {return instituicao.aprovado; })
         this.dataSource = new MatTableDataSource(this.listInstituicoes)
       })
     }
@@ -99,7 +99,7 @@ export class SignUpPlaceComponent implements OnInit {
           let mensagem = { principal: "Cadastro realizado com sucesso!", secundaria: "Sua instituição será avaliada e aprovada em breve."}
           this.dialog.open(PopupComponent, {data:  mensagem }).afterClosed().subscribe(
             result => {
-              this._router.navigateByUrl('/sign-up-place');
+              this._router.navigateByUrl('/menu');
 
             }
           )
