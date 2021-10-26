@@ -24,7 +24,7 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatSortModule} from '@angular/material/sort';
 import {MatTableModule} from '@angular/material/table';
-import {MatTabsModule} from '@angular/material/tabs';
+import { MatTabsModule } from '@angular/material/tabs';
 import {MatToolbarModule} from '@angular/material/toolbar';
 // Componentes
 import { AppComponent } from './app.component';
@@ -35,6 +35,7 @@ import { SignUpPlaceComponent } from './screens/login/sign-up-place/sign-up-plac
 import { MenuComponent } from './shared/menu/menu.component';
 import { AdministradorComponent } from './screens/administrador/administrador.component';
 import { AprovacoesComponent } from './screens/administrador/aprovacoes/aprovacoes.component';
+import { CaracteristicasComponent } from './screens/administrador/caracteristicas/caracteristicas.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { AprovacoesComponent } from './screens/administrador/aprovacoes/aprovaco
     PopupComponent,
     MenuComponent,
     AdministradorComponent,
-    AprovacoesComponent
+    AprovacoesComponent,
+    CaracteristicasComponent
   ],
   imports: [
     BrowserModule,

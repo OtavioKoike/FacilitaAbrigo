@@ -1,7 +1,12 @@
+/* Propriedades Tabela */
 table {
   width: 100%;
 }
 
-th.mat-sort-header-sorted {
-  color: black;
+@media (max-width: 650px) {
+  .visibilityMobile{
+    display: none;
+  }
 }
+
+/* ------------------------------ */

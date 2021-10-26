@@ -1,10 +1,7 @@
 import { Albergue } from './../../../models/albergue.model';
-import { Observable } from 'rxjs';
 import { InstituicaoService } from './../../../services/instituicao.service';
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
-import {LiveAnnouncer} from '@angular/cdk/a11y';
-import {MatSort, Sort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 
 @Component({

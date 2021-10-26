@@ -1,4 +1,3 @@
-import { Router } from '@angular/router';
 import { Usuario } from '../models/usuario.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -12,12 +11,9 @@ export class AuthService {
   private readonly USUARIO = 'USER';
   private readonly JWT_TOKEN = 'JWT_TOKEN';
   private readonly REFRESH_TOKEN = 'REFRESH_TOKEN';
-  private loggedUser: string;
+  public loggedUser: string;
 
-  constructor(
-    private http: HttpClient,
-    private router: Router
-    ) { }
+  constructor( private http: HttpClient ) { }
 
   // ----------------------------------------------------
   // Login / Logout
