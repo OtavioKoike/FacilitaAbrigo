@@ -36,6 +36,7 @@ import { MenuComponent } from './shared/menu/menu.component';
 import { AdministradorComponent } from './screens/administrador/administrador.component';
 import { AprovacoesComponent } from './screens/administrador/aprovacoes/aprovacoes.component';
 import { CaracteristicasComponent } from './screens/administrador/caracteristicas/caracteristicas.component';
+import { HomeComponent } from './screens/home/home.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { CaracteristicasComponent } from './screens/administrador/caracteristica
     MenuComponent,
     AdministradorComponent,
     AprovacoesComponent,
-    CaracteristicasComponent
+    CaracteristicasComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
