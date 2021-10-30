@@ -1,5 +1,5 @@
 import { Albergue } from './../../../models/albergue.model';
-import { InstituicaoService } from './../../../services/instituicao.service';
+import { EntidadeService } from '../../../services/entidade.service';
 import { Component, OnInit } from '@angular/core';
 
 import {MatTableDataSource} from '@angular/material/table';
@@ -11,33 +11,30 @@ import {MatTableDataSource} from '@angular/material/table';
 })
 export class AprovacoesComponent implements OnInit {
 
-  displayedColumns: string[] = ['nome', 'tipo', 'cep', 'descricao', 'aprovar'];
+  displayedColumns: string[] = ['tipo', 'nome', 'cidade', 'descricao', 'aprovar'];
   dataSource: MatTableDataSource<Albergue>;
-  instituicoes: any[];
+  entidades: any[];
 
-  constructor(private _instituicaoService: InstituicaoService) {
+  constructor(private _entidadeService: EntidadeService) {
     this.populaTabela();
   }
 
   ngOnInit(): void {
   }
 
-  Aprovar(instituicao){
-    let tipo = instituicao.descricao ? "albergue" : "saude";
-    this._instituicaoService.aprovarInstituicao(tipo, instituicao.id).subscribe(() => {
+  Aprovar(entidade){
+    let tipo = entidade.descricao ? "albergue" : "instituicao";
+    this._entidadeService.aprovarEntidade(tipo, entidade.id).subscribe(() => {
       this.populaTabela()
     })
   }
 
   private populaTabela(){
-    let response;
-    this._instituicaoService.findAlbergues().subscribe(res => {
-      response = res;
-      this.instituicoes = response.filter(albergue => {return !albergue.aprovado; })
-      this._instituicaoService.findSaudes().subscribe(res => {
-        response = res;
-        this.instituicoes = [...this.instituicoes, ...response.filter(instituicao => {return !instituicao.aprovado; })];
-        this.dataSource = new MatTableDataSource(this.instituicoes);
+    this._entidadeService.findAlbergues().subscribe(responseAbrigo => {
+      this.entidades = (responseAbrigo as any[]).filter(albergue => {return !albergue.aprovado; })
+      this._entidadeService.findInstituicoes().subscribe(responseInstituicao => {
+        this.entidades = [...this.entidades, ...(responseInstituicao as any[]).filter(entidade => {return !entidade.aprovado; })];
+        this.dataSource = new MatTableDataSource(this.entidades);
       })
     })
   }

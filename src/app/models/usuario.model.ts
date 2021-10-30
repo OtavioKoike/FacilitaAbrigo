@@ -1,5 +1,5 @@
 import { Albergue } from './albergue.model';
-import { Instituicao } from './instituicao.model';
+import { Entidade } from './entidade.model';
 export interface Usuario {
   id: number;
   nome: string;
@@ -12,5 +12,5 @@ export interface Usuario {
   instituicao_id: number;
   senha: string;
   abrigo: Albergue;
-  instituicao: Instituicao;
+  instituicao: Entidade;
 }

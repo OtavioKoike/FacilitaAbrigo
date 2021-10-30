@@ -17,7 +17,7 @@
 
               <mat-form-field class="col" appearance="outline">
                 <mat-label>CPF</mat-label>
-                <input matInput type="text" formControlName="cpf" placeholder="Digite seu CPF" ngModel [(ngModel)]="usuario.cpf" mask="CPF_CNPJ"/>
+                <input matInput type="text" formControlName="cpf" placeholder="000.000.000-00" ngModel [(ngModel)]="usuario.cpf" mask="CPF_CNPJ"/>
                 <mat-icon matSuffix>assignment_ind</mat-icon>
                 <mat-error>Dados Inválidos</mat-error>
               </mat-form-field>

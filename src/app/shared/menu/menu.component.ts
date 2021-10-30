@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from './../../models/usuario.model';
 import { AuthService } from './../../services/auth.service';
-import { InstituicaoService } from './../../services/instituicao.service';
+import { EntidadeService } from '../../services/entidade.service';
 
 @Component({
   selector: 'app-menu',
@@ -14,7 +14,7 @@ export class MenuComponent implements OnInit {
 
   constructor(
     private _authService: AuthService,
-    private _instituicaoService: InstituicaoService
+    private _entidadeService: EntidadeService
   ) {
     this.user = _authService.getUser();
    }
@@ -23,7 +23,7 @@ export class MenuComponent implements OnInit {
   }
 
   SignOut(){
-    this._instituicaoService.removeAll();
+    this._entidadeService.removeAll();
     this._authService.doLogoutUser();
   }
 

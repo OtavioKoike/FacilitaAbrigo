@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
-import { Albergue } from './../models/albergue.model';
-import { Instituicao } from './../models/instituicao.model';
+import { Albergue } from '../models/albergue.model';
+import { Entidade } from '../models/entidade.model';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -9,7 +9,7 @@ import { API } from '../../../app.api'
 @Injectable({
   providedIn: 'root'
 })
-export class InstituicaoService {
+export class EntidadeService {
 
   private readonly ALBERGUE = 'ALBERGUE';
   private readonly INSTITUICAO = 'INSTITUICAO';
@@ -20,52 +20,52 @@ export class InstituicaoService {
   ) { }
 
   // ----------------------------------------------------
-  // Instituicao (Albergue ou Saude)
-  createInstituicao(tipo: string, instituicao: any){
+  // Entidade (Albergue ou Instituicao)
+  createEntidade(tipo: string, entidade: any){
     if(tipo === "albergue"){
-    return this.createAlbergue(instituicao);
+    return this.createAlbergue(entidade);
     } else {
-      return this.createSaude(instituicao);
+      return this.createInstituicao(entidade);
     }
   }
 
-  findInstituicao(tipo: string){
+  findEntidade(tipo: string){
     if(tipo === "albergue"){
       return this.findAlbergues()
     } else {
-      return this.findSaudes();
+      return this.findInstituicoes();
     }
   }
 
-  solicitarInstituicao(tipo: string, id: number){
+  solicitarEntidade(tipo: string, id: number){
     if(tipo === "albergue"){
       return this.solicitarAlbergue(id)
     } else {
-      return this.solicitarSaude(id);
+      return this.solicitarInstituicao(id);
     }
   }
 
-  getInstituicao(tipo: string){
+  getEntidade(tipo: string){
     if(tipo === "albergue"){
       return this.getAlbergue()
     } else {
-      return this.getSaude();
+      return this.getInstituicao();
     }
   }
 
-  aprovarInstituicao(tipo: string, id: number){
+  aprovarEntidade(tipo: string, id: number){
     if(tipo === "albergue"){
       return this.aprovarAlbergue(id)
     } else {
-      return this.aprovarSaude(id);
+      return this.aprovarInstituicao(id);
     }
   }
 
-  storeInstituicao(tipo: string, instituicao: any){
+  storeEntidade(tipo: string, entidade: any){
     if(tipo === "albergue"){
-      return this.storeAlbergue(instituicao);
+      return this.storeAlbergue(entidade);
     } else {
-      return this.storeSaude(instituicao);
+      return this.storeInstituicao(entidade);
     }
   }
 
@@ -100,32 +100,32 @@ export class InstituicaoService {
   }
 
   // ----------------------------------------------------
-  // Saude
-  createSaude(instituicao: Instituicao) {
+  // Instituicao
+  createInstituicao(instituicao: Entidade) {
     return this._http.post(`${API}/api/instituicoes`, instituicao);
   }
 
-  findSaudes() {
+  findInstituicoes() {
     return this._http.get(`${API}/api/instituicoes`);
   }
 
-  solicitarSaude(id: number){
+  solicitarInstituicao(id: number){
     return this._http.patch(`${API}/api/instituicoes/solicitar`, {instituicao_id: id})
   }
 
-  getSaude() {
+  getInstituicao() {
     return JSON.parse(localStorage.getItem(this.INSTITUICAO));
   }
 
-  aprovarSaude(id: number){
+  aprovarInstituicao(id: number){
     return this._http.patch(`${API}/api/instituicoes/aprovar`, {id: id})
   }
 
-  storeSaude(instituicao: Instituicao) {
+  storeInstituicao(instituicao: Entidade) {
     localStorage.setItem(this.INSTITUICAO, JSON.stringify(instituicao));
   }
 
-  removeSaude() {
+  removeInstituicao() {
     localStorage.removeItem(this.INSTITUICAO);
   }
 
@@ -134,6 +134,6 @@ export class InstituicaoService {
 
   removeAll(){
     this.removeAlbergue();
-    this.removeSaude();
+    this.removeInstituicao();
   }
 }

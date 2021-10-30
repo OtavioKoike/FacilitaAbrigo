@@ -40,7 +40,6 @@ export class CaracteristicasComponent implements OnInit {
   populaTabela(){
     this.listCaracteristicas$ = this._caracteristicaService.find();
     this.listCaracteristicas$.subscribe(response => {
-      console.log(response)
       this.listCaracteristicas = response as Caracteristica[]
       this.dataSource = new MatTableDataSource(this.listCaracteristicas)
     })
