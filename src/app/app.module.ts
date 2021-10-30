@@ -9,6 +9,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 //Mask
 import { NgxMaskModule } from 'ngx-mask'
+//Responsividade
+import { FlexLayoutModule } from "@angular/flex-layout";
 // Angular Material
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
@@ -17,8 +19,13 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
+import {MatListModule} from '@angular/material/list';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatSortModule} from '@angular/material/sort';
 import {MatTableModule} from '@angular/material/table';
+import { MatTabsModule } from '@angular/material/tabs';
+import {MatToolbarModule} from '@angular/material/toolbar';
 // Componentes
 import { AppComponent } from './app.component';
 import { PopupComponent } from './shared/popup/popup.component';
@@ -26,6 +33,10 @@ import { SignInComponent } from './screens/login/sign-in/sign-in.component';
 import { SignUpComponent } from './screens/login/sign-up/sign-up.component';
 import { SignUpPlaceComponent } from './screens/login/sign-up-place/sign-up-place.component';
 import { MenuComponent } from './shared/menu/menu.component';
+import { AdministradorComponent } from './screens/administrador/administrador.component';
+import { AprovacoesComponent } from './screens/administrador/aprovacoes/aprovacoes.component';
+import { CaracteristicasComponent } from './screens/administrador/caracteristicas/caracteristicas.component';
+import { HomeComponent } from './screens/home/home.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +45,11 @@ import { MenuComponent } from './shared/menu/menu.component';
     SignUpComponent,
     SignUpPlaceComponent,
     PopupComponent,
-    MenuComponent
+    MenuComponent,
+    AdministradorComponent,
+    AprovacoesComponent,
+    CaracteristicasComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -44,6 +59,7 @@ import { MenuComponent } from './shared/menu/menu.component';
     AppRoutingModule,
     HttpClientModule,
     NgxMaskModule.forRoot(),
+    FlexLayoutModule,
     MatButtonModule,
     MatCardModule,
     MatDialogModule,
@@ -51,8 +67,13 @@ import { MenuComponent } from './shared/menu/menu.component';
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
+    MatListModule,
     MatRadioModule,
-    MatTableModule
+    MatSidenavModule,
+    MatSortModule,
+    MatTableModule,
+    MatTabsModule,
+    MatToolbarModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}

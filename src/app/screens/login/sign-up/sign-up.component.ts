@@ -33,16 +33,15 @@ export class SignUpComponent implements OnInit {
   }
 
   onSubmit(){
-    let response, usuario, token, refresh_token;
+    let usuario, token, refresh_token;
     let errorResponse;
 
     this._authService.onCreateUser(this.usuario)
       .subscribe(
-        request => {
-          response = request;
-          usuario = response.usuario;
-          token = response.token;
-          refresh_token = response.refresh_token;
+        response => {
+          usuario = (response as any).usuario;
+          token = (response as any).token;
+          refresh_token = (response as any).refresh_token;
 
           this._authService.doLoginUser(usuario, token, refresh_token);
 

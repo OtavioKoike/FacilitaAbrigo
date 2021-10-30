@@ -7,7 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { PopupComponent } from './../../../shared/popup/popup.component';
 import { Albergue } from './../../../models/albergue.model';
 import { CepService } from './../../../services/cep.service';
-import { InstituicaoService } from './../../../services/instituicao.service';
+import { EntidadeService } from '../../../services/entidade.service';
 
 @Component({
   selector: 'app-sign-up-place',
@@ -16,7 +16,7 @@ import { InstituicaoService } from './../../../services/instituicao.service';
 })
 export class SignUpPlaceComponent implements OnInit {
 
-  displayedColumns: string[] = ['nome', 'descricao'];
+  displayedColumns: string[] = ['nome', 'cidade'];
   dataSource: MatTableDataSource<Albergue>;
   clickedRows = new Set<any>();
 
@@ -24,16 +24,16 @@ export class SignUpPlaceComponent implements OnInit {
   tipo = "" as string;
   txtBotao = "Cadastrar" as string;
 
-  instituicao = {} as Albergue;
+  entidade = {} as Albergue;
 
-  listInstituicoes$: Observable<Object>;
-  listInstituicoes: Albergue[];
+  listEntidades$: Observable<Object>;
+  listEntidades: Albergue[];
 
   constructor(
     public dialog: MatDialog,
     private _router: Router,
     private _cepService: CepService,
-    private _instituicaoService: InstituicaoService
+    private _entidadeService: EntidadeService
   ) { }
 
   ngOnInit(): void {  }
@@ -50,9 +50,10 @@ export class SignUpPlaceComponent implements OnInit {
   }
 
   ConvertCepJson(cepJson){
-    this.instituicao.cep = cepJson.cep;
-    this.instituicao.bairro = cepJson.bairro;
-    this.instituicao.rua = cepJson.logradouro;
+    this.entidade.cep = cepJson.cep;
+    this.entidade.cidade = cepJson.localidade
+    this.entidade.bairro = cepJson.bairro;
+    this.entidade.rua = cepJson.logradouro;
   }
 
   applyFilter(event: Event) {
@@ -62,22 +63,14 @@ export class SignUpPlaceComponent implements OnInit {
 
   onChange(){
     this.txtBotao = this.role === 'employee' ? 'Solicitar' : 'Cadastrar';
-    this.instituicao = {} as Albergue;
-
-    if(this.tipo === 'albergue') {
-      this.displayedColumns = ['nome', 'descricao'];
-    } else {
-      this.displayedColumns = ['nome'];
-    }
+    this.entidade = {} as Albergue;
 
     if(this.role === "employee"){
       if(this.tipo === ''){ return; }
-      let response;
-      this.listInstituicoes$ = this._instituicaoService.findInstituicao(this.tipo);
-      this.listInstituicoes$.subscribe(request => {
-        response = request;
-        this.listInstituicoes = response.instancias.filter(instituicao => {return instituicao.aprovado; })
-        this.dataSource = new MatTableDataSource(this.listInstituicoes)
+      this.listEntidades$ = this._entidadeService.findEntidade(this.tipo);
+      this.listEntidades$.subscribe(response => {
+        this.listEntidades = (response as Albergue[]).filter(entidade => {return entidade.aprovado; })
+        this.dataSource = new MatTableDataSource(this.listEntidades)
       })
     }
   }
@@ -85,30 +78,28 @@ export class SignUpPlaceComponent implements OnInit {
   onSelect(row){
     this.clickedRows.clear();
     this.clickedRows.add(row);
-    this.instituicao = row;
+    this.entidade = row;
   }
 
   async onSubmit(form: NgForm){
     if(this.role === "owner"){
-      let response;
-      this._instituicaoService.createInstituicao(this.tipo, this.instituicao).subscribe(
-        request => {
-          response = request;
-          this._instituicaoService.storeInstituicao(this.tipo, request);
+      this._entidadeService.createEntidade(this.tipo, this.entidade).subscribe(
+        response => {
+          this._entidadeService.storeEntidade(this.tipo, response);
 
           let mensagem = { principal: "Cadastro realizado com sucesso!", secundaria: "Sua instituição será avaliada e aprovada em breve."}
           this.dialog.open(PopupComponent, {data:  mensagem }).afterClosed().subscribe(
             result => {
-              this._router.navigateByUrl('/sign-up-place');
+              this._router.navigateByUrl('/menu');
 
             }
           )
         }
       );
     } else {
-      this._instituicaoService.solicitarInstituicao(this.tipo, this.instituicao.id).subscribe(
-        request => {
-          this._instituicaoService.storeInstituicao(this.tipo, this.instituicao);
+      this._entidadeService.solicitarEntidade(this.tipo, this.entidade.id).subscribe(
+        response => {
+          this._entidadeService.storeEntidade(this.tipo, this.entidade);
 
           let mensagem = { principal: "Solicitação realizada com sucesso!", secundaria: "Sua solicitação será avaliada e aprovada em breve."}
           this.dialog.open(PopupComponent, {data:  mensagem }).afterClosed().subscribe(

@@ -11,12 +11,12 @@
             <div class="row mt-3">
               <div class="col-12 col-sm">
                 <div class="row">
-                  <p>Qual tipo de instituição?</p>
+                  <p>Qual tipo de entidade?</p>
                 </div>
                 <div class="row">
-                  <mat-radio-group name="instituicao" [(ngModel)]="tipo" (change)="onChange()" required>
+                  <mat-radio-group name="entidade" [(ngModel)]="tipo" (change)="onChange()" required>
                     <div class="row">
-                      <div class="col-12 col-sm-6 col-lg-5"><mat-radio-button value="saude">Area da Saúde</mat-radio-button></div>
+                      <div class="col-12 col-sm-6 col-lg-6"><mat-radio-button value="instituicao">Instituição de Saúde</mat-radio-button></div>
                       <div class="col-12 col-sm-6 col-lg-5"><mat-radio-button value="albergue">Casas de Apoio</mat-radio-button></div>
                     </div>
                   </mat-radio-group>
@@ -24,7 +24,7 @@
               </div>
               <div class="col-12 col-sm">
                 <div class="row mt-0 mt-3 mt-sm-0">
-                  <p>Qual seu papel na instituição?</p>
+                  <p>Qual seu papel na entidade?</p>
                 </div>
                 <div class="row">
                   <mat-radio-group name="role" [(ngModel)]="role" (change)="onChange()" required>
@@ -40,23 +40,35 @@
             <div *ngIf="role === 'owner' && tipo !== ''">
               <div class="row mt-3">
                 <p>Dados da Instituição:</p>
-                <mat-form-field class="col" appearance="outline">
+                <mat-form-field class="col col-sm-8" appearance="outline">
                   <mat-label>Nome</mat-label>
-                  <input matInput type="text" name="name" placeholder="Digite o Nome" ngModel [(ngModel)]="instituicao.nome" required />
+                  <input matInput type="text" name="name" placeholder="Digite o Nome" ngModel [(ngModel)]="entidade.nome" required />
                   <mat-icon matSuffix>apartment</mat-icon>
+                </mat-form-field>
+
+                <mat-form-field class="col col-sm-4" appearance="outline">
+                  <mat-label>Telefone</mat-label>
+                  <input matInput type="tel" name="telefone" placeholder="(00)00000-0000" ngModel [(ngModel)]="entidade.telefone" mask="(00)0000-0000||(00)00000-0000" required />
+                  <mat-icon matSuffix>phone</mat-icon>
                 </mat-form-field>
               </div>
 
               <div class="row">
-                <mat-form-field class="col col-sm-5" appearance="outline">
+                <mat-form-field class="col col-sm-4" appearance="outline">
                   <mat-label>Cep</mat-label>
-                  <input matInput type="text" name="cep" placeholder="Digite so Cep" ngModel [(ngModel)]="instituicao.cep" (ngModelChange)="onFind(instituicao.cep)" required  mask="00000-000"/>
+                  <input matInput type="text" name="cep" placeholder="Digite o Cep" ngModel [(ngModel)]="entidade.cep" (ngModelChange)="onFind(entidade.cep)" required  mask="00000-000"/>
                   <mat-icon matSuffix>map</mat-icon>
                 </mat-form-field>
 
-                <mat-form-field class="col" appearance="outline">
+                <mat-form-field class="col col-sm-4" appearance="outline">
+                  <mat-label>Cidade</mat-label>
+                  <input matInput type="text" name="cidade" placeholder="Digite a Cidade" ngModel [(ngModel)]="entidade.cidade" required/>
+                  <mat-icon matSuffix>domain</mat-icon>
+                </mat-form-field>
+
+                <mat-form-field class="col col-sm-4" appearance="outline">
                   <mat-label>Bairro</mat-label>
-                  <input matInput type="text" name="bairro" placeholder="Digite o Bairro" ngModel [(ngModel)]="instituicao.bairro" required />
+                  <input matInput type="text" name="bairro" placeholder="Digite o Bairro" ngModel [(ngModel)]="entidade.bairro" required />
                   <mat-icon matSuffix>location_city</mat-icon>
                 </mat-form-field>
               </div>
@@ -64,13 +76,13 @@
               <div class="row">
                 <mat-form-field class="col-7 col-sm-9" appearance="outline">
                   <mat-label>Rua</mat-label>
-                  <input matInput type="text" name="rua" placeholder="Digite a Rua" ngModel [(ngModel)]="instituicao.rua" required />
+                  <input matInput type="text" name="rua" placeholder="Digite a Rua" ngModel [(ngModel)]="entidade.rua" required />
                   <mat-icon matSuffix>home</mat-icon>
                 </mat-form-field>
 
                 <mat-form-field class="col-5 col-sm-3" appearance="outline">
                   <mat-label>Numero</mat-label>
-                  <input matInput type="number" name="numero" placeholder="Digite o Numero" ngModel [(ngModel)]="instituicao.numero" required />
+                  <input matInput type="number" name="numero" placeholder="Digite o Numero" ngModel [(ngModel)]="entidade.numero" required />
                   <mat-icon matSuffix>local_convenience_store</mat-icon>
                 </mat-form-field>
               </div>
@@ -78,7 +90,7 @@
               <div class="row" *ngIf="role==='owner' && tipo==='albergue'">
                 <mat-form-field class="col" appearance="outline">
                   <mat-label>Descrição</mat-label>
-                  <textarea matInput type="text" name="descricao" rows="2" ngModel [(ngModel)]="instituicao.descricao" required></textarea>
+                  <textarea matInput type="text" name="descricao" rows="2" ngModel [(ngModel)]="entidade.descricao" required></textarea>
                   <mat-icon matSuffix>description</mat-icon>
                 </mat-form-field>
               </div>
@@ -98,14 +110,14 @@
 
                     <!-- Nome Column -->
                     <ng-container matColumnDef="nome">
-                      <th mat-header-cell *matHeaderCellDef width="35%"> Nome </th>
+                      <th mat-header-cell *matHeaderCellDef width="65%"> Nome </th>
                       <td mat-cell *matCellDef="let row"> {{row.nome}} </td>
                     </ng-container>
 
-                    <!-- Descricao Column -->
-                    <ng-container matColumnDef="descricao">
-                      <th mat-header-cell *matHeaderCellDef width="65%"> Descricao </th>
-                      <td mat-cell *matCellDef="let row"> {{row.descricao}} </td>
+                    <!-- Cidade Column -->
+                    <ng-container matColumnDef="cidade">
+                      <th mat-header-cell *matHeaderCellDef width="35%"> Cidade </th>
+                      <td mat-cell *matCellDef="let row"> {{row.cidade}} </td>
                     </ng-container>
 
 
@@ -134,7 +146,7 @@
           </form>
 
           <div class="row m-1">
-            <a mat-button href="https://www.google.com/">Pular</a>
+            <a mat-button routerLink="/menu">Pular</a>
           </div>
         </mat-card-content>
       </mat-card>

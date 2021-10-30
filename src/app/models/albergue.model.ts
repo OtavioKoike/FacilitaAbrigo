@@ -1,4 +1,4 @@
-import { Instituicao } from './instituicao.model';
-export interface Albergue extends Instituicao {
+import { Entidade } from './entidade.model';
+export interface Albergue extends Entidade {
   descricao: string;
 }

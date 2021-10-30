@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from './../../../services/auth.service';
+import { EntidadeService } from '../../../services/entidade.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -17,6 +18,7 @@ export class SignInComponent implements OnInit {
 
   constructor(
     private _authService: AuthService,
+    private _entidadeService: EntidadeService,
     private _router: Router
   ) { }
 
@@ -29,17 +31,18 @@ export class SignInComponent implements OnInit {
       senha: this.signinForm.get('senha').value
     }
 
-    let response, usuario, token, refresh_token;
+    let usuario, token, refresh_token;
 
     await this._authService.login(user)
     .subscribe(
-      request => {
-        response = request;
-        usuario = response.usuario;
-        token = response.token;
-        refresh_token = response.refresh_token;
+      response => {
+        usuario = (response as any).usuario;
+        token = (response as any).token;
+        refresh_token = (response as any).refresh_token;
 
         this._authService.doLoginUser(usuario, token, refresh_token);
+        usuario.abrigo_id !== null ? this._entidadeService.storeEntidade("albergue", usuario.abrigo) : this._entidadeService.storeEntidade("saude", usuario.instituicao)
+
         this._router.navigateByUrl('/menu');
       },
       error => {
