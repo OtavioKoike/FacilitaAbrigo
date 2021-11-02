@@ -1,7 +1,7 @@
+import { Caracteristica } from './../../../models/caracteristica.model';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
-import { Caracteristica } from './../../../models/caracteristica.model';
 import { CaracteristicasService } from './../../../services/caracteristicas.service';
 
 @Component({
@@ -14,7 +14,6 @@ export class CaracteristicasComponent implements OnInit {
   displayedColumns: string[] = ['caracteristica', 'delete'];
   dataSource: MatTableDataSource<Caracteristica>;
 
-  listCaracteristicas$: Observable<Caracteristica[]>
   listCaracteristicas: Caracteristica[]
 
   caracteristica: string;
@@ -38,8 +37,7 @@ export class CaracteristicasComponent implements OnInit {
   }
 
   populaTabela(){
-    this.listCaracteristicas$ = this._caracteristicaService.find();
-    this.listCaracteristicas$.subscribe(response => {
+    this._caracteristicaService.find().subscribe(response => {
       this.listCaracteristicas = response as Caracteristica[]
       this.dataSource = new MatTableDataSource(this.listCaracteristicas)
     })

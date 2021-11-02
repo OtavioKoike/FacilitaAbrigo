@@ -1,3 +1,4 @@
+import { EntidadeComponent } from './screens/entidade/entidade.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 // Guards
@@ -22,7 +23,8 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo:'home', pathMatch:'full'},
       {path: 'home', component: HomeComponent},
-      {path: 'administrador', component: AdministradorComponent, canActivate: [AdminGuard]}
+      {path: 'administrador', component: AdministradorComponent, canActivate: [AdminGuard]},
+      {path: 'entidade', component: EntidadeComponent}
 
     ]
   }

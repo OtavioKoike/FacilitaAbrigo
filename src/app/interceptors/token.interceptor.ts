@@ -12,10 +12,10 @@ export class TokenInterceptor implements HttpInterceptor {
     const reqUrl = request.url.split('/');
     const apiUrl = API.split('/');
 
-    if(token && (reqUrl[2] === apiUrl[2])){
+    if(token && (reqUrl[2] === apiUrl[2]) && !(reqUrl[5] === 'login')){
       const newRequest = request.clone({setHeaders: {'Authorization': `Bearer ${token}`}});
       return next.handle(newRequest)
-    }else {
+    } else {
       return next.handle(request)
     }
 

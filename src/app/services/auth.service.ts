@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Usuario } from '../models/usuario.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -13,7 +14,10 @@ export class AuthService {
   private readonly REFRESH_TOKEN = 'REFRESH_TOKEN';
   public loggedUser: string;
 
-  constructor( private http: HttpClient ) { }
+  constructor(
+    private http: HttpClient,
+    private _router: Router
+    ) { }
 
   // ----------------------------------------------------
   // Login / Logout
@@ -21,18 +25,6 @@ export class AuthService {
   login(user: { email: string, senha: string }) {
     return this.http.post(`${API}/api/usuario/login`, user);
   }
-
-  // async logout() {
-  //   return this.http.post<any>(`${config.apiUrl}/logout`, {
-  //     'refreshToken': this.getRefreshToken()
-  //   }).pipe(
-  //     tap(() => this.doLogoutUser()),
-  //     mapTo(true),
-  //     catchError(error => {
-  //       alert(error.error);
-  //       return of(false);
-  //     }));
-  // }
 
   doLoginUser(user, token, refresh_token) {
     this.loggedUser = user.nome;
@@ -42,8 +34,8 @@ export class AuthService {
 
   doLogoutUser() {
     this.loggedUser = null;
-    this.removeTokens();
-    this.removeUser();
+    this.clearStorage();
+    this._router.navigate(['sign-in'])
   }
 
   isLoggedIn() {
@@ -102,6 +94,8 @@ export class AuthService {
     localStorage.removeItem(this.REFRESH_TOKEN);
   }
 
-
+  private clearStorage(){
+    localStorage.clear();
+  }
 
 }

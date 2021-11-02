@@ -31,14 +31,12 @@ export class SignInComponent implements OnInit {
       senha: this.signinForm.get('senha').value
     }
 
-    let usuario, token, refresh_token;
-
     await this._authService.login(user)
     .subscribe(
       response => {
-        usuario = (response as any).usuario;
-        token = (response as any).token;
-        refresh_token = (response as any).refresh_token;
+        const usuario = (response as any).usuario;
+        const token = (response as any).token;
+        const refresh_token = (response as any).refresh_token;
 
         this._authService.doLoginUser(usuario, token, refresh_token);
         usuario.abrigo_id !== null ? this._entidadeService.storeEntidade("albergue", usuario.abrigo) : this._entidadeService.storeEntidade("saude", usuario.instituicao)

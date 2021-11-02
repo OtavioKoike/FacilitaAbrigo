@@ -1,4 +1,3 @@
-import { TokenInterceptor } from './interceptors/token.interceptor';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -7,6 +6,9 @@ import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 // Api Http
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+//Interceptors
+import { TokenInterceptor } from './interceptors/token.interceptor';
+import { RefreshTokenInterceptor } from './interceptors/refresh-token.interceptor';
 //Mask
 import { NgxMaskModule } from 'ngx-mask'
 //Responsividade
@@ -37,6 +39,8 @@ import { AdministradorComponent } from './screens/administrador/administrador.co
 import { AprovacoesComponent } from './screens/administrador/aprovacoes/aprovacoes.component';
 import { CaracteristicasComponent } from './screens/administrador/caracteristicas/caracteristicas.component';
 import { HomeComponent } from './screens/home/home.component';
+import { EntidadeComponent } from './screens/entidade/entidade.component';
+import { AprovacoesMembrosComponent } from './screens/entidade/aprovacoes-membros/aprovacoes-membros.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +53,9 @@ import { HomeComponent } from './screens/home/home.component';
     AdministradorComponent,
     AprovacoesComponent,
     CaracteristicasComponent,
-    HomeComponent
+    HomeComponent,
+    EntidadeComponent,
+    AprovacoesMembrosComponent
   ],
   imports: [
     BrowserModule,
@@ -76,7 +82,8 @@ import { HomeComponent } from './screens/home/home.component';
     MatToolbarModule
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: RefreshTokenInterceptor, multi: true}
   ],
   entryComponents: [
     PopupComponent
