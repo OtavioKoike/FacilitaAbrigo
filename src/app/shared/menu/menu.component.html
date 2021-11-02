@@ -14,8 +14,8 @@
         <a routerLink="/menu/home" mat-button routerLinkActive="active-list-item">Início</a>
         <a *ngIf="user.role === 2 || user.role === 3" routerLink="/menu/restaurantes" mat-button routerLinkActive="active-list-item">Estadias Atuais</a>
         <a *ngIf="user.role === 2 || user.role === 3" routerLink="/menu/bares" mat-button routerLinkActive="active-list-item">Abrigados</a>
-        <a *ngIf="user.role === 2 && user.abrigo_id; else instituicao" routerLink="/menu/entidade" mat-button routerLinkActive="active-list-item">Seu Abrigo</a>
-        <ng-template #instituicao><a *ngIf="user.role === 2 && user.instituicao_id" routerLink="/menu/entidade" mat-button routerLinkActive="active-list-item">Sua Instituição</a></ng-template>
+        <a *ngIf="(user.role === 2 || user.role === 3) && user.abrigo_id; else instituicao" routerLink="/menu/entidade" mat-button routerLinkActive="active-list-item">Seu Abrigo</a>
+        <ng-template #instituicao><a *ngIf="(user.role === 2 || user.role === 3) && user.instituicao_id" routerLink="/menu/entidade" mat-button routerLinkActive="active-list-item">Sua Instituição</a></ng-template>
         <a *ngIf="user.role === 0 && !user.abrigo_id && !user.instituicao_id" routerLink="/menu/viagens" mat-button routerLinkActive="active-list-item">Cadastrar/Solicitar</a>
         <a *ngIf="user.role === 1" routerLink="/menu/administrador" mat-button routerLinkActive="active-list-item">Administrador</a>
       </div>

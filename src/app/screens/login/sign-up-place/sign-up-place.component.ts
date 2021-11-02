@@ -67,7 +67,7 @@ export class SignUpPlaceComponent implements OnInit {
 
     if(this.role === "employee"){
       if(this.tipo === ''){ return; }
-      this.listEntidades$ = this._entidadeService.findEntidade(this.tipo);
+      this.listEntidades$ = this._entidadeService.findEntidades(this.tipo);
       this.listEntidades$.subscribe(response => {
         this.listEntidades = (response as Albergue[]).filter(entidade => {return entidade.aprovado; })
         this.dataSource = new MatTableDataSource(this.listEntidades)

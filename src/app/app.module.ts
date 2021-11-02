@@ -41,6 +41,7 @@ import { CaracteristicasComponent } from './screens/administrador/caracteristica
 import { HomeComponent } from './screens/home/home.component';
 import { EntidadeComponent } from './screens/entidade/entidade.component';
 import { AprovacoesMembrosComponent } from './screens/entidade/aprovacoes-membros/aprovacoes-membros.component';
+import { DadosComponent } from './screens/entidade/dados/dados.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { AprovacoesMembrosComponent } from './screens/entidade/aprovacoes-membro
     CaracteristicasComponent,
     HomeComponent,
     EntidadeComponent,
-    AprovacoesMembrosComponent
+    AprovacoesMembrosComponent,
+    DadosComponent
   ],
   imports: [
     BrowserModule,
