@@ -1,9 +1,11 @@
-import { AuthService } from './../../../services/auth.service';
-import { Usuario } from './../../../models/usuario.model';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+// Material
 import { MatTableDataSource } from '@angular/material/table';
-import { Albergue } from './../../../models/albergue.model';
+// Model
+import { Usuario } from './../../../models/usuario.model';
+// Service
+import { AuthService } from './../../../services/auth.service';
 import { EntidadeService } from './../../../services/entidade.service';
-import { Component, OnInit } from '@angular/core';
 
 
 @Component({
@@ -12,6 +14,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./aprovacoes-membros.component.css']
 })
 export class AprovacoesMembrosComponent implements OnInit {
+
+  @Output() refreshList = new EventEmitter<boolean>();
 
   displayedColumns: string[] = ['nome', 'email', 'cpf', 'aprovar'];
   dataSource: MatTableDataSource<Usuario>;
@@ -42,6 +46,7 @@ export class AprovacoesMembrosComponent implements OnInit {
   Aprovar(membro){
     this._entidadeService.aprovarMembroEntidade(this.tipo, membro.id).subscribe(() => {
       this.populaTabela()
+      this.refreshList.emit(true);
     })
   }
 

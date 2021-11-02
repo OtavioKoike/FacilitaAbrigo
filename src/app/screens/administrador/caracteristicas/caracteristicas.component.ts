@@ -1,7 +1,9 @@
-import { Caracteristica } from './../../../models/caracteristica.model';
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+// Material
 import { MatTableDataSource } from '@angular/material/table';
+// Model
+import { Caracteristica } from './../../../models/caracteristica.model';
+// Service
 import { CaracteristicasService } from './../../../services/caracteristicas.service';
 
 @Component({

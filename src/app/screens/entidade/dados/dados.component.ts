@@ -1,11 +1,16 @@
-import { PopupComponent } from './../../../shared/popup/popup.component';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+// Material
 import { MatDialog } from '@angular/material/dialog';
-import { Albergue } from './../../../models/albergue.model';
-import { EntidadeService } from './../../../services/entidade.service';
-import { AuthService } from './../../../services/auth.service';
-import { Usuario } from './../../../models/usuario.model';
-import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+// Component
+import { PopupComponent } from './../../../shared/popup/popup.component';
+// Model
+import { Albergue } from './../../../models/albergue.model';
+import { Usuario } from './../../../models/usuario.model';
+// Service
+import { AuthService } from './../../../services/auth.service';
+import { CepService } from './../../../services/cep.service';
+import { EntidadeService } from './../../../services/entidade.service';
 
 @Component({
   selector: 'app-dados',
@@ -13,6 +18,14 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./dados.component.css']
 })
 export class DadosComponent implements OnInit {
+
+  @Output() refreshList = new EventEmitter<boolean>();
+  @Input() set refreshListItem(value: boolean){
+    if(value){
+      this.populaTabela();
+      this.refreshListItem = false;
+    }
+  }
 
   displayedColumns: string[] = ['nome', 'cargo', 'email'];
   dataSource: MatTableDataSource<Usuario>;
@@ -27,7 +40,8 @@ export class DadosComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private _authService: AuthService,
-    private _entidadeService: EntidadeService
+    private _entidadeService: EntidadeService,
+    private _cepService: CepService
   ) {
     this.user = this._authService.getUser() as Usuario;
     if(this.user.abrigo_id) {
@@ -43,6 +57,24 @@ export class DadosComponent implements OnInit {
 
   ngOnInit(): void {
     this.populaTabela()
+  }
+
+  onFind(cep: string){
+    var padrao = /^([\d]{2})\.?([\d]{3})\-?([\d]{3})/;
+
+    if(!padrao.test(cep.trim())){
+      return
+    }
+
+    this._cepService.Find(cep)
+    .subscribe(data => this.ConvertCepJson(data));
+  }
+
+  ConvertCepJson(cepJson){
+    this.dados.cep = cepJson.cep;
+    this.dados.cidade = cepJson.localidade
+    this.dados.bairro = cepJson.bairro;
+    this.dados.rua = cepJson.logradouro;
   }
 
   private populaTabela(){

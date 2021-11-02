@@ -1,6 +1,8 @@
-import { Usuario } from './../../models/usuario.model';
-import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
+// Model
+import { Usuario } from './../../models/usuario.model';
+// Service
+import { AuthService } from './../../services/auth.service';
 
 @Component({
   selector: 'app-entidade',
@@ -10,12 +12,16 @@ import { Component, OnInit } from '@angular/core';
 export class EntidadeComponent implements OnInit {
 
   user: Usuario;
-
+  refreshListItem = false;
   constructor(
     private _authService: AuthService
   ) { this.user = this._authService.getUser() }
 
   ngOnInit(): void {
+  }
+
+  refreshList($event){
+    this.refreshListItem = $event;
   }
 
 }

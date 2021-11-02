@@ -1,11 +1,16 @@
-import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+// RxJs
+import { Observable } from 'rxjs';
+// Material
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
+// Component
 import { PopupComponent } from './../../../shared/popup/popup.component';
+// Model
 import { Albergue } from './../../../models/albergue.model';
+// Service
 import { CepService } from './../../../services/cep.service';
 import { EntidadeService } from '../../../services/entidade.service';
 

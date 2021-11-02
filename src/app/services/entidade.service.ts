@@ -1,7 +1,9 @@
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+// Model
 import { Albergue } from '../models/albergue.model';
 import { Entidade } from '../models/entidade.model';
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+// API
 import { API } from '../../../app.api'
 
 @Injectable({

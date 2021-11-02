@@ -1,6 +1,6 @@
 <div class="row container-fluid">
 
-  <table mat-table [dataSource]="dataSource" class="col mt-4 mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" class="mt-4 mat-elevation-z8">
     <!-- Nome Column -->
     <ng-container matColumnDef="nome">
       <th mat-header-cell *matHeaderCellDef> Nome </th>
@@ -15,7 +15,7 @@
     <!-- Cidade Column -->
     <ng-container matColumnDef="cpf">
       <th mat-header-cell *matHeaderCellDef class="visibilityMobile" width="15%"> CPF </th>
-      <td mat-cell *matCellDef="let element" class="visibilityMobile"> {{element.cpf}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.cpf}} </td>
     </ng-container>
 
     <!-- Aprovar Column -->

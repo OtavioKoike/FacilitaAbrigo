@@ -1,8 +1,10 @@
-import { Albergue } from './../../../models/albergue.model';
-import { EntidadeService } from '../../../services/entidade.service';
 import { Component, OnInit } from '@angular/core';
-
+// Material
 import {MatTableDataSource} from '@angular/material/table';
+// Model
+import { Albergue } from './../../../models/albergue.model';
+// Service
+import { EntidadeService } from '../../../services/entidade.service';
 
 @Component({
   selector: 'app-aprovacoes',

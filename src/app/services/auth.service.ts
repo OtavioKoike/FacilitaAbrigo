@@ -1,8 +1,9 @@
-import { Router } from '@angular/router';
-import { Usuario } from '../models/usuario.model';
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
+import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+// Model
+import { Usuario } from '../models/usuario.model';
+// API
 import { API } from '../../../app.api'
 @Injectable({
   providedIn: 'root'
@@ -52,14 +53,6 @@ export class AuthService {
   // ----------------------------------------------------
   // Tokens
 
-  // refreshToken() {
-  //   return this.http.post<any>(`${API}/refresh`, {
-  //     'refreshToken': this.getRefreshToken()
-  //   }).pipe(tap((tokens: Tokens) => {
-  //     this.storeJwtToken(tokens.jwt);
-  //   }));
-  // }
-
   getUser() {
     return JSON.parse(localStorage.getItem(this.USUARIO));
   }
@@ -68,7 +61,7 @@ export class AuthService {
     return localStorage.getItem(this.JWT_TOKEN);
   }
 
-  private getRefreshToken() {
+  getRefreshToken() {
     return localStorage.getItem(this.REFRESH_TOKEN);
   }
 
@@ -76,7 +69,7 @@ export class AuthService {
     localStorage.setItem(this.USUARIO, JSON.stringify(user));
   }
 
-  private storeJwtToken(jwt: string) {
+  storeJwtToken(jwt: string) {
     localStorage.setItem(this.JWT_TOKEN, jwt);
   }
 

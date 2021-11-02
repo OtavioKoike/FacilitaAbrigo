@@ -1,7 +1,8 @@
-import { Caracteristica } from './../models/caracteristica.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
+// Model
+import { Caracteristica } from './../models/caracteristica.model';
+// API
 import { API } from '../../../app.api'
 
 @Injectable({

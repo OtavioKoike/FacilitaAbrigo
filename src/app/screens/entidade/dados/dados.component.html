@@ -19,7 +19,7 @@
         <div class="row">
           <mat-form-field class="col col-sm-4" appearance="outline">
             <mat-label>Cep</mat-label>
-            <input matInput type="text" name="cep" placeholder="Digite o Cep" ngModel [(ngModel)]="dados.cep" required  mask="00000-000"/>
+            <input matInput type="text" name="cep" placeholder="Digite o Cep" ngModel [(ngModel)]="dados.cep" (ngModelChange)="onFind(dados.cep)" required  mask="00000-000"/>
             <mat-icon matSuffix>map</mat-icon>
           </mat-form-field>
 
@@ -61,8 +61,7 @@
     </form>
 
     <div *ngIf="user.role!==3" class="row m-1 d-flex justify-content-end">
-      <button mat-raised-button class="mr-2 col-2 text-center" (click)="populaTabela()"
-        [disabled]="!dadosForm.form.valid">Cancelar</button>
+      <button mat-raised-button class="mr-2 col-2 text-center" (click)="populaTabela()">Cancelar</button>
       <button mat-raised-button class="col-2 text-center" color="accent" (click)="onSave()"
         [disabled]="!dadosForm.form.valid">Salvar</button>
     </div>
@@ -71,7 +70,7 @@
     <div class="row">
       <h5>Membros</h5>
     </div>
-    <table mat-table [dataSource]="dataSource" class=" mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
       <!-- Nome Column -->
       <ng-container matColumnDef="nome">
         <th mat-header-cell *matHeaderCellDef width="85%"> Nome </th>

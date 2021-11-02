@@ -31,10 +31,6 @@ mat-toolbar mat-toolbar-row div a:hover {
   color: #fff;
 }
 
-/* a {
-  font-size: 12px;
-} */
-
 .active-list-item {
   background-color: rgba(112, 107, 107, 0.5);
 }

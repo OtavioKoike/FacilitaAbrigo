@@ -1,14 +1,15 @@
-import { AuthService } from './../services/auth.service';
-import { API } from '../../../app.api';
 import { Injectable, Injector } from '@angular/core';
-import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpClient } from "@angular/common/http";
-import { Observable, throwError, of } from 'rxjs';
+import { HttpErrorResponse, HttpHandler, HttpInterceptor, HttpRequest, HttpClient } from "@angular/common/http";
+// Rxjs
+import {throwError } from 'rxjs';
 import { catchError, mergeMap } from 'rxjs/operators';
+// Service
+import { AuthService } from './../services/auth.service';
+// API
+import { API } from '../../../app.api';
 
 @Injectable()
 export class RefreshTokenInterceptor implements HttpInterceptor {
-  private readonly JWT_TOKEN = 'JWT_TOKEN';
-  private readonly REFRESH_TOKEN = 'REFRESH_TOKEN';
 
   constructor(
     private injector: Injector,
@@ -20,17 +21,17 @@ export class RefreshTokenInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(
       catchError((errorResponse: HttpErrorResponse) => {
         if(errorResponse.status === 401 && errorResponse.error.error.name === "TokenExpiredError"){
-          const token = localStorage.getItem(this.JWT_TOKEN)
+          const token = this._authService.getJwtToken()
           const reqUrl = request.url.split('/');
           const apiUrl = API.split('/');
 
           if(token && (reqUrl[2] === apiUrl[2]) && !(reqUrl[5] === 'login')){
             const http = this.injector.get(HttpClient);
-            const refresh_token = localStorage.getItem(this.REFRESH_TOKEN);
+            const refresh_token = this._authService.getRefreshToken();
 
             return http.post(`${API}/api/usuario/login`, {}, {headers: {'Authorization': `Bearer ${refresh_token}`}}).pipe(
               mergeMap(data => {
-                localStorage.setItem(this.JWT_TOKEN, data['token']);
+                this._authService.storeJwtToken(data['token'])
                 const cloneRequest = request.clone({setHeaders: {'Authorization': `Bearer ${data['token']}`}});
                 return next.handle(cloneRequest);
               })

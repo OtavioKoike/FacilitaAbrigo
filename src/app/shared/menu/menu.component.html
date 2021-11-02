@@ -29,17 +29,17 @@
       <mat-nav-list>
         <a (click)="sidenav.toggle()" routerLink="/menu/home" mat-list-item routerLinkActive="active-list-item"><mat-icon>home</mat-icon>Início</a>
         <mat-divider></mat-divider>
-        <a *ngIf="user.role === 2 || user.role === 3" (click)="sidenav.toggle()" routerLink="/menu/restaurantes" mat-list-item routerLinkActive="active-list-item"><mat-icon>restaurant</mat-icon>Estadias Atuais</a>
+        <a *ngIf="user.role === 2 || user.role === 3" (click)="sidenav.toggle()" routerLink="/menu/restaurantes" mat-list-item routerLinkActive="active-list-item"><mat-icon>list</mat-icon>Estadias Atuais</a>
         <mat-divider></mat-divider>
-        <a *ngIf="user.role === 2 || user.role === 3" (click)="sidenav.toggle()" routerLink="/menu/bares" mat-list-item routerLinkActive="active-list-item"><mat-icon>sports_bar</mat-icon>Abrigados</a>
+        <a *ngIf="user.role === 2 || user.role === 3" (click)="sidenav.toggle()" routerLink="/menu/bares" mat-list-item routerLinkActive="active-list-item"><mat-icon>people</mat-icon>Abrigados</a>
         <mat-divider></mat-divider>
-        <a *ngIf="user.role === 2 && user.abrigo_id; else instituicaoMobile" (click)="sidenav.toggle()" routerLink="/menu/entidade" mat-list-item routerLinkActive="active-list-item"><mat-icon>local_cafe</mat-icon>Seu Abrigo</a>
+        <a *ngIf="user.role === 2 && user.abrigo_id; else instituicaoMobile" (click)="sidenav.toggle()" routerLink="/menu/entidade" mat-list-item routerLinkActive="active-list-item"><mat-icon>apartment</mat-icon>Seu Abrigo</a>
         <mat-divider></mat-divider>
-        <ng-template #instituicaoMobile><a *ngIf="user.role === 2 && user.instituicao_id" (click)="sidenav.toggle()" routerLink="/menu/entidade" mat-list-item routerLinkActive="active-list-item"><mat-icon>map</mat-icon>Sua Instituição</a>
+        <ng-template #instituicaoMobile><a *ngIf="user.role === 2 && user.instituicao_id" (click)="sidenav.toggle()" routerLink="/menu/entidade" mat-list-item routerLinkActive="active-list-item"><mat-icon>apartment</mat-icon>Sua Instituição</a>
         <mat-divider></mat-divider></ng-template>
-        <a *ngIf="user.role === 0 && !user.abrigo_id && !user.instituicao_id" (click)="sidenav.toggle()" routerLink="/menu/eventos" mat-list-item routerLinkActive="active-list-item"><mat-icon>celebration</mat-icon>Cadastrar/Solicitar</a>
+        <a *ngIf="user.role === 0 && !user.abrigo_id && !user.instituicao_id" (click)="sidenav.toggle()" routerLink="/menu/eventos" mat-list-item routerLinkActive="active-list-item"><mat-icon>login</mat-icon>Cadastrar/Solicitar</a>
         <mat-divider></mat-divider>
-        <a *ngIf="user.role === 1" (click)="sidenav.toggle()" routerLink="/menu/administrador" mat-list-item routerLinkActive="active-list-item"><mat-icon>sports_esports</mat-icon>Administrador</a>
+        <a *ngIf="user.role === 1" (click)="sidenav.toggle()" routerLink="/menu/administrador" mat-list-item routerLinkActive="active-list-item"><mat-icon>admin_panel_settings</mat-icon>Administrador</a>
         <mat-divider></mat-divider>
       </mat-nav-list>
     </mat-sidenav>
