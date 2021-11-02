@@ -9,7 +9,7 @@ import { AuthService } from './../services/auth.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AdminGuard implements CanActivate {
+export class DonoGuard implements CanActivate {
   constructor(
     private _authService: AuthService,
     private _router: Router
@@ -18,7 +18,7 @@ export class AdminGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    if(this._authService.getUser().role !== 1) {
+    if(this._authService.getUser().role !== 2) {
       this._router.navigate(['menu'])
     }
     return true;

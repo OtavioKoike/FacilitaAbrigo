@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 // Guards
 import { AdminGuard } from './guards/admin.guard';
 import { AuthGuard } from './guards/auth.guard';
+import { MembroGuard } from './guards/membro.guard';
 import { SecureInnerPagesGuard } from './guards/secure-inner-pages.guard';
 //Login
 import { AdministradorComponent } from './screens/administrador/administrador.component';
@@ -24,7 +25,7 @@ const routes: Routes = [
       { path: '', redirectTo:'home', pathMatch:'full'},
       {path: 'home', component: HomeComponent},
       {path: 'administrador', component: AdministradorComponent, canActivate: [AdminGuard]},
-      {path: 'entidade', component: EntidadeComponent}
+      {path: 'entidade', component: EntidadeComponent, canActivate: [MembroGuard]}
 
     ]
   }
