@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+// Material
 import { MatDialog } from '@angular/material/dialog';
+// Component
 import { PopupComponent } from './../../../shared/popup/popup.component';
+// Model
 import { Usuario } from './../../../models/usuario.model';
+// Service
 import { AuthService } from '../../../services/auth.service';
 
 @Component({

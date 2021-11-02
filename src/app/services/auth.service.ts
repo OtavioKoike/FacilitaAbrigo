@@ -1,7 +1,9 @@
-import { Usuario } from '../models/usuario.model';
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
+import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+// Model
+import { Usuario } from '../models/usuario.model';
+// API
 import { API } from '../../../app.api'
 @Injectable({
   providedIn: 'root'
@@ -13,7 +15,10 @@ export class AuthService {
   private readonly REFRESH_TOKEN = 'REFRESH_TOKEN';
   public loggedUser: string;
 
-  constructor( private http: HttpClient ) { }
+  constructor(
+    private http: HttpClient,
+    private _router: Router
+    ) { }
 
   // ----------------------------------------------------
   // Login / Logout
@@ -21,18 +26,6 @@ export class AuthService {
   login(user: { email: string, senha: string }) {
     return this.http.post(`${API}/api/usuario/login`, user);
   }
-
-  // async logout() {
-  //   return this.http.post<any>(`${config.apiUrl}/logout`, {
-  //     'refreshToken': this.getRefreshToken()
-  //   }).pipe(
-  //     tap(() => this.doLogoutUser()),
-  //     mapTo(true),
-  //     catchError(error => {
-  //       alert(error.error);
-  //       return of(false);
-  //     }));
-  // }
 
   doLoginUser(user, token, refresh_token) {
     this.loggedUser = user.nome;
@@ -42,8 +35,8 @@ export class AuthService {
 
   doLogoutUser() {
     this.loggedUser = null;
-    this.removeTokens();
-    this.removeUser();
+    this.clearStorage();
+    this._router.navigate(['sign-in'])
   }
 
   isLoggedIn() {
@@ -60,14 +53,6 @@ export class AuthService {
   // ----------------------------------------------------
   // Tokens
 
-  // refreshToken() {
-  //   return this.http.post<any>(`${API}/refresh`, {
-  //     'refreshToken': this.getRefreshToken()
-  //   }).pipe(tap((tokens: Tokens) => {
-  //     this.storeJwtToken(tokens.jwt);
-  //   }));
-  // }
-
   getUser() {
     return JSON.parse(localStorage.getItem(this.USUARIO));
   }
@@ -76,7 +61,7 @@ export class AuthService {
     return localStorage.getItem(this.JWT_TOKEN);
   }
 
-  private getRefreshToken() {
+  getRefreshToken() {
     return localStorage.getItem(this.REFRESH_TOKEN);
   }
 
@@ -84,7 +69,7 @@ export class AuthService {
     localStorage.setItem(this.USUARIO, JSON.stringify(user));
   }
 
-  private storeJwtToken(jwt: string) {
+  storeJwtToken(jwt: string) {
     localStorage.setItem(this.JWT_TOKEN, jwt);
   }
 
@@ -102,6 +87,8 @@ export class AuthService {
     localStorage.removeItem(this.REFRESH_TOKEN);
   }
 
-
+  private clearStorage(){
+    localStorage.clear();
+  }
 
 }

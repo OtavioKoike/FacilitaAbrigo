@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+// Model
 import { Usuario } from './../../models/usuario.model';
+// Service
 import { AuthService } from './../../services/auth.service';
 import { EntidadeService } from '../../services/entidade.service';
 
@@ -23,7 +25,6 @@ export class MenuComponent implements OnInit {
   }
 
   SignOut(){
-    this._entidadeService.removeAll();
     this._authService.doLogoutUser();
   }
 

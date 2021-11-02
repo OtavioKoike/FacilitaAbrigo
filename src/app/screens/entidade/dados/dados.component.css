@@ -1,0 +1,18 @@
+/* Propriedades Tabela */
+table {
+  width: 100%;
+}
+
+@media (max-width: 650px) {
+  .visibilityMobile{
+    display: none;
+  }
+}
+
+/* ------------------------------ */
+/* Propriedades Botao */
+button {
+  border-radius: 30px;
+}
+
+/* ------------------------------ */

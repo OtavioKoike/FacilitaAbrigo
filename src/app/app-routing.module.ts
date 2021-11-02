@@ -1,16 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 // Guards
-import { AuthGuard } from './guards/auth.guard';
-import { SecureInnerPagesGuard } from './guards/secure-inner-pages.guard';
 import { AdminGuard } from './guards/admin.guard';
+import { AuthGuard } from './guards/auth.guard';
+import { MembroGuard } from './guards/membro.guard';
+import { SecureInnerPagesGuard } from './guards/secure-inner-pages.guard';
 //Login
+import { AdministradorComponent } from './screens/administrador/administrador.component';
+import { EntidadeComponent } from './screens/entidade/entidade.component';
+import { HomeComponent } from './screens/home/home.component';
+import { MenuComponent } from './shared/menu/menu.component';
 import { SignInComponent } from './screens/login/sign-in/sign-in.component';
 import { SignUpComponent } from './screens/login/sign-up/sign-up.component';
 import { SignUpPlaceComponent } from './screens/login/sign-up-place/sign-up-place.component';
-import { MenuComponent } from './shared/menu/menu.component';
-import { AdministradorComponent } from './screens/administrador/administrador.component';
-import { HomeComponent } from './screens/home/home.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'sign-in', pathMatch: 'full' },
@@ -22,7 +24,8 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo:'home', pathMatch:'full'},
       {path: 'home', component: HomeComponent},
-      {path: 'administrador', component: AdministradorComponent, canActivate: [AdminGuard]}
+      {path: 'administrador', component: AdministradorComponent, canActivate: [AdminGuard]},
+      {path: 'entidade', component: EntidadeComponent, canActivate: [MembroGuard]}
 
     ]
   }

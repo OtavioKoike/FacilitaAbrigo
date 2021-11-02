@@ -1,11 +1,16 @@
-import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+// RxJs
+import { Observable } from 'rxjs';
+// Material
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
+// Component
 import { PopupComponent } from './../../../shared/popup/popup.component';
+// Model
 import { Albergue } from './../../../models/albergue.model';
+// Service
 import { CepService } from './../../../services/cep.service';
 import { EntidadeService } from '../../../services/entidade.service';
 
@@ -67,7 +72,7 @@ export class SignUpPlaceComponent implements OnInit {
 
     if(this.role === "employee"){
       if(this.tipo === ''){ return; }
-      this.listEntidades$ = this._entidadeService.findEntidade(this.tipo);
+      this.listEntidades$ = this._entidadeService.findEntidades(this.tipo);
       this.listEntidades$.subscribe(response => {
         this.listEntidades = (response as Albergue[]).filter(entidade => {return entidade.aprovado; })
         this.dataSource = new MatTableDataSource(this.listEntidades)
