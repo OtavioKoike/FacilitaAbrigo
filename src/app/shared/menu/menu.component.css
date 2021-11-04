@@ -20,7 +20,7 @@ mat-toolbar {
 
 /* ------------------------------ */
 /* Propriedades Links */
-.icon, mat-toolbar mat-toolbar-row div a {
+ mat-toolbar mat-toolbar-row div a {
   text-decoration: none;
   color: #aaa;
   margin-right: 10px;
@@ -35,6 +35,17 @@ mat-toolbar mat-toolbar-row div a:hover {
   background-color: rgba(112, 107, 107, 0.5);
 }
 
+/* ICONE */
+.btn-icon{
+  border-radius: 20% 20% 20% 20%;
+  width: auto;
+  border: none;
+}
+
+.icon{
+  transform: scale(1.5);
+  color: white;
+}
 /* ------------------------------ */
 /* Propriedades Menu Mobile */
 .nav {
@@ -50,4 +61,4 @@ mat-sidenav {
   background-color: #141414;
 }
 
-/* ------------------------------ */
+
