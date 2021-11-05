@@ -16,6 +16,7 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 // Angular Material
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import {MatChipsModule} from '@angular/material/chips';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -45,6 +46,7 @@ import { PopupComponent } from './shared/popup/popup.component';
 import { SignInComponent } from './screens/login/sign-in/sign-in.component';
 import { SignUpComponent } from './screens/login/sign-up/sign-up.component';
 import { SignUpPlaceComponent } from './screens/login/sign-up-place/sign-up-place.component';
+import { QuartoComponent } from './shared/quarto/quarto.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +63,7 @@ import { SignUpPlaceComponent } from './screens/login/sign-up-place/sign-up-plac
     SignInComponent,
     SignUpComponent,
     SignUpPlaceComponent,
+    QuartoComponent,
   ],
   imports: [
     BrowserModule,
@@ -73,6 +76,7 @@ import { SignUpPlaceComponent } from './screens/login/sign-up-place/sign-up-plac
     FlexLayoutModule,
     MatButtonModule,
     MatCardModule,
+    MatChipsModule,
     MatDialogModule,
     MatDividerModule,
     MatFormFieldModule,

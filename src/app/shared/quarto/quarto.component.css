@@ -1,0 +1,19 @@
+mat-card {
+  border-radius: 15px;
+}
+
+.image-card {
+  margin-right: 10px;
+  border-radius: 15px 0px 0px 15px;
+  background-size:cover;
+  height: 200px;
+}
+
+.text-card {
+  margin: 10px;
+}
+
+.buttons {
+  padding: 10px;
+  height: 100%;
+}
