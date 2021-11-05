@@ -20,7 +20,7 @@
                   <mat-form-field class="col" appearance="outline">
                     <mat-label>CPF</mat-label>
                     <input matInput type="text" formControlName="cpf" placeholder="000.000.000-00" ngModel
-                      [(ngModel)]="usuario.cpf" mask="CPF_CNPJ" />
+                      [(ngModel)]="usuario.cpf" mask="000.000.000-00" />
                     <mat-icon matSuffix>assignment_ind</mat-icon>
                     <mat-error>Dados Inválidos</mat-error>
                   </mat-form-field>
@@ -61,8 +61,8 @@
                 </div>
 
                 <div class="row m-1">
-                  <button mat-raised-button class="col text-center btn-login" color="accent"
-                    [disabled]="!signupForm.valid">CADASTRAR</button>
+                  <button mat-raised-button class="col text-center btn-cadastrar" color="accent"
+                    [disabled]="!signupForm.valid">Cadastrar</button>
                 </div>
               </form>
 
