@@ -23,7 +23,7 @@ export class SignUpComponent implements OnInit {
     cpf: new FormControl('', [Validators.required]),
     nascimento: new FormControl('', [Validators.required]),
     sexo: new FormControl('', [Validators.required]),
-    email: new FormControl('',[Validators.required, Validators.email]),
+    email: new FormControl('', [Validators.required, Validators.email]),
     senha: new FormControl('', [Validators.required]),
   });
 
@@ -36,7 +36,7 @@ export class SignUpComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit(){
+  onSubmit() {
     let usuario, token, refresh_token;
     let errorResponse;
 
@@ -49,8 +49,8 @@ export class SignUpComponent implements OnInit {
 
           this._authService.doLoginUser(usuario, token, refresh_token);
 
-          let mensagem = { principal: "Cadastro realizado com sucesso!", secundaria: "Cadastre sua instituição ou solicite para ser membro dela."}
-          this.dialog.open(PopupComponent, {data:  mensagem }).afterClosed().subscribe(
+          let mensagem = { principal: "Cadastro realizado com sucesso!", secundaria: "Cadastre sua instituição ou solicite para ser membro dela." }
+          this.dialog.open(PopupComponent, { data: mensagem }).afterClosed().subscribe(
             result => {
               this._router.navigateByUrl('/sign-up-place');
             }
