@@ -13,12 +13,12 @@ export class MembroGuard implements CanActivate {
   constructor(
     private _authService: AuthService,
     private _router: Router
-  ){ }
+  ) { }
 
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    if(this._authService.getUser().role !== 2 || this._authService.getUser().role !== 3) {
+    if (this._authService.getUser().role !== 2 && this._authService.getUser().role !== 3) {
       this._router.navigate(['menu'])
     }
     return true;
