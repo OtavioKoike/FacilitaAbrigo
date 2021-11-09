@@ -11,13 +11,14 @@
     <fieldset [disabled]="!edit && data">
 
       <div class="row mt-3">
-        <mat-form-field class="col col-sm-8" appearance="outline">
+        <mat-form-field class="col col-sm-7" appearance="outline">
           <mat-label>Nome</mat-label>
-          <input matInput type="text" name="name" placeholder="Digite o Nome" ngModel [(ngModel)]="abrigado.nome" required />
+          <input matInput type="text" name="name" placeholder="Digite o Nome" ngModel [(ngModel)]="abrigado.nome"
+            required />
           <mat-icon matSuffix>person</mat-icon>
         </mat-form-field>
 
-        <mat-form-field class="col col-sm-4" appearance="outline">
+        <mat-form-field class="col col-sm-5" appearance="outline">
           <mat-label>Documento</mat-label>
           <input matInput type="text" name="documento" placeholder="Digite qualquer Documento" ngModel
             [(ngModel)]="abrigado.documento" required />
@@ -44,7 +45,8 @@
 
         <mat-form-field class="col" appearance="outline">
           <mat-label>Data de Nascimento</mat-label>
-          <input matInput name="data_de_nascimento" type="date" ngModel [(ngModel)]="abrigado.data_de_nascimento" required/>
+          <input matInput name="data_de_nascimento" type="date" ngModel [(ngModel)]="abrigado.data_de_nascimento"
+            required />
         </mat-form-field>
       </div>
 
@@ -52,12 +54,13 @@
 
     <div class="d-flex justify-content-end m-1" *ngIf="data">
       <button mat-raised-button (click)="onChangeEdit()" *ngIf="!edit" class="bg-primary text-white">Atualizar</button>
-      <button mat-raised-button (click)="onChangeEdit()" *ngIf="edit" >Cancelar</button>
-      <button mat-raised-button *ngIf="edit" (click)="onSave()" class="bg-primary text-white" [disabled]="!abrigadoForm.form.valid">Salvar</button>
+      <button mat-raised-button (click)="onChangeEdit()" *ngIf="edit">Cancelar</button>
+      <button mat-raised-button *ngIf="edit" (click)="onSave()" class="save bg-primary text-white"
+        [disabled]="!abrigadoForm.form.valid">Salvar</button>
     </div>
 
     <div class="d-flex justify-content-end m-1" *ngIf="!data">
-      <button mat-raised-button (click)="onCreate()" class=" bg-primary text-white" [disabled]="!abrigadoForm.form.valid">Salvar</button>
+      <button mat-raised-button (click)="onCreate()" class="save" [disabled]="!abrigadoForm.form.valid">Salvar</button>
     </div>
   </form>
 

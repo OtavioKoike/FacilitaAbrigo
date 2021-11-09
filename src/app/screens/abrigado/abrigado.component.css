@@ -3,6 +3,7 @@ table {
   width: 100%;
 }
 
+
 @media (max-width: 650px) {
   .visibilityMobile{
     display: none;
@@ -20,9 +21,9 @@ table {
   position: fixed;
   bottom:20px;
   right:20px;
-  background-color: rgba(183, 28, 28,.50);
+  background-color: rgba(0, 125, 254,.50);
 }
 
 .fab button:hover{
-  background-color: rgba(183, 28, 28);
+  background-color: rgba(0, 125, 254);
 }

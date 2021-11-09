@@ -10,3 +10,16 @@ body{
     overflow: hidden;
 }
 
+/* Propriedade tabelas */
+.mat-header-cell{
+    font-family: Roboto, sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 13px;
+    line-height: 17px;
+  
+    /* Body Text */
+  
+    color: #2D3540;
+  }
+
