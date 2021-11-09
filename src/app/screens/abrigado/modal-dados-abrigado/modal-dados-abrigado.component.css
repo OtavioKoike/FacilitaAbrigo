@@ -1,0 +1,28 @@
+/* ------------------------------ */
+/* Tabela */
+.example-container {
+  height: 230px;
+  overflow: auto;
+}
+
+table {
+  width: 100%;
+}
+
+@media (max-width: 650px) {
+  .visibilityMobile{
+    display: none;
+  }
+}
+
+@media (min-width: 650px) {
+  table {
+    width: 710px;
+  }
+}
+
+/* ------------------------------ */
+/* Propriedades Botão Novo Abrigado */
+.fab button{
+  position: fixed;
+}

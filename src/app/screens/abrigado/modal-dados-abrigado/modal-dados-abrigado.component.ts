@@ -1,3 +1,4 @@
+import { MatTableDataSource } from '@angular/material/table';
 import { Estadia } from './../../../models/estadia.model';
 import { AbrigadoService } from './../../../services/abrigado.service';
 import { Abrigado } from './../../../models/abrigado.model';
@@ -10,6 +11,9 @@ import { Component, OnInit, Inject } from '@angular/core';
   styleUrls: ['./modal-dados-abrigado.component.css']
 })
 export class ModalDadosAbrigadoComponent implements OnInit {
+
+  displayedColumns: string[] = ['abrigo', 'quarto', 'dtInicio', 'dtFim'];
+  dataSource: MatTableDataSource<Estadia>;
 
   history = false;
   abrigado = {} as Abrigado;
@@ -35,6 +39,7 @@ export class ModalDadosAbrigadoComponent implements OnInit {
       this.abrigado = response;
       this.abrigado.data_de_nascimento = response.data_de_nascimento.substring(0, 10);
       this.estadias = response.estadias;
+      this.dataSource = new MatTableDataSource(this.estadias)
     })
   }
 
