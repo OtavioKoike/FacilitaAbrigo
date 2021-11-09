@@ -24,7 +24,7 @@ export class AuthService {
   // Login / Logout
 
   login(user: { email: string, senha: string }) {
-    return this.http.post(`${API}/api/usuario/login`, user);
+    return this.http.post<Usuario>(`${API}/api/usuario/login`, user);
   }
 
   doLoginUser(user, token, refresh_token) {
@@ -47,7 +47,7 @@ export class AuthService {
   // Create
 
   onCreateUser(user: Usuario) {
-    return this.http.post(`${API}/api/usuario`, user)
+    return this.http.post<Usuario>(`${API}/api/usuario`, user)
   }
 
   // ----------------------------------------------------

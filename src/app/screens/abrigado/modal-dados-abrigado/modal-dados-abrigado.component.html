@@ -1,0 +1,66 @@
+<section class="text-center" *ngIf="!history">
+  <h5>Abrigado</h5>
+
+  <form #abrigadoForm="ngForm">
+    <fieldset [disabled]="!edit && data">
+
+      <div class="row mt-3">
+        <mat-form-field class="col col-sm-8" appearance="outline">
+          <mat-label>Nome</mat-label>
+          <input matInput type="text" name="name" placeholder="Digite o Nome" ngModel [(ngModel)]="abrigado.nome" required />
+          <mat-icon matSuffix>person</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field class="col col-sm-4" appearance="outline">
+          <mat-label>Documento</mat-label>
+          <input matInput type="text" name="documento" placeholder="Digite qualquer Documento" ngModel
+            [(ngModel)]="abrigado.documento" required />
+          <mat-icon matSuffix>assignment_ind</mat-icon>
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field class="col" appearance="outline">
+          <mat-label>Telefone</mat-label>
+          <input matInput type="tel" name="telefone" placeholder="(00)00000-0000" ngModel
+            [(ngModel)]="abrigado.telefone" mask="(00)0000-0000||(00)00000-0000" />
+          <mat-icon matSuffix>phone</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="col">
+          <mat-label>Sexo</mat-label>
+          <mat-select name="sexo" ngModel [(ngModel)]="abrigado.sexo" [disabled]="!edit && data" required>
+            <mat-option value="masculino">Masculino</mat-option>
+            <mat-option value="feminino">Feminino</mat-option>
+            <mat-option value="outro">Outros</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="col" appearance="outline">
+          <mat-label>Data de Nascimento</mat-label>
+          <input matInput name="data_de_nascimento" type="date" ngModel [(ngModel)]="abrigado.data_de_nascimento" required/>
+        </mat-form-field>
+      </div>
+
+    </fieldset>
+
+    <div class="d-flex justify-content-end m-1" *ngIf="data">
+      <button mat-raised-button (click)="onChangeEdit()" *ngIf="!edit" class="bg-primary text-white">Atualizar</button>
+      <button mat-raised-button (click)="onChangeEdit()" *ngIf="edit" >Cancelar</button>
+      <button mat-raised-button *ngIf="edit" (click)="onSave()" class="bg-primary text-white" [disabled]="!abrigadoForm.form.valid">Salvar</button>
+    </div>
+
+    <div class="d-flex justify-content-end m-1" *ngIf="!data">
+      <button mat-raised-button (click)="onCreate()" class=" bg-primary text-white" [disabled]="!abrigadoForm.form.valid">Salvar</button>
+    </div>
+  </form>
+
+</section>
+
+<section class="text-center" *ngIf="history">
+  <h5>Histórico Abrigado</h5>
+
+  <div class="row mt-3">
+
+  </div>
+</section>

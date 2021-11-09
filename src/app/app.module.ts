@@ -16,7 +16,7 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 // Angular Material
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import {MatChipsModule} from '@angular/material/chips';
+import { MatChipsModule } from '@angular/material/chips';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -47,6 +47,8 @@ import { SignInComponent } from './screens/login/sign-in/sign-in.component';
 import { SignUpComponent } from './screens/login/sign-up/sign-up.component';
 import { SignUpPlaceComponent } from './screens/login/sign-up-place/sign-up-place.component';
 import { QuartoComponent } from './shared/quarto/quarto.component';
+import { AbrigadoComponent } from './screens/abrigado/abrigado.component';
+import { ModalDadosAbrigadoComponent } from './screens/abrigado/modal-dados-abrigado/modal-dados-abrigado.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +66,8 @@ import { QuartoComponent } from './shared/quarto/quarto.component';
     SignUpComponent,
     SignUpPlaceComponent,
     QuartoComponent,
+    AbrigadoComponent,
+    ModalDadosAbrigadoComponent,
   ],
   imports: [
     BrowserModule,

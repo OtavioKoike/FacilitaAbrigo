@@ -1,7 +1,7 @@
 <div class="row mt-4 container-fluid">
   <div class="col">
     <form #dadosForm="ngForm">
-      <fieldset [disabled]="user.role === 3">
+      <fieldset [disabled]="user.role === 3 || !edit">
         <div class="row">
           <mat-form-field class="col col-sm-8" appearance="outline">
             <mat-label>Nome</mat-label>
@@ -60,7 +60,11 @@
       </fieldset>
     </form>
 
-    <div *ngIf="user.role!==3" class="row m-1 d-flex justify-content-end">
+    <div *ngIf="user.role!==3 && !edit" class="row m-1 d-flex justify-content-end">
+      <button mat-raised-button class="col-4 col-sm-2 text-center" color="accent" (click)="setEdit()">Editar</button>
+    </div>
+
+    <div *ngIf="user.role!==3 && edit" class="row m-1 d-flex justify-content-end">
       <button mat-raised-button class="col-4 col-sm-2 text-center" (click)="populaTabela()">Cancelar</button>
       <button mat-raised-button class="col-4 col-sm-2 text-center" color="accent" (click)="onSave()"
         [disabled]="!dadosForm.form.valid">Salvar</button>

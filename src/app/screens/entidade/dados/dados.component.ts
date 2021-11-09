@@ -36,6 +36,7 @@ export class DadosComponent implements OnInit {
 
   tipo: string;
   id: number;
+  edit = false;
 
   constructor(
     public dialog: MatDialog,
@@ -80,10 +81,14 @@ export class DadosComponent implements OnInit {
   private populaTabela(){
     this._entidadeService.findEntidadeById(this.tipo, this.id).subscribe(response => {
       this.dados = response as Albergue;
-      console.log(this.dados)
       this.membros = (response as any).funcionarios.filter(funcionario => {return funcionario.role !== 0 })
       this.dataSource = new MatTableDataSource(this.membros);
     })
+    this.edit = false;
+  }
+
+  setEdit(){
+    this.edit = true;
   }
 
   async onSave(){
@@ -95,6 +100,7 @@ export class DadosComponent implements OnInit {
         this.dialog.open(PopupComponent, {data:  mensagem });
       }
     );
+    this.edit = false;
   }
 
 }

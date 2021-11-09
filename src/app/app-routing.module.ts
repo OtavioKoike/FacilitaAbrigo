@@ -6,6 +6,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { MembroGuard } from './guards/membro.guard';
 import { SecureInnerPagesGuard } from './guards/secure-inner-pages.guard';
 //Login
+import { AbrigadoComponent } from './screens/abrigado/abrigado.component';
 import { AdministradorComponent } from './screens/administrador/administrador.component';
 import { EntidadeComponent } from './screens/entidade/entidade.component';
 import { HomeComponent } from './screens/home/home.component';
@@ -26,7 +27,8 @@ const routes: Routes = [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'home', component: HomeComponent },
       { path: 'administrador', component: AdministradorComponent, canActivate: [AdminGuard] },
-      { path: 'entidade', component: EntidadeComponent, canActivate: [MembroGuard] }
+      { path: 'entidade', component: EntidadeComponent, canActivate: [MembroGuard] },
+      { path: 'abrigado', component: AbrigadoComponent, canActivate: [MembroGuard] },
 
     ]
   }

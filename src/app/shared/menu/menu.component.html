@@ -16,7 +16,7 @@
         <a routerLink="/menu/home" mat-button routerLinkActive="active-list-item">Início</a>
         <a *ngIf="user.role === 2 || user.role === 3" routerLink="/menu/restaurantes" mat-button
           routerLinkActive="active-list-item">Estadias Atuais</a>
-        <a *ngIf="user.role === 2 || user.role === 3" routerLink="/menu/bares" mat-button
+        <a *ngIf="user.role === 2 || user.role === 3" routerLink="/menu/abrigado" mat-button
           routerLinkActive="active-list-item">Abrigados</a>
         <a *ngIf="(user.role === 2 || user.role === 3) && user.abrigo_id; else instituicao" routerLink="/menu/entidade"
           mat-button routerLinkActive="active-list-item">Seu Abrigo</a>
@@ -63,7 +63,7 @@
           <mat-icon>list</mat-icon>Estadias Atuais
         </a>
         <mat-divider></mat-divider>
-        <a *ngIf="user.role === 2 || user.role === 3" (click)="sidenav.toggle()" routerLink="/menu/bares" mat-list-item
+        <a *ngIf="user.role === 2 || user.role === 3" (click)="sidenav.toggle()" routerLink="/menu/abrigado" mat-list-item
           routerLinkActive="active-list-item">
           <mat-icon>people</mat-icon>Abrigados
         </a>
