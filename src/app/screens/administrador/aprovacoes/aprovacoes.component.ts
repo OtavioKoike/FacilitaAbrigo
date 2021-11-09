@@ -13,7 +13,7 @@ import { EntidadeService } from '../../../services/entidade.service';
 })
 export class AprovacoesComponent implements OnInit {
 
-  displayedColumns: string[] = ['tipo', 'nome', 'cidade', 'descricao', 'aprovar'];
+  displayedColumns: string[] = ['tipo', 'nome', 'cidade', 'telefone', 'descricao', 'aprovar'];
   dataSource: MatTableDataSource<Albergue>;
   entidades: any[];
 
