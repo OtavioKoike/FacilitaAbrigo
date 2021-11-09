@@ -1,4 +1,5 @@
 import { MatTableDataSource } from '@angular/material/table';
+import {animate, state, style, transition, trigger} from '@angular/animations';
 import { Estadia } from './../../../models/estadia.model';
 import { AbrigadoService } from './../../../services/abrigado.service';
 import { Abrigado } from './../../../models/abrigado.model';
@@ -8,12 +9,20 @@ import { Component, OnInit, Inject } from '@angular/core';
 @Component({
   selector: 'app-modal-dados-abrigado',
   templateUrl: './modal-dados-abrigado.component.html',
-  styleUrls: ['./modal-dados-abrigado.component.css']
+  styleUrls: ['./modal-dados-abrigado.component.css'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({height: '0px', minHeight: '0'})),
+      state('expanded', style({height: '*'})),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
 })
 export class ModalDadosAbrigadoComponent implements OnInit {
 
-  displayedColumns: string[] = ['abrigo', 'quarto', 'dtInicio', 'dtFim'];
+  columnsToDisplay: string[] = ['abrigo', 'quarto', 'dtInicio', 'dtFim', 'eventos'];
   dataSource: MatTableDataSource<Estadia>;
+  expandedElement: Estadia | null;
 
   history = false;
   abrigado = {} as Abrigado;
