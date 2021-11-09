@@ -51,6 +51,9 @@ mat-toolbar mat-toolbar-row div a:hover {
 .nav {
   width: 50%;
 }
+div mat-sidenav-container {
+  background: #f2f2f2 !important;
+}
 
 div mat-sidenav-container mat-sidenav mat-nav-list a {
   font-weight: bold;
