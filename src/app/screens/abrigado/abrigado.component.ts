@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { ModalDadosAbrigadoComponent } from './modal-dados-abrigado/modal-dados-abrigado.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
@@ -17,12 +18,13 @@ export class AbrigadoComponent implements OnInit {
 
   @Output() refreshList = new EventEmitter<boolean>();
 
-  displayedColumns: string[] = ['nome', 'documento', 'telefone', 'data_de_nascimento', 'ver', 'history'];
+  displayedColumns: string[] = ['nome', 'documento', 'telefone', 'data_de_nascimento', 'ver'];
   dataSource: MatTableDataSource<Abrigado>;
   abrigados: Abrigado[];
 
   constructor(
     private dialog: MatDialog,
+    private _router: Router,
     private _abrigadoService: AbrigadoService
   ) { this.populaTabela(); }
 
@@ -30,13 +32,7 @@ export class AbrigadoComponent implements OnInit {
   }
 
   open(abrigado){
-    this.dialog.open(ModalDadosAbrigadoComponent, {data: {id: abrigado.id, history: false}}).afterClosed().subscribe( result => {
-      result.submit ? this.populaTabela() : '';
-    });
-  }
-
-  openHistorico(abrigado){
-    this.dialog.open(ModalDadosAbrigadoComponent, {data: {id: abrigado.id, history: true}});
+    this._router.navigate([`menu/abrigado/${abrigado.id}`])
   }
 
   onRegister(){

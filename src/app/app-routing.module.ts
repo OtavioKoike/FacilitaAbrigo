@@ -1,3 +1,4 @@
+import { DadosHistoricoComponent } from './screens/abrigado/dados-historico/dados-historico.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 // Guards
@@ -9,6 +10,7 @@ import { SecureInnerPagesGuard } from './guards/secure-inner-pages.guard';
 import { AbrigadoComponent } from './screens/abrigado/abrigado.component';
 import { AdministradorComponent } from './screens/administrador/administrador.component';
 import { EntidadeComponent } from './screens/entidade/entidade.component';
+import { EstadiasComponent } from './screens/estadias/estadias.component';
 import { HomeComponent } from './screens/home/home.component';
 import { MenuComponent } from './shared/menu/menu.component';
 import { SignInComponent } from './screens/login/sign-in/sign-in.component';
@@ -29,7 +31,8 @@ const routes: Routes = [
       { path: 'administrador', component: AdministradorComponent, canActivate: [AdminGuard] },
       { path: 'entidade', component: EntidadeComponent, canActivate: [MembroGuard] },
       { path: 'abrigado', component: AbrigadoComponent, canActivate: [MembroGuard] },
-
+      { path: 'abrigado/:id', component: DadosHistoricoComponent, canActivate: [MembroGuard] },
+      { path: 'estadia', component: EstadiasComponent, canActivate: [MembroGuard] },
     ]
   }
 ];

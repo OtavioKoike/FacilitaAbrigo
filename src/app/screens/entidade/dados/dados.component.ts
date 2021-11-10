@@ -88,7 +88,7 @@ export class DadosComponent implements OnInit {
   }
 
   setEdit(){
-    this.edit = true;
+    this.edit = !this.edit;
   }
 
   async onSave(){

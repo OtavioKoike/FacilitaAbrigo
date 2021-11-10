@@ -1,0 +1,6 @@
+/* ------------------------------ */
+/* Tabs */
+::ng-deep.mat-tab-label-active{
+  border-bottom: 1px solid #007DFE !important;
+  opacity: 1.0!important;
+}

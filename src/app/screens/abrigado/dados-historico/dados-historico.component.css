@@ -1,0 +1,66 @@
+/* ------------------------------ */
+/* Tabela */
+.example-container {
+  height: 230px;
+  overflow: auto;
+}
+
+table {
+  width: 100%;
+}
+
+@media (max-width: 650px) {
+  .visibilityMobile{
+    display: none;
+  }
+}
+
+@media (min-width: 650px) {
+  table {
+    width: 710px;
+  }
+}
+
+tr.example-detail-row {
+  height: 0;
+}
+
+tr.example-element-row:not(.example-expanded-row):hover {
+  background: whitesmoke;
+}
+
+tr.example-element-row:not(.example-expanded-row):active {
+  background: #efefef;
+}
+
+.example-element-row td {
+  border-bottom-width: 0;
+}
+
+.example-element-detail {
+  overflow: hidden;
+  display: flex;
+}
+
+.example-element-description {
+  padding: 16px;
+}
+
+.events {
+  padding: 16px;
+}
+
+/* ------------------------------ */
+/* Propriedades Botao */
+.btn {
+  background: #007DFE;
+  border-radius: 4px;
+  color: white;
+  font-size: 0.9rem;
+  letter-spacing: 0.05rem;
+  font-family:  Roboto, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  text-align: center;
+  margin-left: 2%;
+}

@@ -47,8 +47,10 @@ import { SignInComponent } from './screens/login/sign-in/sign-in.component';
 import { SignUpComponent } from './screens/login/sign-up/sign-up.component';
 import { SignUpPlaceComponent } from './screens/login/sign-up-place/sign-up-place.component';
 import { QuartoComponent } from './shared/quarto/quarto.component';
+import { EstadiasComponent } from './screens/estadias/estadias.component';
 import { AbrigadoComponent } from './screens/abrigado/abrigado.component';
 import { ModalDadosAbrigadoComponent } from './screens/abrigado/modal-dados-abrigado/modal-dados-abrigado.component';
+import { DadosHistoricoComponent } from './screens/abrigado/dados-historico/dados-historico.component';
 
 @NgModule({
   declarations: [
@@ -68,6 +70,9 @@ import { ModalDadosAbrigadoComponent } from './screens/abrigado/modal-dados-abri
     QuartoComponent,
     AbrigadoComponent,
     ModalDadosAbrigadoComponent,
+    EstadiasComponent,
+    DadosComponent,
+    DadosHistoricoComponent
   ],
   imports: [
     BrowserModule,
