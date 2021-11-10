@@ -16,8 +16,6 @@ import { AbrigadoService } from './../../services/abrigado.service';
 })
 export class AbrigadoComponent implements OnInit {
 
-  @Output() refreshList = new EventEmitter<boolean>();
-
   displayedColumns: string[] = ['nome', 'documento', 'telefone', 'data_de_nascimento', 'ver'];
   dataSource: MatTableDataSource<Abrigado>;
   abrigados: Abrigado[];

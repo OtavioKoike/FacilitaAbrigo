@@ -51,6 +51,7 @@ import { EstadiasComponent } from './screens/estadias/estadias.component';
 import { AbrigadoComponent } from './screens/abrigado/abrigado.component';
 import { ModalDadosAbrigadoComponent } from './screens/abrigado/modal-dados-abrigado/modal-dados-abrigado.component';
 import { DadosHistoricoComponent } from './screens/abrigado/dados-historico/dados-historico.component';
+import { DadosEstadiaComponent } from './screens/estadias/dados-estadia/dados-estadia.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import { DadosHistoricoComponent } from './screens/abrigado/dados-historico/dado
     ModalDadosAbrigadoComponent,
     EstadiasComponent,
     DadosComponent,
-    DadosHistoricoComponent
+    DadosHistoricoComponent,
+    DadosEstadiaComponent
   ],
   imports: [
     BrowserModule,

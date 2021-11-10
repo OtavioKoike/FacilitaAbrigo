@@ -2,6 +2,7 @@ import { Albergue } from './albergue.model';
 import { Abrigado } from './abrigado.model';
 import { Entidade } from './entidade.model';
 import { Quarto } from './quarto.model';
+import { Evento } from './evento.model';
 export interface Estadia {
   id: number;
   data_inicio: any;
@@ -13,5 +14,5 @@ export interface Estadia {
   instituicao: Entidade;
   abrigado: Abrigado;
   abrigo: Albergue;
-  eventos: string[];
+  eventos: Evento[];
 }
