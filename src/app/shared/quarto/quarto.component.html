@@ -1,8 +1,8 @@
 <div class="container">
   <mat-card class="col-10 p-0">
     <mat-card-content>
-      <div class="row w-100">
-        <div class="col-3 image-card" [style.background-image]="'url('+quarto.url+')'"></div>
+      <div class="row w-100 d-flex">
+        <div class="col col-sm-3 image-card" [style.background-image]="'url('+quarto.url+')'"></div>
         <div class="col text-card">
           <h4>{{quarto.nome}}</h4>
           <p>Abrigo nome - Cidade</p>
@@ -13,10 +13,14 @@
             </mat-chip-list>
           </div>
         </div>
-        <div class="col-2">
+        <div class="col col-sm-2">
           <div class="row buttons d-flex justify-content-end">
-            <button mat-icon-button color="warn"><mat-icon>delete</mat-icon></button>
-            <button mat-icon-button><mat-icon>edit</mat-icon></button>
+            <button mat-icon-button color="warn">
+              <mat-icon>delete</mat-icon>
+            </button>
+            <button mat-icon-button>
+              <mat-icon>edit</mat-icon>
+            </button>
             <!-- <button mat-raised-button class="col-7 mt-auto text-center" color="accent">Agendar</button> -->
           </div>
         </div>
