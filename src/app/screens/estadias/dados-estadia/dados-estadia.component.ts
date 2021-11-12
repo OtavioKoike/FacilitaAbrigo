@@ -24,7 +24,11 @@ export class DadosEstadiaComponent implements OnInit {
   dataSource: MatTableDataSource<Evento>;
 
   user: Usuario;
-  dados = { } as Estadia;
+  dados = {
+    abrigado: {},
+    quarto: {},
+    instituicao: {}
+  } as Estadia;
   eventos: Evento[];
 
   tipo: string;
@@ -42,10 +46,10 @@ export class DadosEstadiaComponent implements OnInit {
     this.user = this._authService.getUser() as Usuario;
     if(this.user.abrigo_id) {
       this.tipo = "albergue";
-      this.displayedColumns  = ['descricao', "delete"];
+      this.displayedColumns  = ['data', 'descricao', "delete"];
     } else {
       this.tipo = "instituição";
-      this.displayedColumns  = ['descricao'];
+      this.displayedColumns  = ['data', 'descricao'];
     }
   }
 
@@ -57,7 +61,6 @@ export class DadosEstadiaComponent implements OnInit {
   private findEstadia(){
     this._estadiaService.findEstadiaById(this.id).subscribe(response => {
       this.dados = response;
-      console.log(this.dados);
       this.dados.data_inicio = response.data_inicio.substring(0, 10);
       this.dados.data_saida = response.data_saida.substring(0, 10);
       this.eventos = response.eventos;

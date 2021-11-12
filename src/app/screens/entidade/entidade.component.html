@@ -1,18 +1,13 @@
 <mat-tab-group mat-align-tabs="center">
   <mat-tab label="Dados">
-    <app-dados [refreshListItem]="refreshListItem" (refreshList)="refreshList($event)"></app-dados>
+    <app-dados [tipo]="tipo" [dados]="dados" [membros]="membros" (refreshList)="refreshList($event)"></app-dados>
   </mat-tab>
   <mat-tab *ngIf="user.role === 2" label="Aprovações">
-    <app-aprovacoes-membros (refreshList)="refreshList($event)"></app-aprovacoes-membros>
+    <app-aprovacoes-membros [tipo]="tipo" [membros]="membrosSemPermissao" (refreshList)="refreshList($event)"></app-aprovacoes-membros>
   </mat-tab>
   <mat-tab *ngIf="user.abrigo_id" label="Quartos">
     <div class="quartos">
-      <app-quarto></app-quarto>
-      <div class="fab">
-        <button mat-fab (click)="onRegister()">
-          <mat-icon>add</mat-icon>
-        </button>
-      </div>
+      <app-quartos [dados]="dados" [quartos]="quartos" (refreshList)="refreshList($event)"></app-quartos>
     </div>
   </mat-tab>
 </mat-tab-group>

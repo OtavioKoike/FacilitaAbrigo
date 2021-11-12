@@ -20,22 +20,16 @@ import { EntidadeService } from './../../../services/entidade.service';
 export class DadosComponent implements OnInit {
 
   @Output() refreshList = new EventEmitter<boolean>();
-  @Input() set refreshListItem(value: boolean){
-    if(value){
-      this.populaTabela();
-      this.refreshListItem = false;
-    }
+  @Input() tipo: string;
+  @Input() dados = {} as Albergue;
+  @Input() set membros(value: Usuario[]){
+      this.dataSource = new MatTableDataSource(value);
   }
 
   displayedColumns: string[] = ['nome', 'cargo', 'email'];
   dataSource: MatTableDataSource<Usuario>;
 
   user: Usuario;
-  membros: Usuario[];
-  dados: Albergue;
-
-  tipo: string;
-  id: number;
   edit = false;
 
   constructor(
@@ -45,20 +39,9 @@ export class DadosComponent implements OnInit {
     private _cepService: CepService
   ) {
     this.user = this._authService.getUser() as Usuario;
-    if(this.user.abrigo_id) {
-      this.id = this.user.abrigo_id;
-      this.tipo = "albergue";
-    } else {
-      this.id = this.user.instituicao_id;
-      this.tipo = "instituição";
-    }
-
-    this.populaTabela();
   }
 
-  ngOnInit(): void {
-    this.populaTabela()
-  }
+  ngOnInit(): void { }
 
   onFind(cep: string){
     var padrao = /^([\d]{2})\.?([\d]{3})\-?([\d]{3})/;
@@ -78,17 +61,13 @@ export class DadosComponent implements OnInit {
     this.dados.rua = cepJson.logradouro;
   }
 
-  private populaTabela(){
-    this._entidadeService.findEntidadeById(this.tipo, this.id).subscribe(response => {
-      this.dados = response as Albergue;
-      this.membros = (response as any).funcionarios.filter(funcionario => {return funcionario.role !== 0 })
-      this.dataSource = new MatTableDataSource(this.membros);
-    })
-    this.edit = false;
-  }
-
   setEdit(){
     this.edit = !this.edit;
+  }
+
+  onCancel(){
+    this.refreshList.emit(true);
+    this.edit = false;
   }
 
   async onSave(){

@@ -26,3 +26,7 @@ table {
 }
 
 /* ------------------------------ */
+/*Propriedades Form */
+::ng-deep .mat-form-field-wrapper{
+  margin-bottom: -0.75em !important;
+}

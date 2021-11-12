@@ -1,0 +1,14 @@
+<main>
+  <app-quarto *ngFor="let quarto of quartos"
+  rota="quartosRoute"
+  [quarto]="quarto"
+  [dados]="dados"
+  (update)="onUpdate($event)"
+  (delete)="onDelete($event)"></app-quarto>
+</main>
+
+<div class="fab">
+  <button mat-fab (click)="onRegister()">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
