@@ -34,11 +34,11 @@
         <div class="row">
           <mat-form-field class="col col-sm-6" appearance="outline">
             <mat-label>Sexo</mat-label>
-          <mat-select name="sexo" ngModel [(ngModel)]="abrigado.sexo" [disabled]="!edit" required>
-            <mat-option value="masculino">Masculino</mat-option>
-            <mat-option value="feminino">Feminino</mat-option>
-            <mat-option value="outro">Outros</mat-option>
-          </mat-select>
+            <mat-select name="sexo" ngModel [(ngModel)]="abrigado.sexo" [disabled]="!edit" required>
+              <mat-option value="masculino">Masculino</mat-option>
+              <mat-option value="feminino">Feminino</mat-option>
+              <mat-option value="outro">Outros</mat-option>
+            </mat-select>
           </mat-form-field>
 
           <mat-form-field class="col col-sm-6" appearance="outline">
@@ -67,8 +67,7 @@
     <div class="row">
       <h5>Histórico</h5>
     </div>
-    <table mat-table
-       [dataSource]="dataSource" multiTemplateDataRows>
+    <table mat-table [dataSource]="dataSource" multiTemplateDataRows>
       <!-- Nome Column -->
       <ng-container matColumnDef="abrigo">
         <th mat-header-cell *matHeaderCellDef width="35%"> Abrigo </th>
@@ -84,28 +83,31 @@
       <!-- Nome Column -->
       <ng-container matColumnDef="dtInicio">
         <th mat-header-cell *matHeaderCellDef width="15%" class="visibilityMobile"> Entrada </th>
-        <td mat-cell *matCellDef="let element" class="visibilityMobile"> {{element.data_inicio | date: "dd/MMM/YYYY"}} </td>
+        <td mat-cell *matCellDef="let element" class="visibilityMobile"> {{element.data_inicio | date: "dd/MMM/YYYY"}}
+        </td>
       </ng-container>
 
       <!-- Cidade Column -->
       <ng-container matColumnDef="dtFim">
         <th mat-header-cell *matHeaderCellDef width="15%" class="visibilityMobile"> Saída </th>
-        <td mat-cell *matCellDef="let element" class="visibilityMobile"> {{element.data_saida | date: "dd/MMM/YYYY"}} </td>
+        <td mat-cell *matCellDef="let element" class="visibilityMobile"> {{element.data_saida | date: "dd/MMM/YYYY"}}
+        </td>
       </ng-container>
 
       <!-- Aprovar Column -->
-    <ng-container matColumnDef="eventos">
-      <th mat-header-cell *matHeaderCellDef width="5%"> Eventos </th>
-      <td mat-cell *matCellDef="let element">
-        <button mat-icon-button><mat-icon>event_note</mat-icon></button>
-      </td>
-    </ng-container>
+      <ng-container matColumnDef="eventos">
+        <th mat-header-cell *matHeaderCellDef width="5%"> Eventos </th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button>
+            <mat-icon>event_note</mat-icon>
+          </button>
+        </td>
+      </ng-container>
 
       <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
       <ng-container matColumnDef="expandedDetail">
         <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
-          <div class="example-element-detail"
-              [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+          <div class="example-element-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
             <div class="example-element-description">
               <p>Eventos</p>
               <span class="events" *ngFor="let item of element.eventos">{{item.descricao}}</span>
@@ -115,10 +117,9 @@
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="columnsToDisplay; sticky: true"></tr>
-      <tr mat-row *matRowDef="let element; columns: columnsToDisplay;"
-          class="example-element-row"
-          [class.example-expanded-row]="expandedElement === element"
-          (click)="expandedElement = expandedElement === element ? null : element">
+      <tr mat-row *matRowDef="let element; columns: columnsToDisplay;" class="example-element-row"
+        [class.example-expanded-row]="expandedElement === element"
+        (click)="expandedElement = expandedElement === element ? null : element">
       </tr>
       <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
       <!-- Row shown when there is no matching data. -->

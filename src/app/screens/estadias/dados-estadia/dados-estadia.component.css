@@ -10,6 +10,9 @@ table {
   }
 }
 
+mat-divider{
+  border-top-width: 3px !important;
+}
 /* ------------------------------ */
 /* Propriedades Botao */
 .btn {

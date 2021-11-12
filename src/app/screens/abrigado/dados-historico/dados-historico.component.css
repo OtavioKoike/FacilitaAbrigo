@@ -50,6 +50,9 @@ tr.example-element-row:not(.example-expanded-row):active {
   padding: 16px;
 }
 
+.example-element-description p{
+  font-weight: bold;
+}
 /* ------------------------------ */
 /* Propriedades Botao */
 .btn {
