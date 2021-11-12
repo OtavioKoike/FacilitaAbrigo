@@ -1,0 +1,12 @@
+/* ------------------------------ */
+/* Propriedades Botão Novo quarto */
+.fab button{
+  position: fixed;
+  bottom:20px;
+  right:20px;
+  background-color: rgba(0, 125, 254,.50);
+}
+
+.fab button:hover{
+  background-color: rgba(0, 125, 254);
+}

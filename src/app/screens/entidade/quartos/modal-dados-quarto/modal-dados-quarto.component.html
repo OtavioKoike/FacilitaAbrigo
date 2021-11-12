@@ -1,0 +1,77 @@
+<div class="fab d-flex justify-content-end">
+  <button mat-icon-button mat-dialog-close>
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+
+<section class="text-center">
+  <h5>Cadastrar Quarto</h5>
+
+  <form #quartoForm="ngForm">
+    <div class="row mt-3">
+      <mat-form-field class="col-8" appearance="outline">
+        <mat-label>Nome</mat-label>
+        <input matInput type="text" name="name" placeholder="Digite o Nome" ngModel [(ngModel)]="quarto.nome"
+          required />
+        <mat-icon matSuffix>home</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field class="col-4" appearance="outline">
+        <mat-label>Capacidade</mat-label>
+        <input matInput type="number" name="capacidade" placeholder="Digite a Capacidade" ngModel
+          [(ngModel)]="quarto.capacidade" required />
+        <mat-icon matSuffix>looks_one</mat-icon>
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <mat-form-field class="col" appearance="outline">
+        <mat-label>Descrição</mat-label>
+        <textarea matInput type="text" name="descricao" rows="2" ngModel [(ngModel)]="quarto.descricao"
+          required></textarea>
+        <mat-icon matSuffix>description</mat-icon>
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <mat-form-field class="example-chip-list" appearance="fill">
+        <mat-label>Caracteristicas</mat-label>
+        <mat-chip-list #chipList>
+          <mat-chip
+            *ngFor="let caracteristica of caracteristicasSelecionadas"
+            [selectable]="selectable"
+            [removable]="removable"
+            (removed)="remove(caracteristica)">
+            {{caracteristica.nome}}
+            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+          </mat-chip>
+          <input
+            placeholder="Caracteristicas..."
+            #CaractInput
+            [formControl]="CaractCtrl"
+            [matAutocomplete]="auto"
+            [matChipInputFor]="chipList"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+            (matChipInputTokenEnd)="add($event)">
+        </mat-chip-list>
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+          <mat-option *ngFor="let caracteristica of filteredCaracteristicas | async" [value]="caracteristica">
+            {{caracteristica}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+
+    <div class="row d-flex justify-content-center mt-3">
+      <div class="col-8">
+        <input type="file" #inputFile class="form-control bg-transparent" (change)="selectFile($event)" accept=".jpg, .jpeg, .png"
+          required />
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-end m-1">
+      <button mat-raised-button (click)="onCreate()" class="save" [disabled]="!quartoForm.form.valid">Salvar</button>
+    </div>
+  </form>
+
+</section>

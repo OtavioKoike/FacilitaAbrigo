@@ -74,7 +74,7 @@
     </div>
 
     <div *ngIf="user.role!==3 && edit" class="row m-1 d-flex justify-content-end">
-      <button mat-raised-button class="col-4 col-sm-2 text-center " (click)="populaTabela()">Cancelar</button>
+      <button mat-raised-button class="col-4 col-sm-2 text-center " (click)="onCancel()">Cancelar</button>
       <button mat-raised-button class="col-4 col-sm-2 text-center btn" color="accent" (click)="onSave()"
         [disabled]="!dadosForm.form.valid">Salvar</button>
     </div>

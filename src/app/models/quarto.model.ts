@@ -1,3 +1,4 @@
+import { Imagem } from './Imagem.model';
 import { Albergue } from './albergue.model';
 import { Caracteristica } from './caracteristica.model';
 export interface Quarto {
@@ -8,5 +9,5 @@ export interface Quarto {
   abrigo_id: number;
   caracteristicas: Caracteristica[];
   abrigo: Albergue;
-  imagens: string[];
+  imagens: Imagem[];
 }

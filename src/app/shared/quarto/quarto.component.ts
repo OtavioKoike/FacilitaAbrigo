@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Albergue } from './../../models/albergue.model';
+import { Quarto } from 'src/app/models/quarto.model';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+// API
+import { API } from '../../../../app.api'
 
 @Component({
   selector: 'app-quarto',
@@ -7,21 +11,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QuartoComponent implements OnInit {
 
-  rota: string;
+  @Output() update = new EventEmitter<Quarto>();
+  @Output() delete = new EventEmitter<Quarto>();
+  @Input() quarto: Quarto;
+  @Input() rota: string;
+  @Input() dados: Albergue;
 
-  constructor() {
-    this.rota = localStorage.getItem('rota');
-  }
+  url: string;
 
-  quarto = {
-    nome: "Galpão",
-    descricao: "Abrigo para mulheresswfedwfewefefefgedfgefgegçlknjkerhlyr liughdlj khbvljsj hl hfdkjlhgvjkdglhslghwgipshpiuh",
-    capacidade: 4,
-    url: 'https://imgcy.trivago.com/c_lfill,d_dummy.jpeg,e_sharpen:60,f_auto,h_360,q_auto,w_360//itemimages/52/21/5221376_v2.jpeg',
-    caracteristicas: ["mulheres", "pertences", "pet"]
-  }
+  constructor() {  }
 
   ngOnInit(): void {
+    this.url = `${API}${this.quarto.imagens[this.quarto.imagens.length-1].url}`
+  }
+
+  onUpdate(){
+    this.update.emit(this.quarto)
+  }
+
+  onDelete(){
+    this.delete.emit(this.quarto)
   }
 
 

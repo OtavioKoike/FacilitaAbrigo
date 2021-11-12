@@ -2,26 +2,28 @@
   <mat-card class="col-10 p-0">
     <mat-card-content>
       <div class="row w-100 d-flex">
-        <div class="col col-sm-3 image-card" [style.background-image]="'url('+quarto.url+')'"></div>
+        <div class="col col-sm-3 image-card" [style.background-image]="'url('+url+')'"></div>
         <div class="col text-card">
           <h4>{{quarto.nome}}</h4>
-          <p>Abrigo nome - Cidade</p>
+          <p>{{dados.nome}} - {{dados.cidade}}</p>
           <p>{{quarto.descricao}}</p>
           <div class="row">
             <mat-chip-list aria-label="Fish selection">
-              <mat-chip *ngFor="let caracteristica of quarto.caracteristicas">{{caracteristica}}</mat-chip>
+              <mat-chip *ngFor="let caracteristica of quarto.caracteristicas">{{caracteristica.nome}}</mat-chip>
             </mat-chip-list>
           </div>
         </div>
         <div class="col col-sm-2">
-          <div class="row buttons d-flex justify-content-end">
-            <button mat-icon-button color="warn">
+          <div class="row buttons d-flex justify-content-end" *ngIf="rota==='quartosRoute'">
+            <button mat-icon-button color="warn" (click)="onDelete()">
               <mat-icon>delete</mat-icon>
             </button>
-            <button mat-icon-button>
+            <button mat-icon-button (click)="onUpdate()">
               <mat-icon>edit</mat-icon>
             </button>
-            <!-- <button mat-raised-button class="col-7 mt-auto text-center" color="accent">Agendar</button> -->
+          </div>
+          <div class="row buttons d-flex justify-content-end" *ngIf="rota!=='quartosRoute'">
+            <button mat-raised-button class="col-8 mt-auto text-center" color="accent">Agendar</button>
           </div>
         </div>
       </div>

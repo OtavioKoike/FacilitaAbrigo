@@ -1,5 +1,6 @@
 mat-card {
   border-radius: 15px;
+  margin-bottom: 20px;
 }
 
 .image-card {
@@ -20,6 +21,6 @@ mat-card {
 
 
 /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
-@media screen and (max-width:600px) { 
+@media screen and (max-width:600px) {
 
 }

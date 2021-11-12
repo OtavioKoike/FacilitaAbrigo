@@ -14,6 +14,7 @@ import { NgxMaskModule } from 'ngx-mask'
 //Responsividade
 import { FlexLayoutModule } from "@angular/flex-layout";
 // Angular Material
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
@@ -52,6 +53,8 @@ import { AbrigadoComponent } from './screens/abrigado/abrigado.component';
 import { ModalDadosAbrigadoComponent } from './screens/abrigado/modal-dados-abrigado/modal-dados-abrigado.component';
 import { DadosHistoricoComponent } from './screens/abrigado/dados-historico/dados-historico.component';
 import { DadosEstadiaComponent } from './screens/estadias/dados-estadia/dados-estadia.component';
+import { QuartosComponent } from './screens/entidade/quartos/quartos.component';
+import { ModalDadosQuartoComponent } from './screens/entidade/quartos/modal-dados-quarto/modal-dados-quarto.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +77,9 @@ import { DadosEstadiaComponent } from './screens/estadias/dados-estadia/dados-es
     EstadiasComponent,
     DadosComponent,
     DadosHistoricoComponent,
-    DadosEstadiaComponent
+    DadosEstadiaComponent,
+    QuartosComponent,
+    ModalDadosQuartoComponent
   ],
   imports: [
     BrowserModule,
@@ -85,6 +90,7 @@ import { DadosEstadiaComponent } from './screens/estadias/dados-estadia/dados-es
     HttpClientModule,
     NgxMaskModule.forRoot(),
     FlexLayoutModule,
+    MatAutocompleteModule,
     MatButtonModule,
     MatCardModule,
     MatChipsModule,
