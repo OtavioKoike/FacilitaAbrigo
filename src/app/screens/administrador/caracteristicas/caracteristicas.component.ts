@@ -20,25 +20,26 @@ export class CaracteristicasComponent implements OnInit {
 
   caracteristica: string;
 
-  constructor( private _caracteristicaService: CaracteristicasService) { }
+  constructor(private _caracteristicaService: CaracteristicasService) { }
 
   ngOnInit(): void {
     this.populaTabela()
   }
 
-  deletar(caracteristica: Caracteristica){
+  deletar(caracteristica: Caracteristica) {
     this._caracteristicaService.delete(caracteristica.id).subscribe(() => {
       this.populaTabela()
     })
   }
 
-  cadastrar(){
+  cadastrar() {
     this._caracteristicaService.create(this.caracteristica).subscribe(() => {
       this.populaTabela()
     })
+    this.caracteristica = "";
   }
 
-  populaTabela(){
+  populaTabela() {
     this._caracteristicaService.find().subscribe(response => {
       this.listCaracteristicas = response;
       this.dataSource = new MatTableDataSource(this.listCaracteristicas)

@@ -33,7 +33,7 @@ export class EstadiasComponent implements OnInit {
     private _estadiaService: EstadiaService
   ) {
     this.user = this._authService.getUser() as Usuario;
-    if(this.user.abrigo_id) {
+    if (this.user.abrigo_id) {
       this.id = this.user.abrigo_id;
       this.tipo = "albergue";
       this.displayedColumns = ['nome', 'quarto', 'data_inicio', 'data_saida', 'instituicao', 'ver']
@@ -49,7 +49,7 @@ export class EstadiasComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  open(estadia){
+  open(estadia) {
     this._router.navigate([`menu/estadia/${estadia.id}`])
   }
 
@@ -59,9 +59,9 @@ export class EstadiasComponent implements OnInit {
     });
   }
 
-  private populaTabela(){
+  private populaTabela() {
     this._estadiaService.findEstadias(this.tipo, this.id).subscribe(response => {
-      this.estadias = response;
+      this.estadias = response.sort();
       this.dataSource = new MatTableDataSource(this.estadias);
     })
   }

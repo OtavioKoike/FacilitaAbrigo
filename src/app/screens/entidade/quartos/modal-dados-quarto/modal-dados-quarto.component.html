@@ -37,10 +37,10 @@
       <app-chips-material [caracteristicasSelecionadas]="caracteristicasSelecionadas" (selecionadas)="atualizaChips($event)"></app-chips-material>
     </div>
 
-    <div class="row d-flex justify-content-center mt-3">
-      <div class="col-8">
-        <input type="file" #inputFile class="form-control bg-transparent" (change)="selectFile($event)" accept=".jpg, .jpeg, .png"
-          required />
+    <div class="row d-flex justify-content-center mt-3 mb-3">
+      <div class="col-12">
+        <input type="file" #inputFile class="form-control bg-transparent" (change)="selectFile($event)"
+          accept=".jpg, .jpeg, .png" required />
       </div>
     </div>
 
