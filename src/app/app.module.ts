@@ -55,6 +55,8 @@ import { DadosHistoricoComponent } from './screens/abrigado/dados-historico/dado
 import { DadosEstadiaComponent } from './screens/estadias/dados-estadia/dados-estadia.component';
 import { QuartosComponent } from './screens/entidade/quartos/quartos.component';
 import { ModalDadosQuartoComponent } from './screens/entidade/quartos/modal-dados-quarto/modal-dados-quarto.component';
+import { ModalDadosEstadiaComponent } from './shared/modal-dados-estadia/modal-dados-estadia.component';
+import { ChipsMaterialComponent } from './shared/chips-material/chips-material.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +81,9 @@ import { ModalDadosQuartoComponent } from './screens/entidade/quartos/modal-dado
     DadosHistoricoComponent,
     DadosEstadiaComponent,
     QuartosComponent,
-    ModalDadosQuartoComponent
+    ModalDadosQuartoComponent,
+    ModalDadosEstadiaComponent,
+    ChipsMaterialComponent
   ],
   imports: [
     BrowserModule,

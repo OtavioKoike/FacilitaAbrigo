@@ -20,20 +20,10 @@ import { HttpEventType, HttpResponse } from '@angular/common/http';
 })
 export class ModalDadosQuartoComponent implements OnInit {
 
-  selectable = true;
-  removable = true;
-  separatorKeysCodes: number[] = [];
-  CaractCtrl = new FormControl();
-
-  filteredCaracteristicas: Observable<string[]>;
   caracteristicasSelecionadas: Caracteristica[] = [];
-  allCaracteristicas: string[];
-  allCaracteristicasObj: Caracteristica[];
-
-  @ViewChild('CaractInput') CaractInput: ElementRef<HTMLInputElement>;
 
   quarto = {} as Quarto;
-  file;
+  file = [];
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data,
@@ -48,42 +38,13 @@ export class ModalDadosQuartoComponent implements OnInit {
       this.caracteristicasSelecionadas = data.quarto.caracteristicas;
     }
 
-    this._caracteristicaService.find().subscribe(response => {
-      this.allCaracteristicasObj = response;
-      this.allCaracteristicas = response.map(caracteristica => caracteristica.nome);
-
-      this.filteredCaracteristicas = this.CaractCtrl.valueChanges.pipe(
-        startWith(null),
-        map((caracteristica: string | null) => (caracteristica ? this._filter(caracteristica) : this.allCaracteristicas.slice())),
-      );
-    })
-
   }
 
   ngOnInit(): void {
   }
 
-  add(event: MatChipInputEvent): void {
-    return ;
-  }
-
-  remove(caracteristica: Caracteristica): void {
-    const index = this.caracteristicasSelecionadas.indexOf(caracteristica);
-    if (index >= 0) {
-      this.caracteristicasSelecionadas.splice(index, 1);
-    }
-  }
-
-  selected(event: MatAutocompleteSelectedEvent): void {
-    let caracteristicaObj = this.allCaracteristicasObj.filter(caract => caract.nome === event.option.viewValue)
-    this.caracteristicasSelecionadas.push(caracteristicaObj[0])
-    this.CaractInput.nativeElement.value = '';
-    this.CaractCtrl.setValue(null);
-  }
-
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-    return this.allCaracteristicas.filter(caracteristica => caracteristica.toLowerCase().includes(filterValue));
+  atualizaChips(caract: Caracteristica[]){
+    this.caracteristicasSelecionadas = caract;
   }
 
   onCreate() {
@@ -125,6 +86,7 @@ export class ModalDadosQuartoComponent implements OnInit {
 
   selectFile(event) {
     this.file = event.target.files;
+    console.log(this.file)
   }
 
   uploadFile(quartoResponse: Quarto) {

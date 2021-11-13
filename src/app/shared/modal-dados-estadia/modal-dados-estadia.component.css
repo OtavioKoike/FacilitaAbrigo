@@ -1,0 +1,46 @@
+::ng-deep .mat-form-field-wrapper{
+  margin-bottom: -0.75em !important;
+}
+
+/* ------------------------------ */
+/* Propriedades Botao */
+.fab button{
+  position: fixed;
+}
+
+.btn {
+  background: #007DFE;
+  border-radius: 4px;
+  color: white;
+  font-size: 0.9rem;
+  letter-spacing: 0.05rem;
+  font-family:  Roboto, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  text-align: center;
+  margin-left: 2%;
+}
+
+/* ------------------------------ */
+/* Tabela */
+.example-container {
+  text-align: left;
+  height: 200px;
+  overflow: auto;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-row .mat-cell {
+  cursor: pointer;
+}
+
+.mat-row:hover .mat-cell {
+  background-color: rgb(219, 220, 221);
+}
+
+.demo-row-is-clicked {
+  background-color: rgb(219, 220, 221);
+}

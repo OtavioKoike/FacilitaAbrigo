@@ -23,6 +23,10 @@ export class QuartoService {
     return this._http.put(`${API}/api/quartos/${quarto.id}`, quarto);
   }
 
+  filtrar(data_inicial: string, data_final: string, caracteristicasIds: number[]){
+    return this._http.get<Quarto[]>(`${API}/api/quartos/`);
+  }
+
   delete(id: number){
     return this._http.delete(`${API}/api/quartos/${id}`);
   }

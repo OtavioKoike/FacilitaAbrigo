@@ -1,3 +1,4 @@
+import { Caracteristica } from './../../models/caracteristica.model';
 import { Albergue } from './../../models/albergue.model';
 import { Quarto } from 'src/app/models/quarto.model';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
@@ -18,11 +19,18 @@ export class QuartoComponent implements OnInit {
   @Input() dados: Albergue;
 
   url: string;
+  caracteristicas: Caracteristica[];
+  plus = { nome: "..."} as Caracteristica;
 
   constructor() {  }
 
   ngOnInit(): void {
     this.url = `${API}${this.quarto.imagens[this.quarto.imagens.length-1].url}`
+    this.caracteristicas = this.quarto.caracteristicas;
+    if(this.caracteristicas.length > 6){
+      this.caracteristicas = this.caracteristicas.slice(0,5);
+      this.caracteristicas.push(this.plus)
+    }
   }
 
   onUpdate(){

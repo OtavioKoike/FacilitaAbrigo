@@ -1,3 +1,4 @@
+import { ModalDadosEstadiaComponent } from './../../shared/modal-dados-estadia/modal-dados-estadia.component';
 import { Usuario } from './../../models/usuario.model';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
@@ -53,9 +54,9 @@ export class EstadiasComponent implements OnInit {
   }
 
   onRegister(){
-    // this.dialog.open().afterClosed().subscribe( result => {
-    //   result.submit ? this.populaTabela() : '';
-    // });
+    this.dialog.open(ModalDadosEstadiaComponent).afterClosed().subscribe( result => {
+      result.submit ? this.populaTabela() : '';
+    });
   }
 
   private populaTabela(){
