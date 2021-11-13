@@ -37,21 +37,13 @@
       <mat-form-field class="example-chip-list" appearance="fill">
         <mat-label>Caracteristicas</mat-label>
         <mat-chip-list #chipList>
-          <mat-chip
-            *ngFor="let caracteristica of caracteristicasSelecionadas"
-            [selectable]="selectable"
-            [removable]="removable"
-            (removed)="remove(caracteristica)">
+          <mat-chip *ngFor="let caracteristica of caracteristicasSelecionadas" [selectable]="selectable"
+            [removable]="removable" (removed)="remove(caracteristica)">
             {{caracteristica.nome}}
             <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
           </mat-chip>
-          <input
-            placeholder="Caracteristicas..."
-            #CaractInput
-            [formControl]="CaractCtrl"
-            [matAutocomplete]="auto"
-            [matChipInputFor]="chipList"
-            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+          <input placeholder="Caracteristicas..." #CaractInput [formControl]="CaractCtrl" [matAutocomplete]="auto"
+            [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
             (matChipInputTokenEnd)="add($event)">
         </mat-chip-list>
         <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
@@ -62,10 +54,10 @@
       </mat-form-field>
     </div>
 
-    <div class="row d-flex justify-content-center mt-3">
-      <div class="col-8">
-        <input type="file" #inputFile class="form-control bg-transparent" (change)="selectFile($event)" accept=".jpg, .jpeg, .png"
-          required />
+    <div class="row d-flex justify-content-center mt-3 mb-3">
+      <div class="col-12">
+        <input type="file" #inputFile class="form-control bg-transparent" (change)="selectFile($event)"
+          accept=".jpg, .jpeg, .png" required />
       </div>
     </div>
 

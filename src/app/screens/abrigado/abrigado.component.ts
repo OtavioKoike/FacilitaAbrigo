@@ -29,19 +29,27 @@ export class AbrigadoComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  open(abrigado){
+  open(abrigado) {
     this._router.navigate([`menu/abrigado/${abrigado.id}`])
   }
 
-  onRegister(){
-    this.dialog.open(ModalDadosAbrigadoComponent).afterClosed().subscribe( result => {
+  onRegister() {
+    this.dialog.open(ModalDadosAbrigadoComponent).afterClosed().subscribe(result => {
       result.submit ? this.populaTabela() : '';
     });
   }
 
-  private populaTabela(){
+  private populaTabela() {
     this._abrigadoService.findAbrigados().subscribe(response => {
-      this.abrigados = response;
+      this.abrigados = response.sort(function (a, b) {
+        // Ordenar nome ordem alfabetica
+        if (a.nome < b.nome) {
+          return -1;
+        }
+        else if (a.nome > b.nome) {
+          return 1;
+        }
+      });
       this.dataSource = new MatTableDataSource(this.abrigados);
     })
   }
