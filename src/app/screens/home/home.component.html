@@ -1,3 +1,11 @@
-<p>home works!</p>
-<app-quarto></app-quarto>
+<div class="row m-1 d-flex justify-content-end">
+  <button mat-raised-button class="col-4 col-sm-3 text-center btn" color="accent" (click)="filtrar()">Filtrar</button>
+</div>
 
+<main>
+  <app-quarto *ngFor="let quarto of quartos"
+  rota="homeRoute"
+  [quarto]="quarto"
+  [dados]="quarto.abrigo"
+  (agendar)="onRegister($event)"></app-quarto>
+</main>

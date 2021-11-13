@@ -1,3 +1,5 @@
+import { AuthService } from 'src/app/services/auth.service';
+import { Usuario } from './../../models/usuario.model';
 import { Caracteristica } from './../../models/caracteristica.model';
 import { Albergue } from './../../models/albergue.model';
 import { Quarto } from 'src/app/models/quarto.model';
@@ -14,6 +16,7 @@ export class QuartoComponent implements OnInit {
 
   @Output() update = new EventEmitter<Quarto>();
   @Output() delete = new EventEmitter<Quarto>();
+  @Output() agendar = new EventEmitter<Quarto>();
   @Input() quarto: Quarto;
   @Input() rota: string;
   @Input() dados: Albergue;
@@ -22,7 +25,10 @@ export class QuartoComponent implements OnInit {
   caracteristicas: Caracteristica[];
   plus = { nome: "..."} as Caracteristica;
 
-  constructor() {  }
+  user: Usuario;
+  constructor( private _authService: AuthService) {
+    this.user = _authService.getUser();
+  }
 
   ngOnInit(): void {
     this.url = `${API}${this.quarto.imagens[this.quarto.imagens.length-1].url}`
@@ -41,7 +47,8 @@ export class QuartoComponent implements OnInit {
     this.delete.emit(this.quarto)
   }
 
-
-
+  onAgendar(){
+    this.agendar.emit(this.quarto)
+  }
 
 }

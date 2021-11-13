@@ -7,53 +7,84 @@
 <main class="text-center">
   <h5>Cadastrar Estadia</h5>
 
-<section *ngIf="!isQuarto">
-  <form #estadiaForm="ngForm">
-    <div class="row mt-3">
-      <mat-form-field class="col col-sm-6" appearance="outline">
-        <mat-label>Data de Início</mat-label>
-        <input matInput name="dtInicio" type="date" ngModel [(ngModel)]="data_inicial" required />
-      </mat-form-field>
+  <section>
+    <form #estadiaForm="ngForm">
+      <fieldset [disabled]="isQuarto">
+        <div class="row mt-3">
+          <mat-form-field class="col col-sm-6" appearance="outline">
+            <mat-label>Data de Início</mat-label>
+            <input matInput name="dtInicio" type="date" ngModel [(ngModel)]="data_inicial" required />
+          </mat-form-field>
 
-      <mat-form-field class="col col-sm-6" appearance="outline">
-        <mat-label>Data de Saída</mat-label>
-        <input matInput name="dtSaida" type="date" ngModel [(ngModel)]="data_final" required />
-      </mat-form-field>
-    </div>
+          <mat-form-field class="col col-sm-6" appearance="outline">
+            <mat-label>Data de Saída</mat-label>
+            <input matInput name="dtSaida" type="date" ngModel [(ngModel)]="data_final" required />
+          </mat-form-field>
+        </div>
+      </fieldset>
+    </form>
 
-    <div class="row">
-        <app-chips-material [caracteristicasSelecionadas]="caracteristicasSelecionadas" (selecionadas)="atualizaChips($event)"></app-chips-material>
-    </div>
+    <div class="row"  *ngIf="!isQuarto">
+      <app-chips-material [caracteristicasSelecionadas]="caracteristicasSelecionadas" (selecionadas)="atualizaChips($event)"></app-chips-material>
+  </div>
+
+  <div class="row m-1 d-flex justify-content-end"  *ngIf="!isQuarto">
+    <button mat-raised-button class="col-4 col-sm-2 text-center btn" color="accent" (click)="filtrar()" [disabled]="!estadiaForm.form.valid">Filtrar</button>
+  </div>
+  </section>
+
+  <section class="example-container" *ngIf="!isQuarto">
+    <table mat-table [dataSource]="dataSource">
+
+      <!-- Nome Column -->
+      <ng-container matColumnDef="nome">
+        <th mat-header-cell *matHeaderCellDef width="65%"> Nome </th>
+        <td mat-cell *matCellDef="let row"> {{row.nome}} </td>
+      </ng-container>
+
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row (click)="onSelect(row)" [class.demo-row-is-clicked]="clickedRows.has(row)"
+        *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      <!-- Row shown when there is no matching data. -->
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell " colspan="4">Sem dados para o filtro "{{input.value}}"</td>
+      </tr>
+    </table>
+  </section>
+  <div class="row m-1 d-flex justify-content-end" *ngIf="!isQuarto">
+    <button mat-raised-button class="col-4 col-sm-3 text-center btn" color="accent" (click)="avancar()" [disabled]="clickedRows.size === 0">Avançar</button>
+  </div>
+
+  <div class="row" *ngIf="isQuarto">
+    <mat-form-field class="col" appearance="outline">
+      <mat-label>Quarto</mat-label>
+      <input matInput type="text" name="quarto"  ngModel [(ngModel)]="quarto.nome" disabled />
+      <mat-icon matSuffix>home</mat-icon>
+    </mat-form-field>
+  </div>
+
+  <div class="row" *ngIf="isQuarto">
+    <mat-form-field class="col" appearance="fill">
+      <mat-label>Abrigado</mat-label>
+      <input type="text"
+              placeholder="Escolha um abrigado"
+              matInput
+              [formControl]="myControl"
+              [matAutocomplete]="auto"
+              [(ngModel)]="abrigado.nome">
+      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+        <mat-option *ngFor="let abrigado of filteredAbrigados | async" [value]="abrigado.nome" (click)="definirAbrigado(abrigado)">
+          {{abrigado.nome}} - {{abrigado.documento}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    <a (click)="openAbrigados()">Abrigado não existe? Cadastre clicando Aqui!</a>
 
     <div class="row m-1 d-flex justify-content-end">
-      <button mat-raised-button class="col-4 col-sm-2 text-center btn" color="accent" (click)="filtrar()" [disabled]="!estadiaForm.form.valid">Filtrar</button>
+      <button mat-raised-button class="col-4 col-sm-3 text-center btn" color="accent" (click)="Agendar()" [disabled]="!abrigado.nome">Agendar</button>
     </div>
-  </form>
-</section>
-
-<section class="example-container" *ngIf="!isQuarto">
-  <table mat-table [dataSource]="dataSource">
-
-    <!-- Nome Column -->
-    <ng-container matColumnDef="nome">
-      <th mat-header-cell *matHeaderCellDef width="65%"> Nome </th>
-      <td mat-cell *matCellDef="let row"> {{row.nome}} </td>
-    </ng-container>
-
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-    <tr mat-row (click)="onSelect(row)" [class.demo-row-is-clicked]="clickedRows.has(row)"
-      *matRowDef="let row; columns: displayedColumns;"></tr>
-
-    <!-- Row shown when there is no matching data. -->
-    <tr class="mat-row" *matNoDataRow>
-      <td class="mat-cell " colspan="4">Sem dados para o filtro "{{input.value}}"</td>
-    </tr>
-  </table>
-</section>
-<div class="row m-1 d-flex justify-content-end" *ngIf="!isQuarto">
-  <button mat-raised-button class="col-4 col-sm-3 text-center btn" color="accent" (click)="avancar()" [disabled]="clickedRows.size === 0">Avançar</button>
-</div>
-
+  </div>
 
 </main>

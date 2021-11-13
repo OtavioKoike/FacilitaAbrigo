@@ -22,8 +22,8 @@
               <mat-icon>edit</mat-icon>
             </button>
           </div>
-          <div class="row buttons d-flex justify-content-end" *ngIf="rota!=='quartosRoute'">
-            <button mat-raised-button class="col-8 mt-auto text-center" color="accent">Agendar</button>
+          <div class="row buttons d-flex justify-content-end" *ngIf="rota!=='quartosRoute' && user.instituicao_id">
+            <button mat-raised-button class="col-8 mt-auto text-center" color="accent" (click)="onAgendar()">Agendar</button>
           </div>
         </div>
       </div>
