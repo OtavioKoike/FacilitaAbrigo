@@ -1,4 +1,9 @@
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { PopupComponent } from './../popup/popup.component';
+import { EstadiaService } from 'src/app/services/estadia.service';
+import { Estadia } from './../../models/estadia.model';
+import { AuthService } from 'src/app/services/auth.service';
+import { Usuario } from './../../models/usuario.model';
+import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ModalDadosAbrigadoComponent } from './../../screens/abrigado/modal-dados-abrigado/modal-dados-abrigado.component';
 import { startWith, map } from 'rxjs/operators';
 import { AbrigadoService } from './../../services/abrigado.service';
@@ -35,13 +40,18 @@ export class ModalDadosEstadiaComponent implements OnInit {
   isQuarto: boolean = false;
 
   abrigado = {} as Abrigado;
+  user = {} as Usuario;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data,
+    private dialogRef: MatDialogRef<ModalDadosEstadiaComponent>,
     private dialog: MatDialog,
+    private _authService: AuthService,
     private _quartoService: QuartoService,
-    private _abrigadoService: AbrigadoService
+    private _abrigadoService: AbrigadoService,
+    private _estadiaService: EstadiaService
   ) {
+    this.user = this._authService.getUser();
     if(data){
       this.quarto = data.quarto;
       this.isQuarto = true;
@@ -98,6 +108,31 @@ export class ModalDadosEstadiaComponent implements OnInit {
   }
 
   agendar(){
+    let estadia = {
+      data_inicio: this.data_inicial,
+      data_saida: this.data_final,
+      quarto_id: this.quarto.id,
+      abrigado_id: this.abrigado.id
+    } as Estadia;
+
+    if(this.data){
+      estadia.abrigo_id = this.quarto.abrigo_id;
+      estadia.instituicao_id = this.user.instituicao_id;
+    } else {
+      estadia.abrigo_id = this.user.abrigo_id;
+    }
+
+    this._estadiaService.createEstadia(estadia).subscribe(
+      response => {
+
+        let mensagem = { principal: "Cadastro realizado com sucesso!"}
+        this.dialog.open(PopupComponent, {data:  mensagem }).afterClosed().subscribe(
+          result => {
+            this.dialogRef.close({ submit: response });
+          }
+        )
+      }
+    );
     //agendar
     // popup cadastro
     // fdechar modal

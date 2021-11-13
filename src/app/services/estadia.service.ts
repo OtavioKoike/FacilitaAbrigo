@@ -12,9 +12,9 @@ export class EstadiaService {
 
   constructor( private _http: HttpClient ) { }
 
-  // createEstadia(abrigado: Abrigado){
-  //   return this._http.post(`${API}/api/abrigado`, abrigado)
-  // }
+  createEstadia(estadia: Estadia){
+    return this._http.post(`${API}/api/estadia`, estadia);
+  }
 
   findEstadias(tipo: string, id: number){
     if(tipo === "albergue"){

@@ -51,4 +51,6 @@ export class QuartoComponent implements OnInit {
     this.agendar.emit(this.quarto)
   }
 
+  onDados(){}
+
 }

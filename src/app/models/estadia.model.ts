@@ -9,7 +9,8 @@ export interface Estadia {
   data_saida: any;
   abrigado_id: number;
   quarto_id: number;
-  instituicao_id: string;
+  instituicao_id: number;
+  abrigo_id: number;
   quarto: Quarto;
   instituicao: Entidade;
   abrigado: Abrigado;
