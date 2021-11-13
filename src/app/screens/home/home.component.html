@@ -1,11 +1,20 @@
-<div class="row m-1 d-flex justify-content-end">
-  <button mat-raised-button class="col-4 col-sm-3 text-center btn" color="accent" (click)="filtrar()">Filtrar</button>
+<div class="container-fluid ps-md-0">
+  <div class="row g-0">
+    <div class="d-none d-md-flex col-md-4 col-lg-4 menu-vertical">
+      <app-filtro (dadosFiltro)="filtrar($event)"></app-filtro>
+    </div>
+    <div class="col-md-8 col-lg-8 content-vertical">
+      <div class=" d-flex align-items-center py-5">
+        <div class="container">
+          <div class="row">
+              <app-quarto *ngFor="let quarto of quartos"
+              rota="homeRoute"
+              [quarto]="quarto"
+              [dados]="quarto.abrigo"
+              (agendar)="onRegister($event)"></app-quarto>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-
-<main>
-  <app-quarto *ngFor="let quarto of quartos"
-  rota="homeRoute"
-  [quarto]="quarto"
-  [dados]="quarto.abrigo"
-  (agendar)="onRegister($event)"></app-quarto>
-</main>

@@ -1,0 +1,23 @@
+.login {
+  min-height: 100vh;
+  background: #F2F2F2;
+}
+
+.container-fluid {
+   padding-right: 0 !important;
+   padding-left: 0 !important;
+   overflow: hidden;
+}
+
+.menu-vertical{
+  position:fixed;
+  z-index:999;
+  left:0%;
+  right: 0%;
+  top:70px;
+  overflow:hidden;
+}
+
+.content-vertical {
+  margin-left: 33%;
+}

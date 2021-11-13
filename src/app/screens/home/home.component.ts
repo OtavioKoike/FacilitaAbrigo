@@ -19,20 +19,23 @@ export class HomeComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     private _quartoService: QuartoService
-  ) { }
+  ) {   }
 
   ngOnInit(): void {
   }
 
-  filtrar(){
-    const caracteristicasSelecionadasIds = [] as number[];
-    this._quartoService.filtrar(this.data_inicial, this.data_final, caracteristicasSelecionadasIds).subscribe(response => {
+  filtrar(dados: any){
+    this.data_inicial = dados.data_inicial;
+    this.data_final = dados.data_final;
+
+    const caracteristicasSelecionadasIds = dados.caracteristicas.map(caract => {return caract.id}) as number[]
+    this._quartoService.filtrar(this.data_inicial, this.data_final, dados.cidade, caracteristicasSelecionadasIds).subscribe(response => {
       this.quartos = response;
     })
   }
 
   onRegister(quarto: Quarto){
-    const dados = {quarto: quarto} //enviar datas
+    const dados = {quarto: quarto, data_inicial: this.data_inicial, data_final: this.data_final} //enviar datas
     this.dialog.open(ModalDadosEstadiaComponent, {data: dados}).afterClosed().subscribe( result => {
     });
   }

@@ -5,7 +5,7 @@
 </div>
 
 <section class="text-center">
-  <h5>Cadastrar Quarto</h5>
+  <h5>{{title}}</h5>
 
   <form #quartoForm="ngForm">
     <div class="row mt-3">
@@ -39,7 +39,7 @@
 
     <div class="row d-flex justify-content-center mt-3 mb-3">
       <div class="col-12">
-        <input type="file" #inputFile class="form-control bg-transparent" (change)="selectFile($event)"
+        <input type="file" id="file" #inputFile class="form-control bg-transparent" (change)="selectFile($event)"
           accept=".jpg, .jpeg, .png" required />
       </div>
     </div>

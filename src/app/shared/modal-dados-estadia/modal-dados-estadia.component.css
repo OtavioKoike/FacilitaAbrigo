@@ -44,3 +44,9 @@ table {
 .demo-row-is-clicked {
   background-color: rgb(219, 220, 221);
 }
+
+a {
+  font-size: 12px;
+  color: blue !important;
+  cursor: pointer;
+}

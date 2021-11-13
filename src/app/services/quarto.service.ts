@@ -23,8 +23,12 @@ export class QuartoService {
     return this._http.put(`${API}/api/quartos/${quarto.id}`, quarto);
   }
 
-  filtrar(data_inicial: string, data_final: string, caracteristicasIds: number[]){
-    return this._http.get<Quarto[]>(`${API}/api/quartos/`);
+  filtrar(data_inicial: string, data_final: string, cidade: string, caracteristicasIds: number[]){
+    return this._http.get<Quarto[]>(`${API}/api/quartos/filtrar?data_inicial=${data_inicial}&cidade=${cidade}&caracteristicas=${caracteristicasIds.toString()}`);
+  }
+
+  filtrarByAbrigo(data_inicial: string, data_final: string, abrigo_id: number, caracteristicasIds: number[]){
+    return this._http.get<Quarto[]>(`${API}/api/quartos/filtrar?data_inicial==${data_inicial}&caracteristicas=${caracteristicasIds.toString()}&abrigo_id=${abrigo_id}`);
   }
 
   delete(id: number){

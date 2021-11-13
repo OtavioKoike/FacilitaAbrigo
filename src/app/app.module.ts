@@ -57,6 +57,7 @@ import { QuartosComponent } from './screens/entidade/quartos/quartos.component';
 import { ModalDadosQuartoComponent } from './screens/entidade/quartos/modal-dados-quarto/modal-dados-quarto.component';
 import { ModalDadosEstadiaComponent } from './shared/modal-dados-estadia/modal-dados-estadia.component';
 import { ChipsMaterialComponent } from './shared/chips-material/chips-material.component';
+import { FiltroComponent } from './screens/home/filtro/filtro.component';
 
 @NgModule({
   declarations: [
@@ -83,7 +84,8 @@ import { ChipsMaterialComponent } from './shared/chips-material/chips-material.c
     QuartosComponent,
     ModalDadosQuartoComponent,
     ModalDadosEstadiaComponent,
-    ChipsMaterialComponent
+    ChipsMaterialComponent,
+    FiltroComponent
   ],
   imports: [
     BrowserModule,

@@ -76,6 +76,7 @@ export class DadosEstadiaComponent implements OnInit {
   cadastrar(){
     this._estadiaService.createEvento(this.id, this.evento).subscribe(() => {
       this.findEstadia()
+      this.evento = '';
     })
   }
 

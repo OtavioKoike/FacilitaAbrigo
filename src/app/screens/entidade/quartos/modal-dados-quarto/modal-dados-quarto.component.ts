@@ -22,8 +22,10 @@ export class ModalDadosQuartoComponent implements OnInit {
 
   caracteristicasSelecionadas: Caracteristica[] = [];
 
+  title = "Cadastrar Quarto"
   quarto = {} as Quarto;
   file = [];
+  isNewFile = false;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data,
@@ -34,8 +36,11 @@ export class ModalDadosQuartoComponent implements OnInit {
     private _quartoService: QuartoService
   ) {
     if(data){
+      this.title = "Editar Quarto";
       this.quarto = data.quarto;
       this.caracteristicasSelecionadas = data.quarto.caracteristicas;
+      this.file.push({name: this.quarto.imagens[this.quarto.imagens.length - 1].url} as File);
+      this.isNewFile = false;
     }
 
   }
@@ -56,7 +61,7 @@ export class ModalDadosQuartoComponent implements OnInit {
         response => {
           let mensagem = { principal: "Atualização realizada com sucesso!" };
           this.onCreateCaracteristicas(this.quarto, mensagem);
-          this.uploadFile(this.quarto);
+          this.isNewFile ? this.uploadFile(this.quarto) : '';
         }
       );
     } else {
@@ -86,12 +91,11 @@ export class ModalDadosQuartoComponent implements OnInit {
 
   selectFile(event) {
     this.file = event.target.files;
-    console.log(this.file)
+    this.isNewFile = true;
   }
 
   uploadFile(quartoResponse: Quarto) {
     if (this.file.length == 0) {
-      console.log("No file selected!");
       return
 
     }

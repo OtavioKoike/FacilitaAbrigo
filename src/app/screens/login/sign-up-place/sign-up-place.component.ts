@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -36,6 +37,7 @@ export class SignUpPlaceComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog,
+    private _authService: AuthService,
     private _router: Router,
     private _cepService: CepService,
     private _entidadeService: EntidadeService
@@ -91,7 +93,7 @@ export class SignUpPlaceComponent implements OnInit {
       this._entidadeService.createEntidade(this.tipo, this.entidade).subscribe(
         response => {
           this._entidadeService.storeEntidade(this.tipo, response);
-
+          this._authService.findByPk(this._authService.getUser());
           let mensagem = { principal: "Cadastro realizado com sucesso!", secundaria: "Sua instituição será avaliada e aprovada em breve."}
           this.dialog.open(PopupComponent, {data:  mensagem }).afterClosed().subscribe(
             result => {
@@ -105,7 +107,7 @@ export class SignUpPlaceComponent implements OnInit {
       this._entidadeService.solicitarEntidade(this.tipo, this.entidade.id).subscribe(
         response => {
           this._entidadeService.storeEntidade(this.tipo, this.entidade);
-
+          this._authService.findByPk(this._authService.getUser());
           let mensagem = { principal: "Solicitação realizada com sucesso!", secundaria: "Sua solicitação será avaliada e aprovada em breve."}
           this.dialog.open(PopupComponent, {data:  mensagem }).afterClosed().subscribe(
             result => {

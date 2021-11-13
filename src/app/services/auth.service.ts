@@ -27,11 +27,20 @@ export class AuthService {
     return this.http.post<Usuario>(`${API}/api/usuario/login`, user);
   }
 
+  findByPk(user: Usuario){
+    this.http.get<Usuario>(`${API}/api/usuario/${user.id}`).subscribe(
+      response => {
+        this.storeUser(response);
+      }
+    )
+  }
+
   doLoginUser(user, token, refresh_token) {
     this.loggedUser = user.nome;
     this.storeTokens(token, refresh_token);
     this.storeUser(user);
   }
+
 
   doLogoutUser() {
     this.loggedUser = null;

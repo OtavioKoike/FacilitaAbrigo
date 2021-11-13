@@ -54,6 +54,8 @@ export class ModalDadosEstadiaComponent implements OnInit {
     this.user = this._authService.getUser();
     if(data){
       this.quarto = data.quarto;
+      this.data_inicial = data.data_inicial;
+      this.data_final = data.data_final;
       this.isQuarto = true;
     }
   }
@@ -75,7 +77,7 @@ export class ModalDadosEstadiaComponent implements OnInit {
 
   filtrar(){
     const caracteristicasSelecionadasIds = this.caracteristicasSelecionadas.map(caract => { return caract.id})
-    this._quartoService.filtrar(this.data_inicial, this.data_final, caracteristicasSelecionadasIds).subscribe(response => {
+    this._quartoService.filtrarByAbrigo(this.data_inicial, this.data_final, this.user.abrigo_id, caracteristicasSelecionadasIds).subscribe(response => {
       this.quartos = response;
       this.dataSource = new MatTableDataSource(this.quartos);
     })
