@@ -1,5 +1,5 @@
 <mat-form-field class="example-chip-list" appearance="fill">
-  <mat-label>Caracteristicas</mat-label>
+  <mat-label>Características</mat-label>
   <mat-chip-list #chipList>
     <mat-chip
       *ngFor="let caracteristica of caracteristicasSelecionadas"
@@ -10,7 +10,7 @@
       <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
     </mat-chip>
     <input
-      placeholder="Caracteristicas..."
+      placeholder="Características..."
       #CaractInput
       [formControl]="CaractCtrl"
       [matAutocomplete]="auto"
