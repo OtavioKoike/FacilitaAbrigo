@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this._authService.getUser();
-    this.cidade = this.user.abrigo_id ? this.user.abrigo.cidade : this.user.instituicao.cidade;
+    this.cidade = this.user.abrigo_id ? this.user.abrigo.cidade : this.user.instituicao_id ? this.user.instituicao.cidade : "Itajubá";
 
     const filtro = {
       data_inicial: null,
@@ -48,6 +48,8 @@ export class HomeComponent implements OnInit {
 
   filtrar(dados: any){
     const caracteristicasSelecionadasIds = dados.caracteristicas.map(caract => {return caract.id}) as number[]
+    this.data_inicial = dados.data_inicial;
+    this.data_final = dados.data_final;
 
     const filtro = {
       data_inicial: !isUndefined(dados.data_inicial) ? dados.data_inicial : null,
