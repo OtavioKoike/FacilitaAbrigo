@@ -119,7 +119,7 @@ export class ModalDadosEstadiaComponent implements OnInit {
   private _filter(value: string): Abrigado[] {
     const filterValue = value.toLowerCase();
 
-    return this.abrigados.filter(abrigado => abrigado.nome.toLowerCase().includes(filterValue));
+    return this.abrigados.filter(abrigado => abrigado.nome.toLowerCase().includes(filterValue) || abrigado.documento.includes(filterValue));
   }
 
   definirAbrigado(abrigado: Abrigado) {
