@@ -24,11 +24,7 @@ export class DadosEstadiaComponent implements OnInit {
   dataSource: MatTableDataSource<Evento>;
 
   user: Usuario;
-  dados = {
-    abrigado: {},
-    quarto: {},
-    instituicao: {}
-  } as Estadia;
+  dados = { } as Estadia;
   eventos: Evento[];
 
   tipo: string;

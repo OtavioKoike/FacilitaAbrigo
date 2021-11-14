@@ -42,7 +42,7 @@
           </mat-form-field>
         </div>
 
-        <div class="row" *ngIf="tipo === 'albergue'">
+        <div class="row" *ngIf="tipo === 'albergue' && dados.instituicao">
           <mat-form-field class="col col-sm-8" appearance="outline">
             <mat-label>Instituição</mat-label>
             <input matInput type="text" name="instituicao" ngModel [(ngModel)]="dados.instituicao.nome" disabled />
