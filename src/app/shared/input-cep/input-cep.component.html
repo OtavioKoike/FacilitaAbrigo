@@ -1,0 +1,6 @@
+<mat-form-field appearance="outline">
+  <mat-label>Cep</mat-label>
+  <input matInput type="text" name="cep" placeholder="Digite o Cep" ngModel [(ngModel)]="dados.cep"
+    (ngModelChange)="onFind(dados.cep)" required mask="00000-000" />
+  <mat-icon matSuffix>map</mat-icon>
+</mat-form-field>
