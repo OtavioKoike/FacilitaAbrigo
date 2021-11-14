@@ -102,10 +102,10 @@
 
   </div>
   <div class="col">
-    <div class="row">
+    <div class="row" *ngIf="tipo === 'albergue'">
       <h5>Adicionar Evento</h5>
     </div>
-    <div class="row">
+    <div class="row" *ngIf="tipo === 'albergue'">
       <mat-form-field class="col-8" appearance="outline">
         <mat-label>Evento</mat-label>
         <input matInput type="text" name="evento" placeholder="Digite um novo evento" ngModel [(ngModel)]="evento" />
