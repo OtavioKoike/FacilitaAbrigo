@@ -1,3 +1,5 @@
+import { isUndefined } from 'util';
+import { Filtro } from './../../models/filtro.model';
 import { PopupComponent } from './../popup/popup.component';
 import { EstadiaService } from 'src/app/services/estadia.service';
 import { Estadia } from './../../models/estadia.model';
@@ -38,6 +40,7 @@ export class ModalDadosEstadiaComponent implements OnInit {
   quarto: Quarto;
   quartos: Quarto[];
   isQuarto: boolean = false;
+  observacao: string;
 
   abrigado = {} as Abrigado;
   user = {} as Usuario;
@@ -57,6 +60,19 @@ export class ModalDadosEstadiaComponent implements OnInit {
       this.data_inicial = data.data_inicial;
       this.data_final = data.data_final;
       this.isQuarto = true;
+    } else {
+      const filtro = {
+        data_inicial: null,
+        data_final: null,
+        cidade: null,
+        caracteristicasIds: [],
+        abrigo_id: this.user.abrigo_id
+      } as Filtro;
+
+      this._quartoService.filtrar(filtro).subscribe(response => {
+        this.quartos = response;
+        this.dataSource = new MatTableDataSource(this.quartos);
+    })
     }
   }
 
@@ -77,7 +93,16 @@ export class ModalDadosEstadiaComponent implements OnInit {
 
   filtrar(){
     const caracteristicasSelecionadasIds = this.caracteristicasSelecionadas.map(caract => { return caract.id})
-    this._quartoService.filtrarByAbrigo(this.data_inicial, this.data_final, this.user.abrigo_id, caracteristicasSelecionadasIds).subscribe(response => {
+
+    const filtro = {
+      data_inicial: !isUndefined(this.data_inicial) ? this.data_inicial : null,
+      data_final: !isUndefined(this.data_final) ? this.data_final : null,
+      cidade: null,
+      caracteristicasIds: !isUndefined(caracteristicasSelecionadasIds) ? caracteristicasSelecionadasIds : [],
+      abrigo_id: !isUndefined(this.user.abrigo_id) ? this.user.abrigo_id : null
+    } as Filtro;
+
+    this._quartoService.filtrar(filtro).subscribe(response => {
       this.quartos = response;
       this.dataSource = new MatTableDataSource(this.quartos);
     })
@@ -114,7 +139,8 @@ export class ModalDadosEstadiaComponent implements OnInit {
       data_inicio: this.data_inicial,
       data_saida: this.data_final,
       quarto_id: this.quarto.id,
-      abrigado_id: this.abrigado.id
+      abrigado_id: this.abrigado.id,
+      observacao: !isUndefined(this.observacao) ? this.observacao : null,
     } as Estadia;
 
     if(this.data){

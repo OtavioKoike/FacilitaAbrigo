@@ -1,3 +1,4 @@
+import { Filtro } from './../models/filtro.model';
 import { HttpRequest } from '@angular/common/http';
 import { HttpEvent, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -23,12 +24,8 @@ export class QuartoService {
     return this._http.put(`${API}/api/quartos/${quarto.id}`, quarto);
   }
 
-  filtrar(data_inicial: string, data_final: string, cidade: string, caracteristicasIds: number[]){
-    return this._http.get<Quarto[]>(`${API}/api/quartos/filtrar?data_inicial=${data_inicial}&cidade=${cidade}&caracteristicas=${caracteristicasIds.toString()}`);
-  }
-
-  filtrarByAbrigo(data_inicial: string, data_final: string, abrigo_id: number, caracteristicasIds: number[]){
-    return this._http.get<Quarto[]>(`${API}/api/quartos/filtrar?data_inicial==${data_inicial}&caracteristicas=${caracteristicasIds.toString()}&abrigo_id=${abrigo_id}`);
+  filtrar(filtro: Filtro){
+    return this._http.get<Quarto[]>(`${API}/api/quartos/filtrar?data_inicial=${filtro.data_inicial}&cidade=${filtro.cidade}&caracteristicas=${filtro.caracteristicasIds.toString()}&abrigo_id=${filtro.abrigo_id}`);
   }
 
   delete(id: number){

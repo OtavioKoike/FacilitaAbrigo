@@ -16,4 +16,5 @@ export interface Estadia {
   abrigado: Abrigado;
   abrigo: Albergue;
   eventos: Evento[];
+  observacao: string;
 }
