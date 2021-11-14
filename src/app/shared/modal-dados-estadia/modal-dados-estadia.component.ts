@@ -55,7 +55,7 @@ export class ModalDadosEstadiaComponent implements OnInit {
     private _estadiaService: EstadiaService
   ) {
     this.user = this._authService.getUser();
-    if(data){
+    if (data) {
       this.quarto = data.quarto;
       this.data_inicial = data.data_inicial;
       this.data_final = data.data_final;
@@ -78,7 +78,15 @@ export class ModalDadosEstadiaComponent implements OnInit {
 
   ngOnInit(): void {
     this._abrigadoService.findAbrigados().subscribe(response => {
-      this.abrigados = response;
+      this.abrigados = response.sort(function (a, b) {
+        // Ordenar nome
+        if (a.nome < b.nome) {
+          return -1;
+        }
+        else if (a.nome > b.nome) {
+          return 1;
+        }
+      });
 
       this.filteredAbrigados = this.myControl.valueChanges.pipe(
         startWith(null),
@@ -87,7 +95,7 @@ export class ModalDadosEstadiaComponent implements OnInit {
     })
   }
 
-  atualizaChips(caract: Caracteristica[]){
+  atualizaChips(caract: Caracteristica[]) {
     this.caracteristicasSelecionadas = caract;
   }
 
@@ -114,27 +122,27 @@ export class ModalDadosEstadiaComponent implements OnInit {
     return this.abrigados.filter(abrigado => abrigado.nome.toLowerCase().includes(filterValue));
   }
 
-  definirAbrigado(abrigado: Abrigado){
+  definirAbrigado(abrigado: Abrigado) {
     this.abrigado = abrigado;
   }
 
-  onSelect(row){
+  onSelect(row) {
     this.clickedRows.clear();
     this.clickedRows.add(row);
     this.quarto = row;
   }
 
-  openAbrigados(){
+  openAbrigados() {
     this.dialog.open(ModalDadosAbrigadoComponent).afterClosed().subscribe(result => {
       result.submit ? this.abrigado = result.submit : '';
     });
   }
 
-  avancar(){
+  avancar() {
     this.isQuarto = true;
   }
 
-  agendar(){
+  agendar() {
     let estadia = {
       data_inicio: this.data_inicial,
       data_saida: this.data_final,
@@ -143,7 +151,7 @@ export class ModalDadosEstadiaComponent implements OnInit {
       observacao: !isUndefined(this.observacao) ? this.observacao : null,
     } as Estadia;
 
-    if(this.data){
+    if (this.data) {
       estadia.abrigo_id = this.quarto.abrigo_id;
       estadia.instituicao_id = this.user.instituicao_id;
     } else {
@@ -153,17 +161,14 @@ export class ModalDadosEstadiaComponent implements OnInit {
     this._estadiaService.createEstadia(estadia).subscribe(
       response => {
 
-        let mensagem = { principal: "Cadastro realizado com sucesso!"}
-        this.dialog.open(PopupComponent, {data:  mensagem }).afterClosed().subscribe(
+        let mensagem = { principal: "Cadastro realizado com sucesso!" }
+        this.dialog.open(PopupComponent, { data: mensagem }).afterClosed().subscribe(
           result => {
             this.dialogRef.close({ submit: response });
           }
         )
       }
     );
-    //agendar
-    // popup cadastro
-    // fdechar modal
   }
 
 }
