@@ -83,14 +83,14 @@
       <!-- Nome Column -->
       <ng-container matColumnDef="dtInicio">
         <th mat-header-cell *matHeaderCellDef width="15%" class="visibilityMobile"> Entrada </th>
-        <td mat-cell *matCellDef="let element" class="visibilityMobile"> {{element.data_inicio | date: "dd/MMM/YYYY"  : '+180'}}
+        <td mat-cell *matCellDef="let element" class="visibilityMobile"> {{element.data_inicio | date: "dd/MMM/YYYY" }}
         </td>
       </ng-container>
 
       <!-- Cidade Column -->
       <ng-container matColumnDef="dtFim">
         <th mat-header-cell *matHeaderCellDef width="15%" class="visibilityMobile"> Saída </th>
-        <td mat-cell *matCellDef="let element" class="visibilityMobile"> {{element.data_saida | date: "dd/MMM/YYYY"  : '+180'}}
+        <td mat-cell *matCellDef="let element" class="visibilityMobile"> {{element.data_saida | date: "dd/MMM/YYYY" }}
         </td>
       </ng-container>
 
