@@ -8,7 +8,6 @@ mat-card {
   border-radius: 15px 0px 0px 15px;
   background-size:cover;
   height: 200px;
-
 }
 
 .text-card {
@@ -39,5 +38,20 @@ mat-card {
 
 /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
 @media screen and (max-width:600px) {
+  .image-card {
+    height: auto !important;
+  }
 
+  .text-card {
+    margin: 0px;
+  }
+
+
+  .buttons {
+    padding: 0px;
+  }
+
+  .mat-chip-list-wrapper{
+    margin: 0 !important;
+  }
 }

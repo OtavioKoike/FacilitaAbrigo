@@ -53,15 +53,23 @@ export class EstadiasComponent implements OnInit {
     this._router.navigate([`menu/estadia/${estadia.id}`])
   }
 
-  onRegister(){
-    this.dialog.open(ModalDadosEstadiaComponent).afterClosed().subscribe( result => {
+  onRegister() {
+    this.dialog.open(ModalDadosEstadiaComponent).afterClosed().subscribe(result => {
       result.submit ? this.populaTabela() : '';
     });
   }
 
   private populaTabela() {
     this._estadiaService.findEstadias(this.tipo, this.id).subscribe(response => {
-      this.estadias = response.sort();
+      this.estadias = response.sort(function (a, b) {
+        // Ordenar nome ordem data inicio
+        if (a.data_inicio < b.data_inicio) {
+          return -1;
+        }
+        else if (a.data_inicio > b.data_inicio) {
+          return 1;
+        }
+      });
       this.dataSource = new MatTableDataSource(this.estadias);
     })
   }
