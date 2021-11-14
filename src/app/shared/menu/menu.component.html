@@ -15,7 +15,7 @@
       <div fxShow="true" fxHide.lt-md class="lista">
         <a routerLink="/menu/home" mat-button routerLinkActive="active-list-item">Início</a>
         <a *ngIf="user.role === 2 || user.role === 3" routerLink="/menu/estadia" mat-button
-          routerLinkActive="active-list-item">Estadias Atuais</a>
+          routerLinkActive="active-list-item">Estádias Atuais</a>
         <a *ngIf="user.role === 2 || user.role === 3" routerLink="/menu/abrigado" mat-button
           routerLinkActive="active-list-item">Abrigados</a>
         <a *ngIf="(user.role === 2 || user.role === 3) && user.abrigo_id; else instituicao" routerLink="/menu/entidade"
@@ -60,7 +60,7 @@
         <mat-divider></mat-divider>
         <a *ngIf="user.role === 2 || user.role === 3" (click)="sidenav.toggle()" routerLink="/menu/estadia"
           mat-list-item routerLinkActive="active-list-item">
-          <mat-icon>list</mat-icon>Estadias Atuais
+          <mat-icon>list</mat-icon>Estádias Atuais
         </a>
         <mat-divider></mat-divider>
         <a *ngIf="user.role === 2 || user.role === 3" (click)="sidenav.toggle()" routerLink="/menu/abrigado" mat-list-item
