@@ -10,25 +10,27 @@
 
   <section *ngIf="!isQuarto">
     <form #filtroForm="ngForm">
-        <div class="row mt-3">
-          <mat-form-field class="col col-sm-6" appearance="outline">
-            <mat-label>Data de Início</mat-label>
-            <input matInput name="dtInicio" type="date" ngModel [(ngModel)]="data_inicial" />
-          </mat-form-field>
+      <div class="row mt-3">
+        <mat-form-field class="col col-sm-6" appearance="outline">
+          <mat-label>Data de Início</mat-label>
+          <input matInput name="dtInicio" type="date" ngModel [(ngModel)]="data_inicial" />
+        </mat-form-field>
 
-          <mat-form-field class="col col-sm-6" appearance="outline">
-            <mat-label>Data de Saída</mat-label>
-            <input matInput name="dtSaida" type="date" ngModel [(ngModel)]="data_final" />
-          </mat-form-field>
-        </div>
+        <mat-form-field class="col col-sm-6" appearance="outline">
+          <mat-label>Data de Saída</mat-label>
+          <input matInput name="dtSaida" type="date" ngModel [(ngModel)]="data_final" />
+        </mat-form-field>
+      </div>
     </form>
 
-    <div class="row" >
-      <app-chips-material [caracteristicasSelecionadas]="caracteristicasSelecionadas" (selecionadas)="atualizaChips($event)"></app-chips-material>
+    <div class="row">
+      <app-chips-material [caracteristicasSelecionadas]="caracteristicasSelecionadas"
+        (selecionadas)="atualizaChips($event)"></app-chips-material>
     </div>
 
-    <div class="row m-1 d-flex justify-content-end" >
-      <button mat-raised-button class="col-4 col-sm-2 text-center btn" color="accent" (click)="filtrar()">Filtrar</button>
+    <div class="row m-1 d-flex justify-content-end">
+      <button mat-raised-button class="col-4 col-sm-2 text-center btn" color="accent"
+        (click)="filtrar()">Filtrar</button>
     </div>
 
     <section class="example-container">
@@ -52,7 +54,8 @@
       </table>
     </section>
     <div class="row m-1 d-flex justify-content-end">
-      <button mat-raised-button class="col-4 col-sm-3 text-center btn" color="accent" (click)="avancar()" [disabled]="clickedRows.size === 0">Avançar</button>
+      <button mat-raised-button class="col-4 col-sm-3 text-center btn" color="accent" (click)="avancar()"
+        [disabled]="clickedRows.size === 0">Avançar</button>
     </div>
   </section>
   <section *ngIf="isQuarto">
@@ -60,15 +63,11 @@
       <div class="row">
         <mat-form-field class="col" appearance="fill">
           <mat-label>Abrigado</mat-label>
-          <input type="text"
-                  placeholder="Escolha um abrigado"
-                  matInput
-                  [formControl]="myControl"
-                  [matAutocomplete]="auto"
-                  [(ngModel)]="abrigado.nome"
-                  required>
+          <input type="text" placeholder="Escolha um abrigado" matInput [formControl]="myControl"
+            [matAutocomplete]="auto" [(ngModel)]="abrigado.nome" required>
           <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-            <mat-option *ngFor="let abrigado of filteredAbrigados | async" [value]="abrigado.nome" (click)="definirAbrigado(abrigado)">
+            <mat-option *ngFor="let abrigado of filteredAbrigados | async" [value]="abrigado.nome"
+              (click)="definirAbrigado(abrigado)">
               {{abrigado.nome}} - {{abrigado.documento}}
             </mat-option>
           </mat-autocomplete>
@@ -79,12 +78,12 @@
       <div class="row mt-3">
         <mat-form-field class="col col-sm-6" appearance="outline">
           <mat-label>Data de Início</mat-label>
-          <input matInput name="dtInicio" type="date" ngModel [(ngModel)]="data_inicial" required/>
+          <input matInput name="dtInicio" type="date" ngModel [(ngModel)]="data_inicial" required />
         </mat-form-field>
 
         <mat-form-field class="col col-sm-6" appearance="outline">
           <mat-label>Data de Saída</mat-label>
-          <input matInput name="dtSaida" type="date" ngModel [(ngModel)]="data_final" required/>
+          <input matInput name="dtSaida" type="date" ngModel [(ngModel)]="data_final" required />
         </mat-form-field>
       </div>
     </form>
@@ -92,20 +91,20 @@
     <div class="row">
       <mat-form-field class="col" appearance="outline">
         <mat-label>Quarto</mat-label>
-        <input matInput type="text" name="quarto"  ngModel [(ngModel)]="quarto.nome" disabled />
+        <input matInput type="text" name="quarto" ngModel [(ngModel)]="quarto.nome" disabled />
         <mat-icon matSuffix>home</mat-icon>
       </mat-form-field>
     </div>
     <div class="row">
       <mat-form-field class="col" appearance="outline">
         <mat-label>Observação</mat-label>
-        <textarea matInput type="text" name="descricao" rows="2" ngModel [(ngModel)]="observacao"
-          required></textarea>
+        <textarea matInput type="text" name="descricao" rows="2" ngModel [(ngModel)]="observacao"></textarea>
         <mat-icon matSuffix>description</mat-icon>
       </mat-form-field>
     </div>
     <div class="row m-1 d-flex justify-content-end">
-      <button mat-raised-button class="col-4 col-sm-3 text-center btn" color="accent" (click)="agendar()" [disabled]="!abrigado.id || !estadiaForm.form.valid">Agendar</button>
+      <button mat-raised-button class="col-4 col-sm-3 text-center btn" color="accent" (click)="agendar()"
+        [disabled]="!abrigado.id || !estadiaForm.form.valid">Agendar</button>
     </div>
   </section>
 

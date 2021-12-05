@@ -14,26 +14,26 @@ import { API } from '../../../app.api'
 })
 export class QuartoService {
 
-  constructor( private _http: HttpClient ) { }
+  constructor(private _http: HttpClient) { }
 
-  create(quarto: Quarto){
+  create(quarto: Quarto) {
     return this._http.post<Quarto>(`${API}/api/quartos`, quarto);
   }
 
-  update(quarto: Quarto){
+  update(quarto: Quarto) {
     return this._http.put(`${API}/api/quartos/${quarto.id}`, quarto);
   }
 
-  filtrar(filtro: Filtro){
-    return this._http.get<Quarto[]>(`${API}/api/quartos/filtrar?data_inicial=${filtro.data_inicial}&cidade=${filtro.cidade}&caracteristicas=${filtro.caracteristicasIds.toString()}&abrigo_id=${filtro.abrigo_id}`);
+  filtrar(filtro: Filtro) {
+    return this._http.get<Quarto[]>(`${API}/api/quartos/filtrar?data_inicial=${filtro.data_inicial}&data_final=${filtro.data_final}&cidade=${filtro.cidade}&caracteristicas=${filtro.caracteristicasIds.toString()}&abrigo_id=${filtro.abrigo_id}`);
   }
 
-  delete(id: number){
+  delete(id: number) {
     return this._http.delete(`${API}/api/quartos/${id}`);
   }
 
-  addCaracteristicas(quarto: Quarto, caracteristicas: number[]){
-    return this._http.post(`${API}/api/quartos/${quarto.id}/caracteristica`, {caracteristicas_ids: caracteristicas});
+  addCaracteristicas(quarto: Quarto, caracteristicas: number[]) {
+    return this._http.post(`${API}/api/quartos/${quarto.id}/caracteristica`, { caracteristicas_ids: caracteristicas });
   }
 
   uploadFile(quarto: Quarto, file: File): Observable<HttpEvent<any>> {
