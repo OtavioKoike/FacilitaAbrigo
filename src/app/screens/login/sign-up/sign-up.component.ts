@@ -49,7 +49,7 @@ export class SignUpComponent implements OnInit {
 
           this._authService.doLoginUser(usuario, token, refresh_token);
 
-          let mensagem = { principal: "Cadastro realizado com sucesso!", secundaria: "Cadastre sua instituição ou solicite para ser membro dela." }
+          let mensagem = { principal: "Cadastro realizado com sucesso!", secundaria: "Cadastre sua instituição ou solicite para ser membro dela.", botao: "Fechar"}
           this.dialog.open(PopupComponent, { data: mensagem }).afterClosed().subscribe(
             result => {
               this._router.navigateByUrl('/sign-up-place');

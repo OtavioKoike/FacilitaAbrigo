@@ -1,3 +1,5 @@
+import { PopupComponent } from './../../../shared/popup/popup.component';
+import { MatDialog } from '@angular/material/dialog';
 import { Component, OnInit } from '@angular/core';
 // Material
 import { MatTableDataSource } from '@angular/material/table';
@@ -20,16 +22,25 @@ export class CaracteristicasComponent implements OnInit {
 
   caracteristica: string;
 
-  constructor(private _caracteristicaService: CaracteristicasService) { }
+  constructor(
+    private _caracteristicaService: CaracteristicasService,
+    public dialog: MatDialog,
+  ) { }
 
   ngOnInit(): void {
     this.populaTabela()
   }
 
   deletar(caracteristica: Caracteristica) {
-    this._caracteristicaService.delete(caracteristica.id).subscribe(() => {
-      this.populaTabela()
-    })
+    let mensagem = { principal: "Excluir Caracteristica", secundaria: "Você tem certeza que deseja remover essa caracteristica?", botao: "Confirmar"}
+    this.dialog.open(PopupComponent, {data:  mensagem }).afterClosed().subscribe( result => {
+      if(result.submit){
+        this._caracteristicaService.delete(caracteristica.id).subscribe(() => {
+          this.populaTabela()
+        })
+      }
+    });
+
   }
 
   cadastrar() {

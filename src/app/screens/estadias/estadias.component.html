@@ -64,7 +64,7 @@
   </table>
 </div>
 
-<div class="fab">
+<div class="fab" *ngIf="tipo === 'albergue'">
   <button mat-fab (click)="onRegister()">
     <mat-icon>add</mat-icon>
   </button>

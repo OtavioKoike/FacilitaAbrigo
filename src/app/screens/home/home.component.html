@@ -7,7 +7,7 @@
       <div class=" d-flex align-items-center py-5">
         <div class="container">
           <div class="row">
-              <p *ngIf="quartos.length === 0">Sem dados para o filtro</p>
+              <p *ngIf="quartos.length === 0">Sem dados para o filtro ou para sua cidade</p>
               <app-quarto *ngFor="let quarto of quartos"
               rota="homeRoute"
               [quarto]="quarto"

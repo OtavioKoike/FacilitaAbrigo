@@ -75,7 +75,7 @@ export class DadosComponent implements OnInit {
       response => {
         this._entidadeService.storeEntidade(this.tipo, response);
 
-        let mensagem = { principal: "Atualização realizada com sucesso!", secundaria: ""}
+        let mensagem = { principal: "Atualização realizada com sucesso!", secundaria: "", botao: "Fechar"}
         this.dialog.open(PopupComponent, {data:  mensagem });
       }
     );

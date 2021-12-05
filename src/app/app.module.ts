@@ -59,6 +59,7 @@ import { ModalDadosEstadiaComponent } from './shared/modal-dados-estadia/modal-d
 import { ChipsMaterialComponent } from './shared/chips-material/chips-material.component';
 import { FiltroComponent } from './screens/home/filtro/filtro.component';
 import { InputCepComponent } from './shared/input-cep/input-cep.component';
+import { ModalDadosQuartoAgendamentoComponent } from './shared/quarto/modal-dados-quarto-agendamento/modal-dados-quarto-agendamento.component';
 
 @NgModule({
   declarations: [
@@ -87,7 +88,8 @@ import { InputCepComponent } from './shared/input-cep/input-cep.component';
     ModalDadosEstadiaComponent,
     ChipsMaterialComponent,
     FiltroComponent,
-    InputCepComponent
+    InputCepComponent,
+    ModalDadosQuartoAgendamentoComponent,
   ],
   imports: [
     BrowserModule,

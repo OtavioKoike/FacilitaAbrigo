@@ -61,7 +61,10 @@ export class EstadiasComponent implements OnInit {
 
   private populaTabela() {
     this._estadiaService.findEstadias(this.tipo, this.id).subscribe(response => {
-      this.estadias = response.sort(function (a, b) {
+      let hoje = new Date();
+      hoje.setHours(0,0,0,0);
+      this.estadias = response.filter(estadia => new Date(estadia.data_saida) >= hoje);
+      this.estadias = this.estadias.sort(function (a, b) {
         // Ordenar nome ordem data inicio
         if (a.data_inicio < b.data_inicio) {
           return -1;

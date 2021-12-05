@@ -161,7 +161,7 @@ export class ModalDadosEstadiaComponent implements OnInit {
     this._estadiaService.createEstadia(estadia).subscribe(
       response => {
 
-        let mensagem = { principal: "Cadastro realizado com sucesso!" }
+        let mensagem = { principal: "Cadastro realizado com sucesso!", secundaria: "", botao: "Fechar"}
         this.dialog.open(PopupComponent, { data: mensagem }).afterClosed().subscribe(
           result => {
             this.dialogRef.close({ submit: response });

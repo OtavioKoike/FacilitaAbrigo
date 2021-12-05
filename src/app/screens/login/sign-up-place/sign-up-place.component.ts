@@ -94,7 +94,7 @@ export class SignUpPlaceComponent implements OnInit {
         response => {
           this._entidadeService.storeEntidade(this.tipo, response);
           this._authService.findByPk(this._authService.getUser());
-          let mensagem = { principal: "Cadastro realizado com sucesso!", secundaria: "Sua instituição será avaliada e aprovada em breve."}
+          let mensagem = { principal: "Cadastro realizado com sucesso!", secundaria: "Sua instituição será avaliada e aprovada em breve.", botao: "Fechar"}
           this.dialog.open(PopupComponent, {data:  mensagem }).afterClosed().subscribe(
             result => {
               this._router.navigateByUrl('/menu');
@@ -108,7 +108,7 @@ export class SignUpPlaceComponent implements OnInit {
         response => {
           this._entidadeService.storeEntidade(this.tipo, this.entidade);
           this._authService.findByPk(this._authService.getUser());
-          let mensagem = { principal: "Solicitação realizada com sucesso!", secundaria: "Sua solicitação será avaliada e aprovada em breve."}
+          let mensagem = { principal: "Solicitação realizada com sucesso!", secundaria: "Sua solicitação será avaliada e aprovada em breve.", botao: "Fechar"}
           this.dialog.open(PopupComponent, {data:  mensagem }).afterClosed().subscribe(
             result => {
               this._router.navigateByUrl('/menu');

@@ -59,7 +59,7 @@ export class DadosHistoricoComponent implements OnInit {
   onSave(){
     this._abrigadoService.updateAbrigado(this.abrigado).subscribe(
       response => {
-        let mensagem = { principal: "Atualização realizada com sucesso!", secundaria: ""}
+        let mensagem = { principal: "Atualização realizada com sucesso!", secundaria: "", botao: "Fechar"}
         this.dialog.open(PopupComponent, {data:  mensagem });
     })
     this.edit = false;

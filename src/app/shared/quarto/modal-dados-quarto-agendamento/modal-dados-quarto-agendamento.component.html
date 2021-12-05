@@ -1,0 +1,36 @@
+<div class="fab d-flex justify-content-end">
+  <button mat-icon-button mat-dialog-close>
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+
+<main>
+  <h5 class="text-center">{{data.quarto.nome}}</h5>
+
+  <section class="mt-4">
+    <p>{{data.quarto.descricao}}</p>
+    <div class="mt-1">
+      <strong>Capacidade:</strong> {{data.quarto.capacidade}} Pessoas.
+    </div>
+    <div class="mt-1">
+      <strong>Caracteristicas:</strong>
+    </div>
+    <div class="row">
+      <mat-chip-list aria-label="Fish selection">
+        <mat-chip *ngFor="let caracteristica of data.quarto.caracteristicas">{{caracteristica.nome}}</mat-chip>
+      </mat-chip-list>
+    </div>
+  </section>
+  <mat-divider class="m-3"></mat-divider>
+  <section>
+    <p class="dados-abrigo">Dados do Abrigo</p>
+    <p>{{data.dados.nome}}</p>
+    <p>{{data.dados.descricao}}</p>
+    <strong>Endereço: </strong>{{data.dados.rua}} - {{data.dados.numero}}, {{data.dados.cidade}}<br>
+    <strong>Telefone: </strong>{{data.dados.telefone}}<br>
+  </section>
+
+  <div class="d-flex justify-content-end">
+    <button mat-raised-button mat-dialog-close class="bg-primary text-white">Fechar</button>
+  </div>
+</main>

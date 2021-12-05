@@ -16,4 +16,8 @@ export class PopupComponent implements OnInit {
 
   ngOnInit(): void { }
 
+  onClose() {
+    this.dialogRef.close({ submit: true });
+  }
+
 }

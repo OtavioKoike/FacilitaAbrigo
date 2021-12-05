@@ -2,6 +2,6 @@
   <h5>{{data.principal}}</h5>
   <p>{{data.secundaria}}</p>
   <div class="d-flex justify-content-end">
-    <button mat-raised-button mat-dialog-close class="bg-primary text-white">Fechar</button>
+    <button mat-raised-button class="bg-primary text-white" (click)="onClose()">{{data.botao}}</button>
   </div>
 </main>

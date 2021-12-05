@@ -77,15 +77,21 @@ export class DadosEstadiaComponent implements OnInit {
   }
 
   deletar(evento: Evento){
-    this._estadiaService.deleteEvento(evento).subscribe(() => {
-      this.findEstadia()
-    })
+    let mensagem = { principal: "Excluir Evento", secundaria: "Você tem certeza que deseja remover esse evento?", botao: "Confirmar"}
+    this.dialog.open(PopupComponent, {data:  mensagem }).afterClosed().subscribe( result => {
+      if(result.submit){
+        this._estadiaService.deleteEvento(evento).subscribe(() => {
+          this.findEstadia()
+        })
+      }
+    });
+
   }
 
   async onSave(){
     this._estadiaService.updateEstadia(this.dados).subscribe(
       response => {
-        let mensagem = { principal: "Atualização realizada com sucesso!", secundaria: ""}
+        let mensagem = { principal: "Atualização realizada com sucesso!", secundaria: "", botao: "Fechar"}
         this.dialog.open(PopupComponent, {data:  mensagem });
       }
     );

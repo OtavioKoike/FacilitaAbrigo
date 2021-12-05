@@ -59,7 +59,7 @@ export class ModalDadosQuartoComponent implements OnInit {
     if(this.data){
       this._quartoService.update(this.quarto).subscribe(
         response => {
-          let mensagem = { principal: "Atualização realizada com sucesso!" };
+          let mensagem = { principal: "Atualização realizada com sucesso!", secundaria: "", botao: "Fechar"};
           this.onCreateCaracteristicas(this.quarto, mensagem);
           this.isNewFile ? this.uploadFile(this.quarto) : '';
         }
@@ -68,7 +68,7 @@ export class ModalDadosQuartoComponent implements OnInit {
       this._quartoService.create(this.quarto).subscribe(
         response => {
           const quartoResponse = response
-          let mensagem = { principal: "Cadastro realizado com sucesso!" };
+          let mensagem = { principal: "Cadastro realizado com sucesso!", secundaria: "", botao: "Fechar"};
           this.onCreateCaracteristicas(quartoResponse, mensagem);
           this.uploadFile(quartoResponse);
         }

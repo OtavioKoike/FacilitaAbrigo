@@ -26,7 +26,7 @@ export class ModalDadosAbrigadoComponent implements OnInit {
 
   onCreate(){
     this._abrigadoService.createAbrigado(this.abrigado).subscribe( response => {
-      let mensagem = { principal: "Cadastro realizado com sucesso!", secundaria: ""}
+      let mensagem = { principal: "Cadastro realizado com sucesso!", secundaria: "", botao: "Fechar"}
       this.dialog.open(PopupComponent, {data:  mensagem }).afterClosed().subscribe(
         responseDialog => {
           this.dialogRef.close({ submit: response });

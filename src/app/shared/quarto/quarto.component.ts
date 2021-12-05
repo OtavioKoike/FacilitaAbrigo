@@ -1,9 +1,13 @@
+import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from 'src/app/services/auth.service';
 import { Usuario } from './../../models/usuario.model';
 import { Caracteristica } from './../../models/caracteristica.model';
 import { Albergue } from './../../models/albergue.model';
 import { Quarto } from 'src/app/models/quarto.model';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+// Component
+import { PopupComponent } from './../popup/popup.component';
+import { ModalDadosQuartoAgendamentoComponent } from './modal-dados-quarto-agendamento/modal-dados-quarto-agendamento.component';
 // API
 import { API } from '../../../../app.api'
 
@@ -26,7 +30,10 @@ export class QuartoComponent implements OnInit {
   plus = { nome: "..."} as Caracteristica;
 
   user: Usuario;
-  constructor( private _authService: AuthService) {
+  constructor(
+    private _authService: AuthService,
+    public dialog: MatDialog,
+  ) {
     this.user = _authService.getUser();
   }
 
@@ -44,13 +51,20 @@ export class QuartoComponent implements OnInit {
   }
 
   onDelete(){
-    this.delete.emit(this.quarto)
+    let mensagem = { principal: "Excluir Quarto", secundaria: "Você tem certeza que deseja remover esse quarto?", botao: "Confirmar"}
+    this.dialog.open(PopupComponent, {data:  mensagem }).afterClosed().subscribe( result => {
+      result.submit ? this.delete.emit(this.quarto): '';
+    });
   }
 
   onAgendar(){
     this.agendar.emit(this.quarto)
   }
 
-  onDados(){}
+  onDados(){
+    let quarto = this.quarto;
+    let dados = this.dados;
+    this.dialog.open(ModalDadosQuartoAgendamentoComponent, {data: {quarto, dados}, width: '600px',});
+  }
 
 }
