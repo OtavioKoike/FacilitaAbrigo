@@ -167,6 +167,10 @@ export class ModalDadosEstadiaComponent implements OnInit {
             this.dialogRef.close({ submit: response });
           }
         )
+      },
+      error => {
+        let mensagem = { principal: "Falha ao realizar o cadastro!", secundaria: "O quarto não tem vaga para esse período. Selecione outra data.", botao: "Fechar"}
+        this.dialog.open(PopupComponent, { data: mensagem })
       }
     );
   }
