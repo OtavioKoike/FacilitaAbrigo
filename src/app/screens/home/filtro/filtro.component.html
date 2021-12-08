@@ -20,18 +20,20 @@
     <div class="row">
       <mat-form-field class="col" appearance="outline">
         <mat-label>Cidade</mat-label>
-        <input matInput type="text" name="cidade" placeholder="Digite a Cidade" ngModel
-        [(ngModel)]="cidade"/>
+        <input matInput type="text" name="cidade" placeholder="Digite a Cidade" ngModel [(ngModel)]="cidade" />
         <mat-icon matSuffix>location_city</mat-icon>
       </mat-form-field>
     </div>
   </form>
 
   <div class="row">
-    <app-chips-material [caracteristicasSelecionadas]="caracteristicasSelecionadas" (selecionadas)="atualizaChips($event)"></app-chips-material>
+    <app-chips-material [caracteristicasSelecionadas]="caracteristicasSelecionadas"
+      (selecionadas)="atualizaChips($event)"></app-chips-material>
   </div>
 
   <div class="row m-1 d-flex justify-content-end">
-    <button mat-raised-button class="col-4 col-sm-2 text-center btn" color="accent" (click)="filtrar()" [disabled]="!filtroForm.form.valid">Filtrar</button>
+    <button mat-raised-button class="col-4 col-sm-2 text-center" (click)="limpar()">Limpar</button>
+    <button mat-raised-button class="col-4 col-sm-2 text-center btn" color="accent" (click)="filtrar()"
+      [disabled]="!filtroForm.form.valid">Filtrar</button>
   </div>
 </div>

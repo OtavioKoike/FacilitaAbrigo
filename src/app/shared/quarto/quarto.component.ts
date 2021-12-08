@@ -27,7 +27,7 @@ export class QuartoComponent implements OnInit {
 
   url: string;
   caracteristicas: Caracteristica[];
-  plus = { nome: "..."} as Caracteristica;
+  plus = { nome: "..." } as Caracteristica;
 
   user: Usuario;
   constructor(
@@ -38,33 +38,33 @@ export class QuartoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.url = `${API}${this.quarto.imagens[this.quarto.imagens.length-1].url}`
+    this.url = `${API}${this.quarto.imagens[this.quarto.imagens.length - 1].url}`
     this.caracteristicas = this.quarto.caracteristicas;
-    if(this.caracteristicas.length > 6){
-      this.caracteristicas = this.caracteristicas.slice(0,5);
+    if (this.caracteristicas.length > 3) {
+      this.caracteristicas = this.caracteristicas.slice(0, 2);
       this.caracteristicas.push(this.plus)
     }
   }
 
-  onUpdate(){
+  onUpdate() {
     this.update.emit(this.quarto)
   }
 
-  onDelete(){
-    let mensagem = { principal: "Excluir Quarto", secundaria: "Você tem certeza que deseja remover esse quarto?", botao: "Confirmar"}
-    this.dialog.open(PopupComponent, {data:  mensagem }).afterClosed().subscribe( result => {
-      result.submit ? this.delete.emit(this.quarto): '';
+  onDelete() {
+    let mensagem = { principal: "Excluir Quarto", secundaria: "Você tem certeza que deseja remover esse quarto?", botao: "Confirmar" }
+    this.dialog.open(PopupComponent, { data: mensagem }).afterClosed().subscribe(result => {
+      result.submit ? this.delete.emit(this.quarto) : '';
     });
   }
 
-  onAgendar(){
+  onAgendar() {
     this.agendar.emit(this.quarto)
   }
 
-  onDados(){
+  onDados() {
     let quarto = this.quarto;
     let dados = this.dados;
-    this.dialog.open(ModalDadosQuartoAgendamentoComponent, {data: {quarto, dados}, width: '600px',});
+    this.dialog.open(ModalDadosQuartoAgendamentoComponent, { data: { quarto, dados }, width: '600px', });
   }
 
 }
